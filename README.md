@@ -79,7 +79,6 @@ Este projeto está em evolução. A versão atual funciona como protótipo funci
 - banco de questões
 - ranking e progresso
 - autenticação
-- tela de dashboard e módulos de estudo
 
 ---
 
