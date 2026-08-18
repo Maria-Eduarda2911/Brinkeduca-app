@@ -1,4 +1,4 @@
-# Brinkeduca App 🎓 (Expo Version)
+# Brinkeduca App 🎓
 
 ![React Native](https://img.shields.io/badge/Platform-React--Native-61DAFB?style=for-the-badge&logo=react&logoColor=black)
 ![Expo](https://img.shields.io/badge/Framework-Expo-000020?style=for-the-badge&logo=expo&logoColor=white)
@@ -26,5 +26,3 @@ Este projeto foi migrado de Android Nativo para **React Native com Expo**.
 - `package.json`: Lista de dependências.
 - `tsconfig.json`: Configuração do TypeScript.
 
----
-**Nota**: Os arquivos da versão Android Nativa (Kotlin) ainda estão nas pastas `app/src/main/java...`, você pode mantê-los como referência ou apagá-los futuramente.
