@@ -4,8 +4,6 @@
 ![Expo](https://img.shields.io/badge/Framework-Expo-000020?style=for-the-badge&logo=expo&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/Language-TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 
-Este projeto foi migrado de Android Nativo para **React Native com Expo**.
-
 ## 🚀 Como Rodar no VS Code
 
 1. Abra a pasta do projeto no VS Code.
