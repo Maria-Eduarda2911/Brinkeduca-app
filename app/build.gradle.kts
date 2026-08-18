@@ -4,14 +4,12 @@ plugins {
 
 android {
     namespace = "com.brinkeduca.app"
-    compileSdk {
-        version = release(37)
-    }
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.brinkeduca.app"
-        minSdk = 35
-        targetSdk = 37
+        minSdk = 24
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -25,6 +23,9 @@ android {
             }
         }
     }
+    buildFeatures {
+        viewBinding = true
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -34,6 +35,19 @@ android {
 dependencies {
     implementation(libs.appcompat)
     implementation(libs.material)
+    implementation(libs.constraintlayout)
+    
+    // Retrofit & Networking
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.gson)
+    
+    // Coroutines
+    implementation(libs.coroutines)
+    
+    // Lifecycle
+    implementation(libs.viewmodel)
+    implementation(libs.lifecycle.runtime)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.espresso.core)
     androidTestImplementation(libs.ext.junit)
