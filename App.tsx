@@ -1,15 +1,13 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import {
   StyleSheet,
   Text,
   View,
   TouchableOpacity,
   SafeAreaView,
-  Alert
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 
-// Definição da interface para a Questão
 interface Question {
   id: string;
   category: string;
@@ -18,58 +16,140 @@ interface Question {
   correctAnswerIndex: number;
 }
 
-const SAMPLE_QUESTION: Question = {
-  id: '1',
-  category: 'MATEMÁTICA',
-  title: 'Quanto é 5 + 7?',
-  options: ['A) 10', 'B) 12', 'C) 15'],
-  correctAnswerIndex: 1,
-};
+const QUESTIONS: Question[] = [
+  {
+    id: '1',
+    category: 'MATEMÁTICA',
+    title: 'Quanto é 5 + 7?',
+    options: ['A) 10', 'B) 12', 'C) 15', 'D) 18'],
+    correctAnswerIndex: 1,
+  },
+  {
+    id: '2',
+    category: 'CIÊNCIAS',
+    title: 'Qual é o maior planeta do Sistema Solar?',
+    options: ['A) Terra', 'B) Júpiter', 'C) Marte', 'D) Saturno'],
+    correctAnswerIndex: 1,
+  },
+  {
+    id: '3',
+    category: 'PORTUGUÊS',
+    title: 'Qual palavra está escrita corretamente?',
+    options: ['A) Receber', 'B) Recebr', 'C) Recever', 'D) Reseber'],
+    correctAnswerIndex: 0,
+  },
+];
 
 export default function App() {
-  const [question, setQuestion] = useState<Question>(SAMPLE_QUESTION);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [score, setScore] = useState(0);
 
-  const handleCheckAnswer = (index: number) => {
-    const isCorrect = index === question.correctAnswerIndex;
+  const question = QUESTIONS[currentIndex];
 
-    Alert.alert(
-      isCorrect ? "Correto! 🎉" : "Errado ❌",
-      isCorrect ? "Você acertou a questão!" : "Tente novamente!"
-    );
+  const answered = selectedIndex !== null;
+
+  const progressLabel = useMemo(
+    () => `${Math.min(currentIndex + 1, QUESTIONS.length)}/${QUESTIONS.length}`,
+    [currentIndex]
+  );
+
+  const handleAnswerPress = (index: number) => {
+    if (answered) return;
+
+    setSelectedIndex(index);
+
+    if (index === question.correctAnswerIndex) {
+      setScore((prev) => prev + 1);
+    }
   };
 
   const handleNextQuestion = () => {
-    Alert.alert("Aviso", "Buscando próxima questão no banco (via PHP)...");
+    if (currentIndex === QUESTIONS.length - 1) {
+      setCurrentIndex(0);
+      setSelectedIndex(null);
+      setScore(0);
+      return;
+    }
+
+    setCurrentIndex((prev) => prev + 1);
+    setSelectedIndex(null);
   };
+
+  const isCorrectSelection = (index: number) =>
+    index === question.correctAnswerIndex && answered;
+
+  const isWrongSelection = (index: number) =>
+    index === selectedIndex && index !== question.correctAnswerIndex && answered;
+
+  if (!question) {
+    return null;
+  }
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar style="auto" />
+      <StatusBar style="dark" />
 
       <View style={styles.content}>
-        <Text style={styles.categoryText}>{question.category}</Text>
+        <View style={styles.headerRow}>
+          <Text style={styles.categoryText}>{question.category}</Text>
+          <Text style={styles.progressText}>{progressLabel}</Text>
+        </View>
+
+        <View style={styles.scoreBox}>
+          <Text style={styles.scoreLabel}>Pontuação</Text>
+          <Text style={styles.scoreValue}>{score}</Text>
+        </View>
 
         <View style={styles.card}>
           <Text style={styles.questionText}>{question.title}</Text>
         </View>
 
         <View style={styles.optionsContainer}>
-          {question.options.map((option, index) => (
-            <TouchableOpacity
-              key={index}
-              style={styles.optionButton}
-              onPress={() => handleCheckAnswer(index)}
-            >
-              <Text style={styles.optionButtonText}>{option}</Text>
-            </TouchableOpacity>
-          ))}
+          {question.options.map((option, index) => {
+            const optionStyle = [
+              styles.optionButton,
+              isCorrectSelection(index) && styles.optionButtonCorrect,
+              isWrongSelection(index) && styles.optionButtonWrong,
+            ];
+
+            return (
+              <TouchableOpacity
+                key={`${question.id}-${option}`}
+                style={optionStyle}
+                onPress={() => handleAnswerPress(index)}
+                disabled={answered}
+                activeOpacity={0.8}
+              >
+                <Text
+                  style={[
+                    styles.optionButtonText,
+                    isCorrectSelection(index) && styles.optionButtonTextCorrect,
+                    isWrongSelection(index) && styles.optionButtonTextWrong,
+                  ]}
+                >
+                  {option}
+                </Text>
+              </TouchableOpacity>
+            );
+          })}
         </View>
+
+        {answered && (
+          <Text style={styles.feedbackText}>
+            {selectedIndex === question.correctAnswerIndex
+              ? 'Resposta correta! 🎉'
+              : `Resposta errada. A correta é: ${question.options[question.correctAnswerIndex]}`}
+          </Text>
+        )}
 
         <TouchableOpacity
           style={styles.nextButton}
           onPress={handleNextQuestion}
         >
-          <Text style={styles.nextButtonText}>Próxima Questão</Text>
+          <Text style={styles.nextButtonText}>
+            {currentIndex === QUESTIONS.length - 1 ? 'Reiniciar Quiz' : 'Próxima Questão'}
+          </Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -79,67 +159,124 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5F5F5',
+    backgroundColor: '#F4F7FF',
   },
   content: {
     flex: 1,
-    padding: 20,
+    paddingHorizontal: 20,
+    paddingVertical: 24,
     justifyContent: 'center',
+  },
+  headerRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 16,
   },
   categoryText: {
     fontSize: 14,
-    color: '#3700B3',
-    fontWeight: 'bold',
+    color: '#3B82F6',
+    fontWeight: '700',
+    textTransform: 'uppercase',
+    letterSpacing: 1.2,
+  },
+  progressText: {
+    fontSize: 13,
+    color: '#475569',
+    fontWeight: '600',
+  },
+  scoreBox: {
+    alignSelf: 'flex-end',
+    backgroundColor: '#EFF6FF',
+    borderRadius: 12,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
     marginBottom: 16,
+  },
+  scoreLabel: {
+    fontSize: 11,
+    color: '#3B82F6',
+    fontWeight: '700',
+    textTransform: 'uppercase',
+  },
+  scoreValue: {
+    fontSize: 22,
+    color: '#0F172A',
+    fontWeight: '800',
+    textAlign: 'center',
   },
   card: {
     backgroundColor: '#FFFFFF',
-    borderRadius: 12,
+    borderRadius: 18,
     padding: 24,
-    elevation: 4,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
     marginBottom: 24,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.08,
+    shadowRadius: 10,
+    elevation: 4,
   },
   questionText: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#000000',
+    fontSize: 24,
+    fontWeight: '700',
+    color: '#0F172A',
     textAlign: 'center',
+    lineHeight: 32,
   },
   optionsContainer: {
     width: '100%',
   },
   optionButton: {
     borderWidth: 1,
-    borderColor: '#6200EE',
-    borderRadius: 8,
-    padding: 15,
-    marginBottom: 10,
+    borderColor: '#C7D2FE',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 12,
+    paddingVertical: 15,
+    paddingHorizontal: 16,
+    marginBottom: 12,
     alignItems: 'center',
   },
+  optionButtonCorrect: {
+    backgroundColor: '#DCFCE7',
+    borderColor: '#22C55E',
+  },
+  optionButtonWrong: {
+    backgroundColor: '#FEE2E2',
+    borderColor: '#EF4444',
+  },
   optionButtonText: {
-    color: '#6200EE',
+    color: '#1E293B',
     fontSize: 16,
     fontWeight: '600',
   },
-  nextButton: {
-    backgroundColor: '#6200EE',
-    padding: 18,
-    borderRadius: 30,
-    marginTop: 'auto',
-    alignItems: 'center',
+  optionButtonTextCorrect: {
+    color: '#166534',
   },
-  textStyle: {
-    color: '#FFFFFF',
-    fontSize: 16,
-    fontWeight: 'bold',
+  optionButtonTextWrong: {
+    color: '#991B1B',
+  },
+  feedbackText: {
+    marginTop: 10,
+    marginBottom: 18,
+    fontSize: 14,
+    color: '#334155',
+    fontWeight: '600',
+    textAlign: 'center',
+  },
+  nextButton: {
+    backgroundColor: '#2563EB',
+    paddingVertical: 16,
+    borderRadius: 14,
+    alignItems: 'center',
+    shadowColor: '#2563EB',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.2,
+    shadowRadius: 8,
+    elevation: 5,
   },
   nextButtonText: {
     color: '#FFFFFF',
     fontSize: 16,
-    fontWeight: 'bold',
-  }
+    fontWeight: '700',
+  },
 });
