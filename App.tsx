@@ -1,12 +1,9 @@
-import React, { useMemo, useState } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  SafeAreaView,
-} from 'react-native';
+import React, { useCallback, useMemo, useState } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import theme from './src/theme';
+import Button from './src/components/Button';
+import Card from './src/components/Card';
 
 interface Question {
   id: string;
@@ -44,9 +41,6 @@ export default function App() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [score, setScore] = useState(0);
-
-  const question = QUESTIONS[currentIndex];
-
   const answered = selectedIndex !== null;
 
   const progressLabel = useMemo(
@@ -54,17 +48,22 @@ export default function App() {
     [currentIndex]
   );
 
-  const handleAnswerPress = (index: number) => {
-    if (answered) return;
+  const question = QUESTIONS[currentIndex];
 
-    setSelectedIndex(index);
+  const handleAnswerPress = useCallback(
+    (index: number) => {
+      if (answered) return;
 
-    if (index === question.correctAnswerIndex) {
-      setScore((prev) => prev + 1);
-    }
-  };
+      setSelectedIndex(index);
 
-  const handleNextQuestion = () => {
+      if (index === question.correctAnswerIndex) {
+        setScore((prev) => prev + 1);
+      }
+    },
+    [answered, question.correctAnswerIndex]
+  );
+
+  const handleNextQuestion = useCallback(() => {
     if (currentIndex === QUESTIONS.length - 1) {
       setCurrentIndex(0);
       setSelectedIndex(null);
@@ -74,13 +73,17 @@ export default function App() {
 
     setCurrentIndex((prev) => prev + 1);
     setSelectedIndex(null);
-  };
+  }, [currentIndex]);
 
-  const isCorrectSelection = (index: number) =>
-    index === question.correctAnswerIndex && answered;
+  const isCorrectSelection = useCallback(
+    (index: number) => index === question.correctAnswerIndex && answered,
+    [answered, question.correctAnswerIndex]
+  );
 
-  const isWrongSelection = (index: number) =>
-    index === selectedIndex && index !== question.correctAnswerIndex && answered;
+  const isWrongSelection = useCallback(
+    (index: number) => index === selectedIndex && index !== question.correctAnswerIndex && answered,
+    [answered, question.correctAnswerIndex, selectedIndex]
+  );
 
   if (!question) {
     return null;
@@ -101,9 +104,9 @@ export default function App() {
           <Text style={styles.scoreValue}>{score}</Text>
         </View>
 
-        <View style={styles.card}>
+        <Card>
           <Text style={styles.questionText}>{question.title}</Text>
-        </View>
+        </Card>
 
         <View style={styles.optionsContainer}>
           {question.options.map((option, index) => {
@@ -143,14 +146,9 @@ export default function App() {
           </Text>
         )}
 
-        <TouchableOpacity
-          style={styles.nextButton}
-          onPress={handleNextQuestion}
-        >
-          <Text style={styles.nextButtonText}>
-            {currentIndex === QUESTIONS.length - 1 ? 'Reiniciar Quiz' : 'Próxima Questão'}
-          </Text>
-        </TouchableOpacity>
+        <Button onPress={handleNextQuestion} style={styles.nextButton}>
+          {currentIndex === QUESTIONS.length - 1 ? 'Reiniciar Quiz' : 'Próxima Questão'}
+        </Button>
       </View>
     </SafeAreaView>
   );
@@ -159,7 +157,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F4F7FF',
+    backgroundColor: theme.colors.bg,
   },
   content: {
     flex: 1,
@@ -175,10 +173,11 @@ const styles = StyleSheet.create({
   },
   categoryText: {
     fontSize: 14,
-    color: '#3B82F6',
-    fontWeight: '700',
+    color: theme.colors.primary,
+    fontWeight: '800',
     textTransform: 'uppercase',
     letterSpacing: 1.2,
+    fontFamily: theme.fonts.heading,
   },
   progressText: {
     fontSize: 13,
@@ -187,51 +186,45 @@ const styles = StyleSheet.create({
   },
   scoreBox: {
     alignSelf: 'flex-end',
-    backgroundColor: '#EFF6FF',
+    backgroundColor: theme.colors.cyanSoft,
     borderRadius: 12,
     paddingHorizontal: 12,
     paddingVertical: 8,
     marginBottom: 16,
+    borderWidth: 3,
+    borderColor: theme.colors.primary,
   },
   scoreLabel: {
     fontSize: 11,
-    color: '#3B82F6',
-    fontWeight: '700',
+    color: theme.colors.primary,
+    fontWeight: '800',
     textTransform: 'uppercase',
+    fontFamily: theme.fonts.heading,
   },
   scoreValue: {
     fontSize: 22,
-    color: '#0F172A',
+    color: theme.colors.text,
     fontWeight: '800',
     textAlign: 'center',
-  },
-  card: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: 18,
-    padding: 24,
-    marginBottom: 24,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.08,
-    shadowRadius: 10,
-    elevation: 4,
+    fontFamily: theme.fonts.heading,
   },
   questionText: {
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: '700',
-    color: '#0F172A',
+    color: theme.colors.text,
     textAlign: 'center',
-    lineHeight: 32,
+    lineHeight: 30,
+    fontFamily: theme.fonts.heading,
   },
   optionsContainer: {
     width: '100%',
   },
   optionButton: {
-    borderWidth: 1,
-    borderColor: '#C7D2FE',
-    backgroundColor: '#FFFFFF',
-    borderRadius: 12,
-    paddingVertical: 15,
+    borderWidth: 3,
+    borderColor: theme.colors.cyanSoft,
+    backgroundColor: theme.colors.surface,
+    borderRadius: theme.radius.md,
+    paddingVertical: 14,
     paddingHorizontal: 16,
     marginBottom: 12,
     alignItems: 'center',
@@ -245,9 +238,10 @@ const styles = StyleSheet.create({
     borderColor: '#EF4444',
   },
   optionButtonText: {
-    color: '#1E293B',
+    color: theme.colors.text,
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: '700',
+    fontFamily: theme.fonts.body,
   },
   optionButtonTextCorrect: {
     color: '#166534',
@@ -259,24 +253,12 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 18,
     fontSize: 14,
-    color: '#334155',
+    color: theme.colors.muted,
     fontWeight: '600',
     textAlign: 'center',
+    fontFamily: theme.fonts.body,
   },
   nextButton: {
-    backgroundColor: '#2563EB',
-    paddingVertical: 16,
-    borderRadius: 14,
-    alignItems: 'center',
-    shadowColor: '#2563EB',
-    shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.2,
-    shadowRadius: 8,
-    elevation: 5,
-  },
-  nextButtonText: {
-    color: '#FFFFFF',
-    fontSize: 16,
-    fontWeight: '700',
+    alignSelf: 'stretch',
   },
 });
