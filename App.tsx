@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useCallback, useState } from 'react';
 import {
   StyleSheet,
@@ -9,13 +10,21 @@ import {
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 
+=======
+import React, { useCallback, useMemo, useState } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+>>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
 import theme from './src/theme';
 import Button from './src/components/Button';
 import Card from './src/components/Card';
 
 interface Question {
   id: string;
+<<<<<<< HEAD
   year: number;
+=======
+>>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
   category: string;
   title: string;
   options: string[];
@@ -25,30 +34,49 @@ interface Question {
 const QUESTIONS: Question[] = [
   {
     id: '1',
+<<<<<<< HEAD
     year: 1,
     category: 'MATEMÁTICA',
     title: 'Quanto é 5 + 7?',
     options: ['10', '12', '15', '18'],
+=======
+    category: 'MATEMÁTICA',
+    title: 'Quanto é 5 + 7?',
+    options: ['A) 10', 'B) 12', 'C) 15', 'D) 18'],
+>>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
     correctAnswerIndex: 1,
   },
   {
     id: '2',
+<<<<<<< HEAD
     year: 1,
     category: 'CIÊNCIAS',
     title: 'Qual é o maior planeta do Sistema Solar?',
     options: ['Terra', 'Júpiter', 'Marte', 'Saturno'],
+=======
+    category: 'CIÊNCIAS',
+    title: 'Qual é o maior planeta do Sistema Solar?',
+    options: ['A) Terra', 'B) Júpiter', 'C) Marte', 'D) Saturno'],
+>>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
     correctAnswerIndex: 1,
   },
   {
     id: '3',
+<<<<<<< HEAD
     year: 1,
     category: 'PORTUGUÊS',
     title: 'Qual palavra está escrita corretamente?',
     options: ['Receber', 'Recebr', 'Recever', 'Reseber'],
+=======
+    category: 'PORTUGUÊS',
+    title: 'Qual palavra está escrita corretamente?',
+    options: ['A) Receber', 'B) Recebr', 'C) Recever', 'D) Reseber'],
+>>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
     correctAnswerIndex: 0,
   },
 ];
 
+<<<<<<< HEAD
 const YEARS = [1, 2, 3, 4, 5];
 
 export default function App() {
@@ -229,6 +257,21 @@ function QuizContent({
 
   const answered = selectedIndex !== null;
 
+=======
+export default function App() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [score, setScore] = useState(0);
+  const answered = selectedIndex !== null;
+
+  const progressLabel = useMemo(
+    () => `${Math.min(currentIndex + 1, QUESTIONS.length)}/${QUESTIONS.length}`,
+    [currentIndex]
+  );
+
+  const question = QUESTIONS[currentIndex];
+
+>>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
   const handleAnswerPress = useCallback(
     (index: number) => {
       if (answered) return;
@@ -243,13 +286,21 @@ function QuizContent({
   );
 
   const handleNextQuestion = useCallback(() => {
+<<<<<<< HEAD
     if (currentIndex === questions.length - 1) {
       setFinished(true);
+=======
+    if (currentIndex === QUESTIONS.length - 1) {
+      setCurrentIndex(0);
+      setSelectedIndex(null);
+      setScore(0);
+>>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
       return;
     }
 
     setCurrentIndex((prev) => prev + 1);
     setSelectedIndex(null);
+<<<<<<< HEAD
   }, [currentIndex, questions.length]);
 
   const handleRestart = useCallback(() => {
@@ -262,10 +313,17 @@ function QuizContent({
   const isCorrectSelection = useCallback(
     (index: number) =>
       index === question.correctAnswerIndex && answered,
+=======
+  }, [currentIndex]);
+
+  const isCorrectSelection = useCallback(
+    (index: number) => index === question.correctAnswerIndex && answered,
+>>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
     [answered, question.correctAnswerIndex]
   );
 
   const isWrongSelection = useCallback(
+<<<<<<< HEAD
     (index: number) =>
       index === selectedIndex &&
       index !== question.correctAnswerIndex &&
@@ -355,11 +413,22 @@ function QuizContent({
      PERGUNTA
   ======================================================= */
 
+=======
+    (index: number) => index === selectedIndex && index !== question.correctAnswerIndex && answered,
+    [answered, question.correctAnswerIndex, selectedIndex]
+  );
+
+  if (!question) {
+    return null;
+  }
+
+>>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style="dark" />
 
       <View style={styles.content}>
+<<<<<<< HEAD
         <TouchableOpacity
           style={styles.quizBackButton}
           onPress={onBack}
@@ -393,22 +462,42 @@ function QuizContent({
           <Text style={styles.questionText}>
             {question.title}
           </Text>
+=======
+        <View style={styles.headerRow}>
+          <Text style={styles.categoryText}>{question.category}</Text>
+          <Text style={styles.progressText}>{progressLabel}</Text>
+        </View>
+
+        <View style={styles.scoreBox}>
+          <Text style={styles.scoreLabel}>Pontuação</Text>
+          <Text style={styles.scoreValue}>{score}</Text>
+        </View>
+
+        <Card>
+          <Text style={styles.questionText}>{question.title}</Text>
+>>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
         </Card>
 
         <View style={styles.optionsContainer}>
           {question.options.map((option, index) => {
             const optionStyle = [
               styles.optionButton,
+<<<<<<< HEAD
               isCorrectSelection(index) &&
                 styles.optionButtonCorrect,
               isWrongSelection(index) &&
                 styles.optionButtonWrong,
+=======
+              isCorrectSelection(index) && styles.optionButtonCorrect,
+              isWrongSelection(index) && styles.optionButtonWrong,
+>>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
             ];
 
             return (
               <TouchableOpacity
                 key={`${question.id}-${option}`}
                 style={optionStyle}
+<<<<<<< HEAD
                 onPress={() =>
                   handleAnswerPress(index)
                 }
@@ -428,6 +517,17 @@ function QuizContent({
                       styles.optionButtonTextCorrect,
                     isWrongSelection(index) &&
                       styles.optionButtonTextWrong,
+=======
+                onPress={() => handleAnswerPress(index)}
+                disabled={answered}
+                activeOpacity={0.8}
+              >
+                <Text
+                  style={[
+                    styles.optionButtonText,
+                    isCorrectSelection(index) && styles.optionButtonTextCorrect,
+                    isWrongSelection(index) && styles.optionButtonTextWrong,
+>>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
                   ]}
                 >
                   {option}
@@ -439,6 +539,7 @@ function QuizContent({
 
         {answered && (
           <Text style={styles.feedbackText}>
+<<<<<<< HEAD
             {selectedIndex ===
             question.correctAnswerIndex
               ? 'Resposta correta! 🎉'
@@ -457,21 +558,35 @@ function QuizContent({
           {currentIndex === questions.length - 1
             ? 'Ver resultado'
             : 'Próxima questão'}
+=======
+            {selectedIndex === question.correctAnswerIndex
+              ? 'Resposta correta! 🎉'
+              : `Resposta errada. A correta é: ${question.options[question.correctAnswerIndex]}`}
+          </Text>
+        )}
+
+        <Button onPress={handleNextQuestion} style={styles.nextButton}>
+          {currentIndex === QUESTIONS.length - 1 ? 'Reiniciar Quiz' : 'Próxima Questão'}
+>>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
         </Button>
       </View>
     </SafeAreaView>
   );
 }
 
+<<<<<<< HEAD
 /* =========================================================
    ESTILOS
 ========================================================= */
 
+=======
+>>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.colors.bg,
   },
+<<<<<<< HEAD
 
   /* HOME */
 
@@ -605,13 +720,24 @@ const styles = StyleSheet.create({
     fontWeight: '800',
   },
 
+=======
+  content: {
+    flex: 1,
+    paddingHorizontal: 20,
+    paddingVertical: 24,
+    justifyContent: 'center',
+  },
+>>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
   headerRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: 16,
   },
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
   categoryText: {
     fontSize: 14,
     color: theme.colors.primary,
@@ -620,13 +746,19 @@ const styles = StyleSheet.create({
     letterSpacing: 1.2,
     fontFamily: theme.fonts.heading,
   },
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
   progressText: {
     fontSize: 13,
     color: '#475569',
     fontWeight: '600',
   },
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
   scoreBox: {
     alignSelf: 'flex-end',
     backgroundColor: theme.colors.cyanSoft,
@@ -637,7 +769,10 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     borderColor: theme.colors.primary,
   },
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
   scoreLabel: {
     fontSize: 11,
     color: theme.colors.primary,
@@ -645,7 +780,10 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     fontFamily: theme.fonts.heading,
   },
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
   scoreValue: {
     fontSize: 22,
     color: theme.colors.text,
@@ -653,7 +791,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontFamily: theme.fonts.heading,
   },
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
   questionText: {
     fontSize: 22,
     fontWeight: '700',
@@ -662,6 +803,7 @@ const styles = StyleSheet.create({
     lineHeight: 30,
     fontFamily: theme.fonts.heading,
   },
+<<<<<<< HEAD
 
   optionsContainer: {
     width: '100%',
@@ -671,6 +813,12 @@ const styles = StyleSheet.create({
   optionButton: {
     flexDirection: 'row',
     alignItems: 'center',
+=======
+  optionsContainer: {
+    width: '100%',
+  },
+  optionButton: {
+>>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
     borderWidth: 3,
     borderColor: theme.colors.cyanSoft,
     backgroundColor: theme.colors.surface,
@@ -678,6 +826,7 @@ const styles = StyleSheet.create({
     paddingVertical: 14,
     paddingHorizontal: 16,
     marginBottom: 12,
+<<<<<<< HEAD
   },
 
   optionLetter: {
@@ -696,23 +845,35 @@ const styles = StyleSheet.create({
     color: theme.colors.primary,
   },
 
+=======
+    alignItems: 'center',
+  },
+>>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
   optionButtonCorrect: {
     backgroundColor: '#DCFCE7',
     borderColor: '#22C55E',
   },
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
   optionButtonWrong: {
     backgroundColor: '#FEE2E2',
     borderColor: '#EF4444',
   },
+<<<<<<< HEAD
 
   optionButtonText: {
     flex: 1,
+=======
+  optionButtonText: {
+>>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
     color: theme.colors.text,
     fontSize: 16,
     fontWeight: '700',
     fontFamily: theme.fonts.body,
   },
+<<<<<<< HEAD
 
   optionButtonTextCorrect: {
     color: '#166534',
@@ -722,6 +883,14 @@ const styles = StyleSheet.create({
     color: '#991B1B',
   },
 
+=======
+  optionButtonTextCorrect: {
+    color: '#166534',
+  },
+  optionButtonTextWrong: {
+    color: '#991B1B',
+  },
+>>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
   feedbackText: {
     marginTop: 10,
     marginBottom: 18,
@@ -731,6 +900,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontFamily: theme.fonts.body,
   },
+<<<<<<< HEAD
 
   nextButton: {
     alignSelf: 'stretch',
@@ -869,3 +1039,9 @@ const styles = StyleSheet.create({
     fontWeight: '800',
   },
 });
+=======
+  nextButton: {
+    alignSelf: 'stretch',
+  },
+});
+>>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
