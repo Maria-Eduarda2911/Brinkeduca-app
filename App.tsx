@@ -1,1047 +1,815 @@
-<<<<<<< HEAD
-import React, { useCallback, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import {
+  SafeAreaView,
+  ScrollView,
   StyleSheet,
   Text,
   View,
-  TouchableOpacity,
-  SafeAreaView,
-  ScrollView,
+  Pressable,
+  Image,
+  Platform,
+  StatusBar,
 } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
-
-=======
-import React, { useCallback, useMemo, useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
->>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
-import theme from './src/theme';
-import Button from './src/components/Button';
+import { WebView } from 'react-native-webview';
 import Card from './src/components/Card';
+import Button from './src/components/Button';
+import theme from './src/theme';
+import { getQuestionsByMateria } from './src/services/questions';
+import {
+  obterRankingPessoal,
+  RegistroRanking,
+  salvarPontuacaoPessoal,
+} from './src/services/ranking';
 
-interface Question {
-  id: string;
-<<<<<<< HEAD
-  year: number;
-=======
->>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
-  category: string;
-  title: string;
-  options: string[];
-  correctAnswerIndex: number;
-}
+type Materia = 'matematica' | 'portugues' | 'ingles';
+type Screen = 'home' | 'select_quiz' | 'quiz' | 'games' | 'matemagica' | 'typeblaster' | 'ranking';
 
-const QUESTIONS: Question[] = [
-  {
-    id: '1',
-<<<<<<< HEAD
-    year: 1,
-    category: 'MATEMÁTICA',
-    title: 'Quanto é 5 + 7?',
-    options: ['10', '12', '15', '18'],
-=======
-    category: 'MATEMÁTICA',
-    title: 'Quanto é 5 + 7?',
-    options: ['A) 10', 'B) 12', 'C) 15', 'D) 18'],
->>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
-    correctAnswerIndex: 1,
-  },
-  {
-    id: '2',
-<<<<<<< HEAD
-    year: 1,
-    category: 'CIÊNCIAS',
-    title: 'Qual é o maior planeta do Sistema Solar?',
-    options: ['Terra', 'Júpiter', 'Marte', 'Saturno'],
-=======
-    category: 'CIÊNCIAS',
-    title: 'Qual é o maior planeta do Sistema Solar?',
-    options: ['A) Terra', 'B) Júpiter', 'C) Marte', 'D) Saturno'],
->>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
-    correctAnswerIndex: 1,
-  },
-  {
-    id: '3',
-<<<<<<< HEAD
-    year: 1,
-    category: 'PORTUGUÊS',
-    title: 'Qual palavra está escrita corretamente?',
-    options: ['Receber', 'Recebr', 'Recever', 'Reseber'],
-=======
-    category: 'PORTUGUÊS',
-    title: 'Qual palavra está escrita corretamente?',
-    options: ['A) Receber', 'B) Recebr', 'C) Recever', 'D) Reseber'],
->>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
-    correctAnswerIndex: 0,
-  },
-];
+type RespostaQuiz = {
+  id: number;
+  pergunta: string;
+  selecionada: number;
+  correta: number;
+  acertou: boolean;
+  explicacao: string;
+};
 
-<<<<<<< HEAD
-const YEARS = [1, 2, 3, 4, 5];
+const MATERIAS: Materia[] = ['matematica', 'portugues', 'ingles'];
+const ANOS = [1, 2, 3, 4, 5];
+const MAX_QUESTOES = 5;
 
 export default function App() {
-  const [selectedYear, setSelectedYear] = useState<number | null>(null);
+  const [screen, setScreen] = useState<Screen>('home');
+  const [materia, setMateria] = useState<Materia>('matematica');
+  const [ano, setAno] = useState(1);
+  const [indice, setIndice] = useState(0);
+  const [pontos, setPontos] = useState(0);
+  const [selecionada, setSelecionada] = useState<number | null>(null);
+  const [fim, setFim] = useState(false);
+  const [historico, setHistorico] = useState<RegistroRanking[]>([]);
+  const [respostas, setRespostas] = useState<RespostaQuiz[]>([]);
 
-  if (selectedYear === null) {
-    return <HomeScreen onSelectYear={setSelectedYear} />;
+  const perguntas = useMemo(
+    () =>
+      getQuestionsByMateria(materia)
+        .filter((questao) => questao.ano === ano)
+        .slice(0, MAX_QUESTOES),
+    [materia, ano]
+  );
+
+  const perguntaAtual = perguntas[indice] ?? null;
+  const progresso =
+    perguntas.length === 0
+      ? 0
+      : ((indice + (selecionada !== null ? 1 : 0)) / perguntas.length) * 100;
+
+  useEffect(() => {
+    async function carregarHistorico() {
+      const dados = await obterRankingPessoal();
+      setHistorico(Array.isArray(dados) ? dados : []);
+    }
+    carregarHistorico();
+  }, []);
+
+  const iniciarQuestionario = () => {
+    if (perguntas.length === 0) return;
+    setIndice(0);
+    setPontos(0);
+    setSelecionada(null);
+    setFim(false);
+    setRespostas([]);
+    setScreen('quiz');
+  };
+
+  const voltarAoMenu = () => {
+    setIndice(0);
+    setPontos(0);
+    setSelecionada(null);
+    setFim(false);
+    setRespostas([]);
+    setScreen('home');
+  };
+
+  const voltarAosJogos = () => {
+    setScreen('games');
+  };
+
+  const responder = async (opcaoIndex: number) => {
+    if (selecionada !== null || !perguntaAtual) return;
+
+    const acertou = opcaoIndex === perguntaAtual.resposta_correta;
+
+    setSelecionada(opcaoIndex);
+    setPontos((valorAtual) => (acertou ? valorAtual + 1 : valorAtual));
+
+    const novaResposta: RespostaQuiz = {
+      id: perguntaAtual.id,
+      pergunta: perguntaAtual.pergunta,
+      selecionada: opcaoIndex,
+      correta: perguntaAtual.resposta_correta,
+      acertou,
+      explicacao: perguntaAtual.explicacao,
+    };
+
+    setRespostas((valorAtual) => [...valorAtual, novaResposta]);
+
+    const ultimoIndice = perguntas.length - 1;
+
+    if (indice === ultimoIndice) {
+      const pontuacaoFinal = acertou ? pontos + 1 : pontos;
+      await salvarPontuacaoPessoal(materia, ano, pontuacaoFinal, perguntas.length);
+      const dados = await obterRankingPessoal();
+      setHistorico(Array.isArray(dados) ? dados : []);
+      setFim(true);
+      return;
+    }
+
+    setTimeout(() => {
+      setIndice((valorAtual) => valorAtual + 1);
+      setSelecionada(null);
+    }, 700);
+  };
+
+  const renderResposta = (texto: string, index: number) => {
+    if (!perguntaAtual) return null;
+
+    const correta = perguntaAtual.resposta_correta;
+    const estaSelecionada = selecionada === index;
+    const mostrarCorreta = selecionada !== null && index === correta;
+    const mostrarIncorreta = selecionada !== null && estaSelecionada && index !== correta;
+    const ocultarOpcao = selecionada !== null && !mostrarCorreta && !mostrarIncorreta && index !== correta;
+
+    let badge = '•';
+    if (mostrarCorreta) badge = '✔️';
+    if (mostrarIncorreta) badge = '❌';
+
+    return (
+      <Pressable
+        key={`${perguntaAtual.id}-${index}`}
+        style={[
+          styles.option,
+          mostrarCorreta && styles.optionCorrect,
+          mostrarIncorreta && styles.optionWrong,
+          ocultarOpcao && styles.optionDimmed,
+          estaSelecionada && !mostrarCorreta && !mostrarIncorreta && styles.optionSelected,
+        ]}
+        onPress={() => responder(index)}
+        disabled={selecionada !== null || fim}
+      >
+        <Text style={styles.optionBadge}>{badge}</Text>
+        <Text style={styles.optionText}>{texto}</Text>
+      </Pressable>
+    );
+  };
+
+  const feedbackAtual =
+    selecionada !== null && perguntaAtual
+      ? {
+          acertou: selecionada === perguntaAtual.resposta_correta,
+          texto: perguntaAtual.explicacao,
+        }
+      : null;
+
+  // =====================================================================
+  // TELA DOS JOGOS (ISOLADA DO SCROLLVIEW)
+  // =====================================================================
+  if (screen === 'matemagica' || screen === 'typeblaster') {
+    const gameSource = screen === 'matemagica' 
+      ? require('./games/matemagica.html') 
+      : require('./games/typeblaster.html');
+
+    return (
+      <SafeAreaView style={styles.safeArea}>
+        <View style={styles.gameWrapper}>
+          <View style={styles.gameHeader}>
+            <Button variant="secondary" onPress={voltarAosJogos}>← Voltar aos Jogos</Button>
+          </View>
+
+          <View style={styles.gameFrame}>
+            <WebView
+              source={gameSource}
+              style={styles.gameWebView}
+              javaScriptEnabled
+              domStorageEnabled
+              originWhitelist={['*']}
+              scrollEnabled={false} 
+              bounces={false}
+            />
+          </View>
+        </View>
+      </SafeAreaView>
+    );
   }
 
+  // =====================================================================
+  // RESTANTE DO APP (COM SCROLLVIEW)
+  // =====================================================================
   return (
-    <QuizScreen
-      year={selectedYear}
-      onBack={() => setSelectedYear(null)}
-    />
-  );
-}
-
-/* =========================================================
-   TELA INICIAL
-========================================================= */
-
-interface HomeScreenProps {
-  onSelectYear: (year: number) => void;
-}
-
-function HomeScreen({ onSelectYear }: HomeScreenProps) {
-  return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar style="dark" />
-
-      <ScrollView
-        contentContainerStyle={styles.homeContent}
-        showsVerticalScrollIndicator={false}
-      >
-        <View style={styles.homeHeader}>
-          <Text style={styles.logo}>🌈</Text>
-
-          <Text style={styles.appTitle}>
-            BrincaEduca
-          </Text>
-
-          <Text style={styles.appSubtitle}>
-            Aprender pode ser divertido!
-          </Text>
+    <SafeAreaView style={styles.safeArea}>
+      <ScrollView contentContainerStyle={styles.container}>
+        <View style={styles.brandWrap}>
+          <Image source={require('./assets/logo.png')} style={styles.logo} resizeMode="contain" />
         </View>
 
-        <Text style={styles.chooseTitle}>
-          Escolha seu ano escolar
-        </Text>
+        {screen === 'home' && (
+          <Card>
+            <Text style={styles.menuSubtitle}>Escolha o que você quer fazer:</Text>
+            <View style={styles.homeMenuButtons}>
+              <Button onPress={() => setScreen('select_quiz')}>📝 Questões</Button>
+              <Button variant="secondary" onPress={() => setScreen('games')}>🎮 Jogos</Button>
+              <Button variant="secondary" onPress={() => setScreen('ranking')}>🏆 Ranking Pessoal</Button>
+            </View>
+          </Card>
+        )}
 
-        <Text style={styles.chooseSubtitle}>
-          Vamos aprender brincando?
-        </Text>
+        {screen === 'select_quiz' && (
+          <>
+            <Card style={styles.cardTop}>
+              <Text style={styles.sectionTitle}>1. Escolha a Matéria</Text>
+              <View style={styles.tabsRow}>
+                {MATERIAS.map((item) => (
+                  <Pressable
+                    key={item}
+                    onPress={() => setMateria(item)}
+                    style={[styles.tab, materia === item && styles.tabActive]}
+                  >
+                    <Text style={[styles.tabText, materia === item && styles.tabTextActive]}>{item}</Text>
+                  </Pressable>
+                ))}
+              </View>
 
-        <View style={styles.yearsContainer}>
-          {YEARS.map((year) => (
-            <TouchableOpacity
-              key={year}
-              activeOpacity={0.85}
-              onPress={() => onSelectYear(year)}
-            >
+              <Text style={styles.sectionTitle}>2. Escolha o Ano Escolar</Text>
+              <View style={styles.anoRow}>
+                {ANOS.map((numero) => (
+                  <Pressable
+                    key={numero}
+                    onPress={() => setAno(numero)}
+                    style={[styles.anoButton, ano === numero && styles.anoButtonActive]}
+                  >
+                    <Text style={[styles.anoText, ano === numero && styles.anoTextActive]}>{numero}º</Text>
+                  </Pressable>
+                ))}
+              </View>
+
+              <Text style={styles.infoQuestoes}>
+                Disponíveis: {perguntas.length} questões de {materia} ({ano}º ano)
+              </Text>
+
+              <Button onPress={iniciarQuestionario} disabled={perguntas.length === 0} style={styles.btnIniciar}>
+                ▶ Iniciar Questionário
+              </Button>
+            </Card>
+            <Button variant="secondary" onPress={voltarAoMenu}>← Voltar ao Menu</Button>
+          </>
+        )}
+
+        {screen === 'quiz' && (
+          <>
+            {!fim && perguntaAtual ? (
               <Card>
-                <View style={styles.yearCardContent}>
-                  <View style={styles.bookIcon}>
-                    <Text style={styles.bookEmoji}>📚</Text>
+                <Text style={styles.badge}>
+                  Pergunta {indice + 1} de {perguntas.length} • {materia} ({ano}º ano)
+                </Text>
+
+                <View style={styles.progressWrap}>
+                  <View style={styles.progressTrack}>
+                    <View style={[styles.progressFill, { width: `${Math.min(100, progresso)}%` }]} />
                   </View>
+                  <Text style={styles.progressLabel}>{Math.round(progresso)}%</Text>
+                </View>
 
-                  <View style={styles.yearInfo}>
-                    <Text style={styles.yearTitle}>
-                      {year}º ano
-                    </Text>
+                <Text style={styles.questionEmoji}>{perguntaAtual.emoji}</Text>
+                <Text style={styles.questionText}>{perguntaAtual.pergunta}</Text>
+                <Text style={styles.scoreText}>Pontuação atual: {pontos}</Text>
+                <View style={styles.optionsList}>{perguntaAtual.opcoes.map(renderResposta)}</View>
 
-                    <Text style={styles.yearDescription}>
-                      Matemática, Português e Ciências
+                {feedbackAtual && (
+                  <View
+                    style={[
+                      styles.feedbackBox,
+                      feedbackAtual.acertou ? styles.feedbackBoxSuccess : styles.feedbackBoxError,
+                    ]}
+                  >
+                    <Text style={styles.feedbackTitle}>
+                      {feedbackAtual.acertou ? '✅ Você acertou!' : '❌ Você errou!'}
                     </Text>
-
-                    <Text style={styles.startText}>
-                      Começar →
-                    </Text>
+                    <Text style={styles.feedbackText}>{feedbackAtual.texto}</Text>
                   </View>
+                )}
+
+                <View style={{ marginTop: 16 }}>
+                  <Button variant="secondary" onPress={voltarAoMenu}>Sair da Partida</Button>
                 </View>
               </Card>
-            </TouchableOpacity>
-          ))}
-        </View>
+            ) : (
+              <Card>
+                <Text style={styles.resultTitle}>🎉 Fim do Quiz!</Text>
+                <Text style={styles.resultText}>
+                  Você concluiu a rodada de {materia} ({ano}º ano) e acertou {pontos} de {perguntas.length} perguntas!
+                </Text>
 
-        <Text style={styles.footerText}>
-          Escolha seu ano e comece a aprender! ⭐
-        </Text>
+                <View style={styles.reviewSummary}>
+                  {perguntas.map((questao, index) => {
+                    const resposta = respostas.find((item) => item.id === questao.id);
+                    const acertou = resposta?.acertou ?? false;
+
+                    return (
+                      <View key={questao.id} style={styles.reviewItem}>
+                        <Text style={styles.reviewQuestion}>
+                          {index + 1}. {questao.pergunta}
+                        </Text>
+                        <Text style={[styles.reviewStatus, acertou ? styles.reviewStatusCorrect : styles.reviewStatusWrong]}>
+                          {acertou ? '✅ Acertou' : '❌ Errou'}
+                        </Text>
+                        <Text style={styles.reviewAnswer}>
+                          Sua resposta: {resposta ? questao.opcoes[resposta.selecionada] : '—'}
+                        </Text>
+                        <Text style={styles.reviewAnswer}>
+                          Resposta certa: {questao.opcoes[questao.resposta_correta]}
+                        </Text>
+                        <Text style={styles.reviewExplanation}>{questao.explicacao}</Text>
+                      </View>
+                    );
+                  })}
+                </View>
+
+                <Button variant="secondary" onPress={voltarAoMenu}>Menu Principal</Button>
+              </Card>
+            )}
+          </>
+        )}
+
+        {screen === 'games' && (
+          <>
+            <Card style={styles.cardTop}>
+              <Text style={styles.resultTitle}>🎮 Jogos Educativos</Text>
+              <Text style={styles.resultText}>Escolha um jogo para praticar de forma dinâmica:</Text>
+
+              <Card style={[styles.gameCardItem, styles.gameCardMagic]}>
+                <View style={styles.gameBadge}>
+                  <Text style={styles.gameBadgeText}>Magia & Matemática</Text>
+                </View>
+                <Text style={styles.gameCardTitle}>✨ Matemágica</Text>
+                <Text style={styles.gameEmojis}>🧙‍♂️ ⚔️ 🔮</Text>
+                <Text style={styles.gameCardDesc}>
+                  Defesa de torre com operações matemáticas, desafios mágicos e muito foco!
+                </Text>
+                <Button style={styles.gameButtonMagic} onPress={() => setScreen('matemagica')}>
+                  Jogar Matemágica
+                </Button>
+              </Card>
+
+              <Card style={[styles.gameCardItem, styles.gameCardArcade]}>
+                <View style={styles.gameBadge}>
+                  <Text style={styles.gameBadgeText}>Digitação no Espaço</Text>
+                </View>
+                <Text style={styles.gameCardTitle}>🚀 Type Blaster</Text>
+                <Text style={styles.gameEmojis}>🛸 👾 🚀</Text>
+                <Text style={styles.gameCardDesc}>
+                  Voos rápidos, aliens travessos e digitação em ritmo de arcade espacial!
+                </Text>
+                <Button style={styles.gameButtonArcade} onPress={() => setScreen('typeblaster')}>
+                  Jogar Type Blaster
+                </Button>
+              </Card>
+            </Card>
+
+            <Button variant="secondary" onPress={voltarAoMenu}>← Voltar ao Menu</Button>
+          </>
+        )}
+
+        {screen === 'ranking' && (
+          <>
+            <Card style={styles.cardTop}>
+              <Text style={styles.sectionTitle}>🏆 Ranking Pessoal</Text>
+              {historico.length === 0 ? (
+                <Text style={styles.emptyText}>Ainda não há partidas salvas no seu histórico.</Text>
+              ) : (
+                historico.map((registro) => {
+                  const medalhaTexto =
+                    registro.pontos === registro.total
+                      ? '🥇 Ouro'
+                      : registro.pontos >= 3
+                        ? '🥈 Prata'
+                        : registro.pontos >= 1
+                          ? '🥉 Bronze'
+                          : '🎖️ Participação';
+
+                  return (
+                    <View key={registro.id} style={styles.rankRow}>
+                      <View style={{ flex: 1 }}>
+                        <Text style={styles.rankMateria}>{registro.materia}</Text>
+                        <Text style={styles.rankMeta}>{registro.ano}º ano</Text>
+                        <Text style={styles.rankDate}>{registro.data}</Text>
+                      </View>
+                      <View style={{ alignItems: 'flex-end' }}>
+                        <Text style={styles.rankScoreHighlight}>{registro.pontos}/{registro.total}</Text>
+                        <Text style={styles.rankMedal}>{medalhaTexto}</Text>
+                      </View>
+                    </View>
+                  );
+                })
+              )}
+            </Card>
+
+            <Button variant="secondary" onPress={voltarAoMenu}>← Voltar ao Menu</Button>
+          </>
+        )}
       </ScrollView>
     </SafeAreaView>
   );
 }
 
-/* =========================================================
-   TELA DO QUIZ
-========================================================= */
-
-interface QuizScreenProps {
-  year: number;
-  onBack: () => void;
-}
-
-function QuizScreen({ year, onBack }: QuizScreenProps) {
-  const yearQuestions = QUESTIONS.filter(
-    (question) => question.year === year
-  );
-
-  if (yearQuestions.length === 0) {
-    return (
-      <SafeAreaView style={styles.container}>
-        <StatusBar style="dark" />
-
-        <View style={styles.emptyYearContainer}>
-          <TouchableOpacity
-            style={styles.backButton}
-            onPress={onBack}
-          >
-            <Text style={styles.backButtonText}>
-              ← Voltar
-            </Text>
-          </TouchableOpacity>
-
-          <View style={styles.emptyContent}>
-            <Text style={styles.emptyEmoji}>
-              🚧
-            </Text>
-
-            <Text style={styles.emptyTitle}>
-              {year}º ano
-            </Text>
-
-            <Text style={styles.emptyText}>
-              As atividades deste ano ainda estão sendo
-              preparadas.
-            </Text>
-
-            <Button onPress={onBack}>
-              Escolher outro ano
-            </Button>
-          </View>
-        </View>
-      </SafeAreaView>
-    );
-  }
-
-  return (
-    <QuizContent
-      questions={yearQuestions}
-      year={year}
-      onBack={onBack}
-    />
-  );
-}
-
-/* =========================================================
-   CONTEÚDO DO QUIZ
-========================================================= */
-
-interface QuizContentProps {
-  questions: Question[];
-  year: number;
-  onBack: () => void;
-}
-
-function QuizContent({
-  questions,
-  year,
-  onBack,
-}: QuizContentProps) {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [selectedIndex, setSelectedIndex] =
-    useState<number | null>(null);
-  const [score, setScore] = useState(0);
-  const [finished, setFinished] = useState(false);
-
-  const question = questions[currentIndex];
-
-  const answered = selectedIndex !== null;
-
-=======
-export default function App() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-  const [score, setScore] = useState(0);
-  const answered = selectedIndex !== null;
-
-  const progressLabel = useMemo(
-    () => `${Math.min(currentIndex + 1, QUESTIONS.length)}/${QUESTIONS.length}`,
-    [currentIndex]
-  );
-
-  const question = QUESTIONS[currentIndex];
-
->>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
-  const handleAnswerPress = useCallback(
-    (index: number) => {
-      if (answered) return;
-
-      setSelectedIndex(index);
-
-      if (index === question.correctAnswerIndex) {
-        setScore((prev) => prev + 1);
-      }
-    },
-    [answered, question.correctAnswerIndex]
-  );
-
-  const handleNextQuestion = useCallback(() => {
-<<<<<<< HEAD
-    if (currentIndex === questions.length - 1) {
-      setFinished(true);
-=======
-    if (currentIndex === QUESTIONS.length - 1) {
-      setCurrentIndex(0);
-      setSelectedIndex(null);
-      setScore(0);
->>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
-      return;
-    }
-
-    setCurrentIndex((prev) => prev + 1);
-    setSelectedIndex(null);
-<<<<<<< HEAD
-  }, [currentIndex, questions.length]);
-
-  const handleRestart = useCallback(() => {
-    setCurrentIndex(0);
-    setSelectedIndex(null);
-    setScore(0);
-    setFinished(false);
-  }, []);
-
-  const isCorrectSelection = useCallback(
-    (index: number) =>
-      index === question.correctAnswerIndex && answered,
-=======
-  }, [currentIndex]);
-
-  const isCorrectSelection = useCallback(
-    (index: number) => index === question.correctAnswerIndex && answered,
->>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
-    [answered, question.correctAnswerIndex]
-  );
-
-  const isWrongSelection = useCallback(
-<<<<<<< HEAD
-    (index: number) =>
-      index === selectedIndex &&
-      index !== question.correctAnswerIndex &&
-      answered,
-    [
-      answered,
-      question.correctAnswerIndex,
-      selectedIndex,
-    ]
-  );
-
-  /* =======================================================
-     RESULTADO
-  ======================================================= */
-
-  if (finished) {
-    const percentage = Math.round(
-      (score / questions.length) * 100
-    );
-
-    let message = 'Continue tentando! 💪';
-
-    if (percentage === 100) {
-      message = 'Perfeito! Você acertou tudo! 🏆';
-    } else if (percentage >= 70) {
-      message = 'Muito bem! Você foi ótimo! 🌟';
-    } else if (percentage >= 50) {
-      message = 'Muito bom! Continue estudando! 😊';
-    }
-
-    return (
-      <SafeAreaView style={styles.container}>
-        <StatusBar style="dark" />
-
-        <View style={styles.resultContainer}>
-          <Text style={styles.resultEmoji}>
-            🎉
-          </Text>
-
-          <Text style={styles.resultTitle}>
-            Parabéns!
-          </Text>
-
-          <Text style={styles.resultSubtitle}>
-            Você terminou o quiz do {year}º ano!
-          </Text>
-
-          <View style={styles.resultScoreBox}>
-            <Text style={styles.resultScoreLabel}>
-              SUA PONTUAÇÃO
-            </Text>
-
-            <Text style={styles.resultScore}>
-              {score}/{questions.length}
-            </Text>
-
-            <Text style={styles.resultPercentage}>
-              {percentage}%
-            </Text>
-          </View>
-
-          <Text style={styles.resultMessage}>
-            {message}
-          </Text>
-
-          <Button
-            onPress={handleRestart}
-            style={styles.resultButton}
-          >
-            Jogar novamente
-          </Button>
-
-          <TouchableOpacity
-            style={styles.resultBackButton}
-            onPress={onBack}
-          >
-            <Text style={styles.resultBackText}>
-              ← Escolher outro ano
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </SafeAreaView>
-    );
-  }
-
-  /* =======================================================
-     PERGUNTA
-  ======================================================= */
-
-=======
-    (index: number) => index === selectedIndex && index !== question.correctAnswerIndex && answered,
-    [answered, question.correctAnswerIndex, selectedIndex]
-  );
-
-  if (!question) {
-    return null;
-  }
-
->>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
-  return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar style="dark" />
-
-      <View style={styles.content}>
-<<<<<<< HEAD
-        <TouchableOpacity
-          style={styles.quizBackButton}
-          onPress={onBack}
-        >
-          <Text style={styles.quizBackText}>
-            ← Voltar
-          </Text>
-        </TouchableOpacity>
-
-        <View style={styles.headerRow}>
-          <Text style={styles.categoryText}>
-            {question.category}
-          </Text>
-
-          <Text style={styles.progressText}>
-            {currentIndex + 1}/{questions.length}
-          </Text>
-        </View>
-
-        <View style={styles.scoreBox}>
-          <Text style={styles.scoreLabel}>
-            Pontuação
-          </Text>
-
-          <Text style={styles.scoreValue}>
-            {score}
-          </Text>
-        </View>
-
-        <Card>
-          <Text style={styles.questionText}>
-            {question.title}
-          </Text>
-=======
-        <View style={styles.headerRow}>
-          <Text style={styles.categoryText}>{question.category}</Text>
-          <Text style={styles.progressText}>{progressLabel}</Text>
-        </View>
-
-        <View style={styles.scoreBox}>
-          <Text style={styles.scoreLabel}>Pontuação</Text>
-          <Text style={styles.scoreValue}>{score}</Text>
-        </View>
-
-        <Card>
-          <Text style={styles.questionText}>{question.title}</Text>
->>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
-        </Card>
-
-        <View style={styles.optionsContainer}>
-          {question.options.map((option, index) => {
-            const optionStyle = [
-              styles.optionButton,
-<<<<<<< HEAD
-              isCorrectSelection(index) &&
-                styles.optionButtonCorrect,
-              isWrongSelection(index) &&
-                styles.optionButtonWrong,
-=======
-              isCorrectSelection(index) && styles.optionButtonCorrect,
-              isWrongSelection(index) && styles.optionButtonWrong,
->>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
-            ];
-
-            return (
-              <TouchableOpacity
-                key={`${question.id}-${option}`}
-                style={optionStyle}
-<<<<<<< HEAD
-                onPress={() =>
-                  handleAnswerPress(index)
-                }
-                disabled={answered}
-                activeOpacity={0.8}
-              >
-                <View style={styles.optionLetter}>
-                  <Text style={styles.optionLetterText}>
-                    {String.fromCharCode(65 + index)}
-                  </Text>
-                </View>
-
-                <Text
-                  style={[
-                    styles.optionButtonText,
-                    isCorrectSelection(index) &&
-                      styles.optionButtonTextCorrect,
-                    isWrongSelection(index) &&
-                      styles.optionButtonTextWrong,
-=======
-                onPress={() => handleAnswerPress(index)}
-                disabled={answered}
-                activeOpacity={0.8}
-              >
-                <Text
-                  style={[
-                    styles.optionButtonText,
-                    isCorrectSelection(index) && styles.optionButtonTextCorrect,
-                    isWrongSelection(index) && styles.optionButtonTextWrong,
->>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
-                  ]}
-                >
-                  {option}
-                </Text>
-              </TouchableOpacity>
-            );
-          })}
-        </View>
-
-        {answered && (
-          <Text style={styles.feedbackText}>
-<<<<<<< HEAD
-            {selectedIndex ===
-            question.correctAnswerIndex
-              ? 'Resposta correta! 🎉'
-              : `Resposta errada. A correta é: ${
-                  question.options[
-                    question.correctAnswerIndex
-                  ]
-                }`}
-          </Text>
-        )}
-
-        <Button
-          onPress={handleNextQuestion}
-          style={styles.nextButton}
-        >
-          {currentIndex === questions.length - 1
-            ? 'Ver resultado'
-            : 'Próxima questão'}
-=======
-            {selectedIndex === question.correctAnswerIndex
-              ? 'Resposta correta! 🎉'
-              : `Resposta errada. A correta é: ${question.options[question.correctAnswerIndex]}`}
-          </Text>
-        )}
-
-        <Button onPress={handleNextQuestion} style={styles.nextButton}>
-          {currentIndex === QUESTIONS.length - 1 ? 'Reiniciar Quiz' : 'Próxima Questão'}
->>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
-        </Button>
-      </View>
-    </SafeAreaView>
-  );
-}
-
-<<<<<<< HEAD
-/* =========================================================
-   ESTILOS
-========================================================= */
-
-=======
->>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
 const styles = StyleSheet.create({
-  container: {
+  safeArea: {
     flex: 1,
     backgroundColor: theme.colors.bg,
+    // ESSA FOI A LINHA ADICIONADA:
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
   },
-<<<<<<< HEAD
-
-  /* HOME */
-
-  homeContent: {
-    paddingHorizontal: 20,
-    paddingVertical: 30,
+  container: {
+    padding: 16,
     paddingBottom: 40,
   },
-
-  homeHeader: {
+  brandWrap: {
     alignItems: 'center',
-    marginBottom: 30,
+    justifyContent: 'center',
+    marginBottom: 20,
+    marginTop: 10,
   },
-
   logo: {
-    fontSize: 48,
-    marginBottom: 4,
+    width: 500,
+    height: 180,
+    maxWidth: '100%',
   },
-
-  appTitle: {
-    fontSize: 32,
-    fontWeight: '900',
-    color: theme.colors.primary,
-    fontFamily: theme.fonts.heading,
-  },
-
-  appSubtitle: {
-    marginTop: 4,
+  menuSubtitle: {
     fontSize: 16,
-    color: theme.colors.muted,
-    fontWeight: '600',
-    fontFamily: theme.fonts.body,
-  },
-
-  chooseTitle: {
-    fontSize: 22,
-    fontWeight: '800',
+    fontWeight: '700',
     color: theme.colors.text,
     textAlign: 'center',
-    fontFamily: theme.fonts.heading,
+    marginBottom: 20,
   },
-
-  chooseSubtitle: {
-    marginTop: 6,
-    marginBottom: 22,
-    fontSize: 15,
-    color: theme.colors.muted,
-    textAlign: 'center',
-    fontFamily: theme.fonts.body,
+  homeMenuButtons: {
+    gap: 14,
   },
-
-  yearsContainer: {
-    width: '100%',
+  cardTop: {
+    marginBottom: 16,
   },
-
-  /*
-   * O Card agora é responsável pelo contorno/sombreado.
-   * Esse estilo apenas organiza o conteúdo dentro dele.
-   */
-  yearCardContent: {
+  sectionTitle: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: theme.colors.text,
+    marginBottom: 12,
+  },
+  tabsRow: {
     flexDirection: 'row',
-    alignItems: 'center',
+    flexWrap: 'wrap',
+    gap: 8,
+    marginBottom: 16,
   },
-
-  bookIcon: {
-    width: 64,
-    height: 64,
-    borderRadius: 18,
+  tab: {
     backgroundColor: theme.colors.cyanSoft,
+    borderRadius: theme.radius.pill,
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+    borderWidth: 2,
+    borderColor: 'transparent',
+  },
+  tabActive: {
+    backgroundColor: theme.colors.primarySoft,
+    borderColor: theme.colors.primary,
+  },
+  tabText: {
+    color: theme.colors.text,
+    fontWeight: '700',
+    textTransform: 'capitalize',
+  },
+  tabTextActive: {
+    color: theme.colors.primaryHover,
+  },
+  anoRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8,
+    marginBottom: 16,
+  },
+  anoButton: {
+    backgroundColor: theme.colors.cyanSoft,
+    borderRadius: 10,
+    width: 44,
+    height: 44,
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: 16,
+    borderWidth: 2,
+    borderColor: 'transparent',
   },
-
-  bookEmoji: {
-    fontSize: 34,
+  anoButtonActive: {
+    backgroundColor: theme.colors.primary,
+    borderColor: theme.colors.borderStrong,
   },
-
-  yearInfo: {
-    flex: 1,
-  },
-
-  yearTitle: {
-    fontSize: 22,
-    fontWeight: '900',
+  anoText: {
     color: theme.colors.text,
-    fontFamily: theme.fonts.heading,
+    fontWeight: '700',
   },
-
-  yearDescription: {
-    marginTop: 4,
+  anoTextActive: {
+    color: '#fff',
+  },
+  infoQuestoes: {
     fontSize: 13,
     color: theme.colors.muted,
+    marginBottom: 16,
     fontWeight: '600',
-    fontFamily: theme.fonts.body,
   },
-
-  startText: {
-    marginTop: 8,
-    fontSize: 14,
-    fontWeight: '900',
-    color: theme.colors.primary,
-    fontFamily: theme.fonts.heading,
+  btnIniciar: {
+    marginTop: 4,
   },
-
-  footerText: {
-    marginTop: 10,
+  progressWrap: {
+    marginBottom: 12,
+  },
+  progressTrack: {
+    height: 10,
+    backgroundColor: '#DDEAFF',
+    borderRadius: 999,
+    overflow: 'hidden',
+    marginBottom: 6,
+  },
+  progressFill: {
+    height: '100%',
+    backgroundColor: theme.colors.primary,
+    borderRadius: 999,
+  },
+  progressLabel: {
+    textAlign: 'right',
+    color: theme.colors.primaryHover,
+    fontSize: 12,
+    fontWeight: '700',
+  },
+  badge: {
+    color: theme.colors.primaryHover,
+    fontWeight: '700',
+    textTransform: 'uppercase',
+    marginBottom: 8,
+  },
+  questionEmoji: {
+    fontSize: 34,
+    marginBottom: 8,
     textAlign: 'center',
+  },
+  questionText: {
+    fontSize: 20,
+    color: theme.colors.text,
+    fontWeight: '700',
+    lineHeight: 28,
+    marginBottom: 12,
+    textAlign: 'center',
+  },
+  scoreText: {
     fontSize: 14,
     color: theme.colors.muted,
+    marginBottom: 16,
+    textAlign: 'center',
+  },
+  optionsList: {
+    gap: 10,
+  },
+  option: {
+    backgroundColor: '#F5F9FF',
+    padding: 14,
+    borderRadius: 12,
+    borderWidth: 2,
+    borderColor: '#D9E9F7',
+    flexDirection: 'row',
+    alignItems: 'center',
+    opacity: 1,
+  },
+  optionSelected: {
+    borderColor: theme.colors.primary,
+  },
+  optionCorrect: {
+    backgroundColor: '#EAF8E9',
+    borderColor: theme.colors.success,
+  },
+  optionWrong: {
+    backgroundColor: '#FDEDED',
+    borderColor: theme.colors.error,
+  },
+  optionDimmed: {
+    opacity: 0.35,
+  },
+  optionBadge: {
+    fontSize: 18,
+    marginRight: 10,
+    minWidth: 26,
+    textAlign: 'center',
+  },
+  optionText: {
+    color: theme.colors.text,
+    fontSize: 16,
     fontWeight: '600',
-  },
-
-  /* QUIZ */
-
-  content: {
     flex: 1,
-    paddingHorizontal: 20,
-    paddingVertical: 18,
-    justifyContent: 'center',
   },
-
-  quizBackButton: {
-    alignSelf: 'flex-start',
+  feedbackBox: {
+    marginTop: 14,
+    borderRadius: 14,
+    borderWidth: 2,
+    padding: 12,
+  },
+  feedbackBoxSuccess: {
+    backgroundColor: '#F0F9E8',
+    borderColor: theme.colors.success,
+  },
+  feedbackBoxError: {
+    backgroundColor: '#FFF0F0',
+    borderColor: theme.colors.error,
+  },
+  feedbackTitle: {
+    fontSize: 14,
+    color: theme.colors.text,
+    fontWeight: '800',
+    marginBottom: 4,
+  },
+  feedbackText: {
+    fontSize: 12,
+    lineHeight: 18,
+    color: theme.colors.text,
+  },
+  resultTitle: {
+    fontSize: 22,
+    fontWeight: '800',
+    color: theme.colors.text,
+    marginBottom: 8,
+    textAlign: 'center',
+  },
+  resultText: {
+    fontSize: 15,
+    color: theme.colors.text,
+    lineHeight: 22,
+    marginBottom: 18,
+    textAlign: 'center',
+  },
+  reviewSummary: {
+    gap: 12,
     marginBottom: 18,
   },
-
-  quizBackText: {
-    color: theme.colors.primary,
-    fontSize: 15,
+  reviewItem: {
+    backgroundColor: '#F8FBFF',
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#DDEBFF',
+    padding: 12,
+  },
+  reviewQuestion: {
+    fontSize: 14,
+    fontWeight: '700',
+    color: theme.colors.text,
+    marginBottom: 6,
+  },
+  reviewStatus: {
+    fontSize: 12,
     fontWeight: '800',
+    marginBottom: 4,
   },
-
-=======
-  content: {
-    flex: 1,
-    paddingHorizontal: 20,
-    paddingVertical: 24,
-    justifyContent: 'center',
+  reviewStatusCorrect: {
+    color: theme.colors.success,
   },
->>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
-  headerRow: {
+  reviewStatusWrong: {
+    color: theme.colors.error,
+  },
+  reviewAnswer: {
+    fontSize: 12,
+    color: theme.colors.muted,
+    marginBottom: 2,
+  },
+  reviewExplanation: {
+    fontSize: 12,
+    color: theme.colors.text,
+    marginTop: 4,
+    lineHeight: 18,
+  },
+  emptyText: {
+    color: theme.colors.muted,
+    fontSize: 14,
+    textAlign: 'center',
+    paddingVertical: 12,
+  },
+  rankRow: {
+    backgroundColor: '#F8FBFF',
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#DCEBFF',
+    padding: 12,
+    marginBottom: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 16,
   },
-<<<<<<< HEAD
-
-=======
->>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
-  categoryText: {
-    fontSize: 14,
-    color: theme.colors.primary,
-    fontWeight: '800',
-    textTransform: 'uppercase',
-    letterSpacing: 1.2,
-    fontFamily: theme.fonts.heading,
-  },
-<<<<<<< HEAD
-
-=======
->>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
-  progressText: {
-    fontSize: 13,
-    color: '#475569',
-    fontWeight: '600',
-  },
-<<<<<<< HEAD
-
-=======
->>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
-  scoreBox: {
-    alignSelf: 'flex-end',
-    backgroundColor: theme.colors.cyanSoft,
-    borderRadius: 12,
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    marginBottom: 16,
-    borderWidth: 3,
-    borderColor: theme.colors.primary,
-  },
-<<<<<<< HEAD
-
-=======
->>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
-  scoreLabel: {
-    fontSize: 11,
-    color: theme.colors.primary,
-    fontWeight: '800',
-    textTransform: 'uppercase',
-    fontFamily: theme.fonts.heading,
-  },
-<<<<<<< HEAD
-
-=======
->>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
-  scoreValue: {
-    fontSize: 22,
-    color: theme.colors.text,
-    fontWeight: '800',
-    textAlign: 'center',
-    fontFamily: theme.fonts.heading,
-  },
-<<<<<<< HEAD
-
-=======
->>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
-  questionText: {
-    fontSize: 22,
+  rankMateria: {
     fontWeight: '700',
     color: theme.colors.text,
-    textAlign: 'center',
-    lineHeight: 30,
-    fontFamily: theme.fonts.heading,
-  },
-<<<<<<< HEAD
-
-  optionsContainer: {
-    width: '100%',
-    marginTop: 20,
-  },
-
-  optionButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-=======
-  optionsContainer: {
-    width: '100%',
-  },
-  optionButton: {
->>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
-    borderWidth: 3,
-    borderColor: theme.colors.cyanSoft,
-    backgroundColor: theme.colors.surface,
-    borderRadius: theme.radius.md,
-    paddingVertical: 14,
-    paddingHorizontal: 16,
-    marginBottom: 12,
-<<<<<<< HEAD
-  },
-
-  optionLetter: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    backgroundColor: theme.colors.cyanSoft,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: 12,
-  },
-
-  optionLetterText: {
-    fontSize: 15,
-    fontWeight: '900',
-    color: theme.colors.primary,
-  },
-
-=======
-    alignItems: 'center',
-  },
->>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
-  optionButtonCorrect: {
-    backgroundColor: '#DCFCE7',
-    borderColor: '#22C55E',
-  },
-<<<<<<< HEAD
-
-=======
->>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
-  optionButtonWrong: {
-    backgroundColor: '#FEE2E2',
-    borderColor: '#EF4444',
-  },
-<<<<<<< HEAD
-
-  optionButtonText: {
-    flex: 1,
-=======
-  optionButtonText: {
->>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
-    color: theme.colors.text,
-    fontSize: 16,
-    fontWeight: '700',
-    fontFamily: theme.fonts.body,
-  },
-<<<<<<< HEAD
-
-  optionButtonTextCorrect: {
-    color: '#166534',
-  },
-
-  optionButtonTextWrong: {
-    color: '#991B1B',
-  },
-
-=======
-  optionButtonTextCorrect: {
-    color: '#166534',
-  },
-  optionButtonTextWrong: {
-    color: '#991B1B',
-  },
->>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6
-  feedbackText: {
-    marginTop: 10,
-    marginBottom: 18,
+    textTransform: 'capitalize',
     fontSize: 14,
+  },
+  rankMeta: {
     color: theme.colors.muted,
-    fontWeight: '600',
-    textAlign: 'center',
-    fontFamily: theme.fonts.body,
-  },
-<<<<<<< HEAD
-
-  nextButton: {
-    alignSelf: 'stretch',
-  },
-
-  /* VOLTAR */
-
-  backButton: {
-    paddingHorizontal: 20,
-    paddingTop: 18,
-  },
-
-  backButtonText: {
-    color: theme.colors.primary,
-    fontSize: 16,
-    fontWeight: '800',
-  },
-
-  /* ANO SEM QUESTÕES */
-
-  emptyYearContainer: {
-    flex: 1,
-  },
-
-  emptyContent: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 35,
-  },
-
-  emptyEmoji: {
-    fontSize: 60,
-    marginBottom: 15,
-  },
-
-  emptyTitle: {
-    fontSize: 28,
-    fontWeight: '900',
-    color: theme.colors.text,
-    fontFamily: theme.fonts.heading,
-  },
-
-  emptyText: {
-    marginTop: 12,
-    marginBottom: 25,
-    fontSize: 16,
-    lineHeight: 24,
-    color: theme.colors.muted,
-    textAlign: 'center',
-    fontFamily: theme.fonts.body,
-  },
-
-  /* RESULTADO */
-
-  resultContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 25,
-  },
-
-  resultEmoji: {
-    fontSize: 70,
-    marginBottom: 10,
-  },
-
-  resultTitle: {
-    fontSize: 32,
-    fontWeight: '900',
-    color: theme.colors.primary,
-    fontFamily: theme.fonts.heading,
-  },
-
-  resultSubtitle: {
-    marginTop: 8,
-    fontSize: 16,
-    color: theme.colors.muted,
-    textAlign: 'center',
-    fontFamily: theme.fonts.body,
-  },
-
-  resultScoreBox: {
-    width: '100%',
-    marginTop: 30,
-    marginBottom: 20,
-    padding: 24,
-    borderRadius: 20,
-    backgroundColor: theme.colors.cyanSoft,
-    borderWidth: 3,
-    borderColor: theme.colors.primary,
-    alignItems: 'center',
-  },
-
-  resultScoreLabel: {
     fontSize: 12,
-    fontWeight: '900',
-    color: theme.colors.primary,
-  },
-
-  resultScore: {
-    marginTop: 5,
-    fontSize: 42,
-    fontWeight: '900',
-    color: theme.colors.text,
-    fontFamily: theme.fonts.heading,
-  },
-
-  resultPercentage: {
     marginTop: 2,
-    fontSize: 18,
-    fontWeight: '800',
-    color: theme.colors.primary,
   },
-
-  resultMessage: {
-    marginBottom: 25,
-    fontSize: 17,
-    fontWeight: '700',
+  rankDate: {
+    color: theme.colors.cyan,
+    fontSize: 11,
+    marginTop: 2,
+  },
+  rankScoreHighlight: {
+    fontSize: 16,
+    fontWeight: '800',
     color: theme.colors.text,
-    textAlign: 'center',
   },
-
-  resultButton: {
-    width: '100%',
+  rankMedal: {
+    color: theme.colors.primaryHover,
+    fontWeight: '700',
+    textTransform: 'capitalize',
+    fontSize: 12,
+    marginTop: 2,
   },
-
-  resultBackButton: {
-    marginTop: 20,
-    padding: 10,
+  gameCardItem: {
+    marginTop: 8,
+    overflow: 'hidden',
   },
-
-  resultBackText: {
-    fontSize: 15,
-    color: theme.colors.primary,
+  gameCardMagic: {
+    backgroundColor: '#1E1338',
+    borderColor: '#8B3FD6',
+    borderWidth: 3,
+    padding: 18,
+  },
+  gameCardArcade: {
+    backgroundColor: '#090E24',
+    borderColor: '#00F0FF',
+    borderWidth: 3,
+    padding: 18,
+    marginTop: 12,
+  },
+  gameBadge: {
+    alignSelf: 'flex-start',
+    backgroundColor: 'rgba(255,255,255,0.08)',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.2)',
+    borderRadius: 999,
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    marginBottom: 14,
+  },
+  gameBadgeText: {
+    fontSize: 10,
     fontWeight: '800',
+    letterSpacing: 1,
+    textTransform: 'uppercase',
+    color: '#fff',
+  },
+  gameCardTitle: {
+    fontSize: 20,
+    fontWeight: '800',
+    color: '#fff',
+    marginBottom: 8,
+  },
+  gameCardDesc: {
+    fontSize: 13,
+    lineHeight: 18,
+    marginBottom: 14,
+    color: '#F5EEFF',
+  },
+  gameEmojis: {
+    fontSize: 28,
+    letterSpacing: 6,
+    marginBottom: 14,
+  },
+  gameButtonMagic: {
+    backgroundColor: '#A64BFF',
+    borderColor: '#5D1FB2',
+  },
+  gameButtonArcade: {
+    backgroundColor: '#FF2BD6',
+    borderColor: '#B7008E',
+  },
+  gameWrapper: {
+    flex: 1,
+    backgroundColor: '#f3f8ff',
+  },
+  gameHeader: {
+    paddingVertical: 12,
+    paddingHorizontal: 12,
+    backgroundColor: '#f3f8ff',
+  },
+  gameFrame: {
+    flex: 1,
+    marginHorizontal: 12,
+    marginBottom: 12,
+    borderRadius: 18,
+    borderWidth: 3,
+    borderColor: '#D9E9F7',
+    overflow: 'hidden',
+    backgroundColor: '#0d0a14',
+  },
+  gameWebView: {
+    flex: 1,
+    backgroundColor: '#0d0a14',
   },
 });
-=======
-  nextButton: {
-    alignSelf: 'stretch',
-  },
-});
->>>>>>> 7c7af7a2c4255f833fd7cf8cc691dedaaa7634d6

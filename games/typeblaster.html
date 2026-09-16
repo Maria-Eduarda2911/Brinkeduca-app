@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Type Blaster - Space Words</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; -webkit-tap-highlight-color: transparent; }
+  body {
+    background: #06050e;
+    color: #fff;
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+  }
+
+  .game-container {
+    width: 100%;
+    max-width: 440px;
+    height: 100vh;
+    max-height: 850px;
+    background: #0a0818;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(0, 180, 216, 0.2);
+  }
+
+  /* HUD Superior */
+  .hud {
+    height: 48px;
+    background: #0f0c24;
+    border-bottom: 2px solid #231c47;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 14px;
+    z-index: 10;
+  }
+  .hud-item {
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+  .hud-score { color: #ffd166; }
+  .hud-lives { color: #ff477e; font-size: 16px; }
+
+  /* Canvas Espacial */
+  #spaceCanvas {
+    flex: 1;
+    width: 100%;
+    background: radial-gradient(circle at center, #120d2e 0%, #06050e 100%);
+    display: block;
+  }
+
+  /* Teclado Virtual Mobile (QWERTY Completo) */
+  .keyboard-mobile {
+    background: #0e0a20;
+    padding: 8px 4px 12px;
+    border-top: 2px solid #261d4d;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 10;
+  }
+  .kb-row {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+  }
+  .kb-key {
+    background: #201740;
+    color: #00f0ff;
+    border: 1px solid #3d2c7a;
+    border-bottom: 3px solid #140e2b;
+    border-radius: 6px;
+    height: 38px;
+    min-width: 28px;
+    padding: 0 6px;
+    font-size: 15px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+  .kb-key:active {
+    transform: translateY(2px);
+    border-bottom-width: 1px;
+    background: #00f0ff;
+    color: #000;
+  }
+
+  /* Telas de Início e Fim de Jogo */
+  .overlay-screen {
+    position: absolute;
+    inset: 0;
+    background: rgba(8, 6, 20, 0.95);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    text-align: center;
+    z-index: 20;
+    gap: 16px;
+  }
+  .game-title {
+    font-size: 32px;
+    font-weight: 900;
+    color: #00f0ff;
+    text-shadow: 0 0 16px #00f0ff, 2px 2px #ff0055;
+    letter-spacing: 2px;
+  }
+  .game-sub {
+    font-size: 13px;
+    color: #a49fc4;
+    margin-top: -8px;
+    line-height: 1.4;
+  }
+  .mode-badge {
+    background: #1d153d;
+    border: 2px solid #00f0ff;
+    color: #00f0ff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 6px 14px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+  }
+  .btn-start {
+    background: #ff007f;
+    color: #fff;
+    border: 2px solid #ff77b7;
+    border-bottom: 5px solid #99004c;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 14px 32px;
+    border-radius: 12px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    box-shadow: 0 0 18px rgba(255, 0, 127, 0.5);
+    margin-top: 12px;
+  }
+  .btn-start:active {
+    transform: translateY(3px);
+    border-bottom-width: 2px;
+  }
+</style>
+</head>
+<body>
+
+<div class="game-container">
+
+  <!-- HUD -->
+  <div class="hud">
+    <div class="hud-item hud-score">PONTOS: <span id="dispScore">0</span></div>
+    <div class="hud-item hud-lives" id="dispLives">❤️❤️❤️</div>
+  </div>
+
+  <!-- Tela Espacial -->
+  <canvas id="spaceCanvas" width="380" height="420"></canvas>
+
+  <!-- Teclado Virtual para Mobile/Touchscreen -->
+  <div class="keyboard-mobile" id="mobileKeyboard">
+    <div class="kb-row">
+      <button class="kb-key" onclick="handleVirtualKey('Q')">Q</button>
+      <button class="kb-key" onclick="handleVirtualKey('W')">W</button>
+      <button class="kb-key" onclick="handleVirtualKey('E')">E</button>
+      <button class="kb-key" onclick="handleVirtualKey('R')">R</button>
+      <button class="kb-key" onclick="handleVirtualKey('T')">T</button>
+      <button class="kb-key" onclick="handleVirtualKey('Y')">Y</button>
+      <button class="kb-key" onclick="handleVirtualKey('U')">U</button>
+      <button class="kb-key" onclick="handleVirtualKey('I')">I</button>
+      <button class="kb-key" onclick="handleVirtualKey('O')">O</button>
+      <button class="kb-key" onclick="handleVirtualKey('P')">P</button>
+    </div>
+    <div class="kb-row">
+      <button class="kb-key" onclick="handleVirtualKey('A')">A</button>
+      <button class="kb-key" onclick="handleVirtualKey('S')">S</button>
+      <button class="kb-key" onclick="handleVirtualKey('D')">D</button>
+      <button class="kb-key" onclick="handleVirtualKey('F')">F</button>
+      <button class="kb-key" onclick="handleVirtualKey('G')">G</button>
+      <button class="kb-key" onclick="handleVirtualKey('H')">H</button>
+      <button class="kb-key" onclick="handleVirtualKey('J')">J</button>
+      <button class="kb-key" onclick="handleVirtualKey('K')">K</button>
+      <button class="kb-key" onclick="handleVirtualKey('L')">L</button>
+    </div>
+    <div class="kb-row">
+      <button class="kb-key" onclick="handleVirtualKey('Z')">Z</button>
+      <button class="kb-key" onclick="handleVirtualKey('X')">X</button>
+      <button class="kb-key" onclick="handleVirtualKey('C')">C</button>
+      <button class="kb-key" onclick="handleVirtualKey('V')">V</button>
+      <button class="kb-key" onclick="handleVirtualKey('B')">B</button>
+      <button class="kb-key" onclick="handleVirtualKey('N')">N</button>
+      <button class="kb-key" onclick="handleVirtualKey('M')">M</button>
+    </div>
+  </div>
+
+  <!-- Tela de Início / Game Over -->
+  <div class="overlay-screen" id="overlayScreen">
+    <div class="game-title">TYPE BLASTER</div>
+    <div class="game-sub">Destrua as palavras em inglês antes que elas alcancem sua nave!</div>
+    <div class="mode-badge">⭐ MODO FÁCIL (PALAVRAS CURTAS)</div>
+    <button class="btn-start" onclick="startGame()">▶ INICIAR JOGO</button>
+  </div>
+
+</div>
+
+<script>
+  // Sintetizador de Áudio Retro (Web Audio API)
+  const AudioEngine = {
+    ctx: null,
+    init() {
+      if (!this.ctx) {
+        this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+    },
+    play(freq, type, duration, endFreq = null, vol = 0.1) {
+      if (!this.ctx) return;
+      try {
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+        if (endFreq) {
+          osc.frequency.exponentialRampToValueAtTime(endFreq, this.ctx.currentTime + duration);
+        }
+        gain.gain.setValueAtTime(vol, this.ctx.currentTime);
+        gain.gain.linearRampToValueAtTime(0.01, this.ctx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        osc.start();
+        osc.stop(this.ctx.currentTime + duration);
+      } catch (e) {}
+    },
+    laser() { this.play(800, 'sawtooth', 0.12, 220, 0.12); },
+    boom() { this.play(180, 'square', 0.3, 40, 0.2); },
+    hurt() { this.play(100, 'sawtooth', 0.25, 30, 0.25); }
+  };
+
+  // Vocabulário Modo Fácil (3 e 4 letras)
+  const EASY_WORDS = [
+    "CAT", "DOG", "SUN", "SKY", "RED", "RUN", "EGG", "BAT",
+    "PIG", "BEE", "FOX", "PEN", "CAR", "SEA", "HAT", "ICE",
+    "STAR", "BLUE", "FISH", "BOOK", "TREE", "MILK", "BIRD", "MOON",
+    "BALL", "FROG", "DUCK", "CAKE", "RING", "GOLD", "LION", "SNOW"
+  ];
+
+  const canvas = document.getElementById('spaceCanvas');
+  const ctx = canvas.getContext('2d');
+  ctx.imageSmoothingEnabled = false;
+
+  // Estado do Jogo
+  let isPlaying = false;
+  let score = 0;
+  let lives = 3;
+  let words = []; // Inimigos na tela
+  let currentTarget = null; // Palavra que está sendo digitada
+  let lasers = [];
+  let particles = [];
+  let stars = [];
+
+  // Cria estrelas de fundo
+  for (let i = 0; i < 45; i++) {
+    stars.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      size: Math.random() > 0.8 ? 2 : 1,
+      speed: 0.3 + Math.random() * 0.6
+    });
+  }
+
+  // Nave do Jogador (Posicionada na parte inferior central)
+  const ship = {
+    x: canvas.width / 2,
+    y: canvas.height - 35,
+    angle: -Math.PI / 2,
+    recoil: 0
+  };
+
+  function startGame() {
+    AudioEngine.init();
+    score = 0;
+    lives = 3;
+    words = [];
+    lasers = [];
+    particles = [];
+    currentTarget = null;
+    isPlaying = true;
+    document.getElementById('overlayScreen').style.display = 'none';
+    updateHUD();
+    spawnWord();
+  }
+
+  function gameOver() {
+    isPlaying = false;
+    const overlay = document.getElementById('overlayScreen');
+    overlay.innerHTML = `
+      <div class="game-title" style="color: #ff0055;">FIM DE JOGO</div>
+      <div class="game-sub">Você defendeu sua nave com bravura!</div>
+      <div class="mode-badge">PONTUAÇÃO FINAL: ${score} PONTOS</div>
+      <button class="btn-start" onclick="startGame()">JOGAR NOVAMENTE</button>
+    `;
+    overlay.style.display = 'flex';
+  }
+
+  // Gera palavra caindo devagar
+  function spawnWord() {
+    if (!isPlaying) return;
+
+    // Garante que só hajam no máximo 2 palavras na tela para não sobrecarregar
+    if (words.length >= 2) return;
+
+    const text = EASY_WORDS[Math.floor(Math.random() * EASY_WORDS.length)];
+    // Evita começar com palavras que tenham a mesma primeira letra do alvo atual
+    const xPos = 40 + Math.random() * (canvas.width - 120);
+
+    words.push({
+      text: text,
+      typedCount: 0,
+      x: xPos,
+      y: 20,
+      speed: 0.25, // Velocidade calma para o modo fácil
+      color: '#00f0ff'
+    });
+  }
+
+  // Dispara o feixe laser em direção ao alvo
+  function shootLaser(target) {
+    AudioEngine.laser();
+    ship.recoil = 4;
+    // Calcula o ângulo da nave para a palavra
+    const letterX = target.x + target.typedCount * 14;
+    const letterY = target.y;
+    ship.angle = Math.atan2(letterY - ship.y, letterX - ship.x);
+
+    lasers.push({
+      x: ship.x,
+      y: ship.y,
+      targetX: letterX,
+      targetY: letterY,
+      speed: 16
+    });
+  }
+
+  // Processa a tecla digitada (Teclado Físico ou Virtual)
+  function processLetter(letter) {
+    if (!isPlaying) return;
+    AudioEngine.init();
+    letter = letter.toUpperCase();
+
+    // 1. Se já estamos digitando uma palavra específica
+    if (currentTarget) {
+      const nextNeededChar = currentTarget.text[currentTarget.typedCount];
+      if (letter === nextNeededChar) {
+        currentTarget.typedCount++;
+        shootLaser(currentTarget);
+
+        // Palavra concluída!
+        if (currentTarget.typedCount === currentTarget.text.length) {
+          destroyWord(currentTarget);
+          currentTarget = null;
+        }
+      }
+      return;
+    }
+
+    // 2. Procura uma palavra que comece com a letra digitada (prioriza a mais baixa/mais perto da nave)
+    const candidates = words
+      .filter(w => w.text[0] === letter)
+      .sort((a, b) => b.y - a.y);
+
+    if (candidates.length > 0) {
+      currentTarget = candidates[0];
+      currentTarget.typedCount = 1;
+      shootLaser(currentTarget);
+
+      if (currentTarget.typedCount === currentTarget.text.length) {
+        destroyWord(currentTarget);
+        currentTarget = null;
+      }
+    }
+  }
+
+  // Teclado Virtual (Botões da tela)
+  function handleVirtualKey(char) {
+    processLetter(char);
+  }
+
+  // Teclado Físico (PC)
+  window.addEventListener('keydown', (e) => {
+    if (e.key.length === 1 && e.key.match(/[a-z]/i)) {
+      processLetter(e.key);
+    }
+  });
+
+  // Explosão e destruição da palavra
+  function destroyWord(w) {
+    AudioEngine.boom();
+    score += w.text.length * 20;
+    updateHUD();
+
+    // Partículas de explosão
+    for (let i = 0; i < 20; i++) {
+      particles.push({
+        x: w.x + 20,
+        y: w.y,
+        vx: (Math.random() - 0.5) * 5,
+        vy: (Math.random() - 0.5) * 5,
+        alpha: 1,
+        color: Math.random() > 0.4 ? '#00f0ff' : '#ff007f'
+      });
+    }
+
+    // Remove do array
+    words = words.filter(item => item !== w);
+
+    // Spawna próxima palavra
+    setTimeout(spawnWord, 600);
+  }
+
+  function updateHUD() {
+    document.getElementById('dispScore').innerText = score;
+    const hearts = "❤️".repeat(Math.max(0, lives));
+    document.getElementById('dispLives').innerText = hearts || "💀";
+  }
+
+  // Loop de Atualização
+  function update() {
+    if (!isPlaying) return;
+
+    if (ship.recoil > 0) ship.recoil -= 0.5;
+
+    // Move estrelas
+    stars.forEach(s => {
+      s.y += s.speed;
+      if (s.y > canvas.height) s.y = 0;
+    });
+
+    // Move palavras caindo
+    for (let i = words.length - 1; i >= 0; i--) {
+      const w = words[i];
+      w.y += w.speed;
+
+      // Se a palavra encostar na base da tela (dano na nave)
+      if (w.y >= canvas.height - 50) {
+        AudioEngine.hurt();
+        lives--;
+        updateHUD();
+
+        if (currentTarget === w) currentTarget = null;
+        words.splice(i, 1);
+
+        if (lives <= 0) {
+          gameOver();
+          return;
+        } else {
+          setTimeout(spawnWord, 800);
+        }
+      }
+    }
+
+    // Spawna palavra caso a tela fique vazia
+    if (words.length === 0) {
+      spawnWord();
+    }
+
+    // Atualiza lasers
+    for (let i = lasers.length - 1; i >= 0; i--) {
+      const l = lasers[i];
+      const dx = l.targetX - l.x;
+      const dy = l.targetY - l.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+
+      if (dist < l.speed) {
+        lasers.splice(i, 1);
+      } else {
+        l.x += (dx / dist) * l.speed;
+        l.y += (dy / dist) * l.speed;
+      }
+    }
+
+    // Atualiza partículas
+    for (let i = particles.length - 1; i >= 0; i--) {
+      const p = particles[i];
+      p.x += p.vx;
+      p.y += p.vy;
+      p.alpha -= 0.035;
+      if (p.alpha <= 0) particles.splice(i, 1);
+    }
+  }
+
+  // Renderização
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // 1. Estrelas de fundo
+    ctx.fillStyle = "#ffffff";
+    stars.forEach(s => {
+      ctx.fillRect(s.x, s.y, s.size, s.size);
+    });
+
+    // 2. Linha defensiva / limite da nave
+    ctx.strokeStyle = "rgba(255, 0, 85, 0.25)";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.setLineDash();
+    ctx.moveTo(0, canvas.height - 50);
+    ctx.lineTo(canvas.width, canvas.height - 50);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // 3. Projéteis Lasers
+    ctx.strokeStyle = "#00f0ff";
+    ctx.lineWidth = 3;
+    lasers.forEach(l => {
+      ctx.beginPath();
+      ctx.arc(l.x, l.y, 3, 0, Math.PI * 2);
+      ctx.fillStyle = "#00f0ff";
+      ctx.fill();
+    });
+
+    // 4. Palavras Inimigas
+    words.forEach(w => {
+      const isCurrent = (w === currentTarget);
+
+      // Caixa de contenção da palavra
+      ctx.fillStyle = isCurrent ? "rgba(0, 240, 255, 0.15)" : "rgba(20, 15, 40, 0.7)";
+      ctx.strokeStyle = isCurrent ? "#00f0ff" : "#5d4499";
+      ctx.lineWidth = 1.5;
+      const boxWidth = w.text.length * 15 + 16;
+      ctx.fillRect(w.x - 8, w.y - 18, boxWidth, 26);
+      ctx.strokeRect(w.x - 8, w.y - 18, boxWidth, 26);
+
+      // Renderiza as letras (com destaque para o que já foi digitado)
+      ctx.font = "bold 16px 'Courier New', monospace";
+      for (let i = 0; i < w.text.length; i++) {
+        const char = w.text[i];
+        const charX = w.x + i * 15;
+
+        if (i < w.typedCount) {
+          // Letra já acertada (Verde Neon)
+          ctx.fillStyle = "#00ff66";
+          ctx.fillText(char, charX, w.y);
+        } else {
+          // Letra pendente (Branco / Ciano)
+          ctx.fillStyle = isCurrent ? "#ffffff" : "#c4b5fd";
+          ctx.fillText(char, charX, w.y);
+        }
+      }
+    });
+
+    // 5. Partículas de explosão
+    particles.forEach(p => {
+      ctx.fillStyle = p.color;
+      ctx.globalAlpha = Math.max(0, p.alpha);
+      ctx.fillRect(p.x, p.y, 3, 3);
+    });
+    ctx.globalAlpha = 1.0;
+
+    // 6. Nave Espacial do Jogador
+    ctx.save();
+    ctx.translate(ship.x, ship.y + ship.recoil);
+    ctx.rotate(ship.angle + Math.PI / 2);
+
+    // Fogo do propulsor
+    const flame = Math.sin(Date.now() * 0.02) * 4;
+    ctx.fillStyle = "#ff6600";
+    ctx.beginPath();
+    ctx.moveTo(-4, 12);
+    ctx.lineTo(4, 12);
+    ctx.lineTo(0, 18 + flame);
+    ctx.fill();
+
+    // Corpo da nave
+    ctx.fillStyle = "#00f0ff";
+    ctx.beginPath();
+    ctx.moveTo(0, -16);
+    ctx.lineTo(12, 12);
+    ctx.lineTo(0, 8);
+    ctx.lineTo(-12, 12);
+    ctx.closePath();
+    ctx.fill();
+
+    // Cabine
+    ctx.fillStyle = "#ffffff";
+    ctx.beginPath();
+    ctx.arc(0, -2, 3, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.restore();
+  }
+
+  function loop() {
+    update();
+    draw();
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+</script>
+</body>
+</html>

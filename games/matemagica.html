@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Matemágica</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; -webkit-tap-highlight-color: transparent; }
+  body {
+    background: #0d0a14;
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+  }
+
+  /* Container Principal do App */
+  .app-container {
+    width: 100%;
+    max-width: 440px;
+    height: 100vh;
+    max-height: 850px;
+    background: #181425;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: 0 0 24px rgba(0,0,0,0.8);
+  }
+
+  /* Topo do HUD dentro da fase */
+  .ingame-hud {
+    height: 40px;
+    background: #120e1c;
+    border-bottom: 2px solid #2f2547;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 12px;
+    z-index: 5;
+  }
+  .btn-back-menu {
+    background: #382c54;
+    border: 1px solid #5a4687;
+    color: #e2ddf7;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .btn-back-menu:active {
+    background: #503f78;
+  }
+  .hud-stats {
+    font-size: 12px;
+    font-weight: bold;
+    color: #ffd166;
+    display: flex;
+    gap: 12px;
+  }
+
+  /* Arena Canvas */
+  #gameCanvas {
+    width: 100%;
+    flex: 1.2;
+    min-height: 260px;
+    background: #181425;
+    image-rendering: pixelated;
+    display: block;
+  }
+
+  /* Painel de Resposta */
+  .answer-panel {
+    background: #151120;
+    padding: 8px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 2px solid #2d2345;
+    border-bottom: 2px solid #2d2345;
+  }
+  .answer-label {
+    font-size: 12px;
+    color: #928ca8;
+    font-weight: bold;
+  }
+  .answer-value {
+    min-width: 80px;
+    height: 36px;
+    background: #09070e;
+    border: 2px solid #574b7a;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: bold;
+    color: #00ffcc;
+    text-shadow: 0 0 8px rgba(0, 255, 204, 0.6);
+  }
+  .level-progress-text {
+    font-size: 11px;
+    color: #bfa8e6;
+    font-weight: bold;
+  }
+
+  /* Teclado Numérico Grande */
+  .numpad {
+    flex: 1;
+    background: #1b162b;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 8px;
+  }
+  .btn-key {
+    background: #2d2545;
+    border: 2px solid #4a3e6f;
+    border-bottom: 4px solid #1c162e;
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: bold;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+  .btn-key:active {
+    transform: translateY(2px);
+    border-bottom-width: 2px;
+    background: #3d325c;
+  }
+  .btn-key.delete {
+    background: #5a2034;
+    border-color: #8c3250;
+    border-bottom-color: #38121f;
+    color: #ff99b0;
+    font-size: 16px;
+  }
+  .btn-key.confirm {
+    color: #79ffa2;
+    font-size: 18px;
+  }
+
+  /* Menu Principal In-Game (Overlay) */
+  .menu-screen {
+    position: absolute;
+    inset: 0;
+    background: rgba(14, 11, 23, 0.96);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 24px 20px;
+    z-index: 20;
+    gap: 16px;
+  }
+  .menu-title {
+    font-size: 28px;
+    color: #ba43ff;
+    font-weight: bold;
+    text-shadow: 0 0 12px rgba(186, 67, 255, 0.8), 2px 2px #000;
+    letter-spacing: 2px;
+    text-align: center;
+  }
+  .menu-subtitle {
+    font-size: 11px;
+    color: #9f96c2;
+    margin-top: -10px;
+    letter-spacing: 1px;
+  }
+  .menu-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .section-label {
+    font-size: 11px;
+    color: #ffd166;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .grid-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .menu-btn {
+    background: #28203d;
+    border: 2px solid #48396b;
+    border-bottom: 4px solid #191426;
+    color: #e2ddf7;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 12px 6px;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.1s;
+  }
+  .menu-btn.active {
+    background: #8b3fd6;
+    border-color: #c988ff;
+    border-bottom-color: #551e8c;
+    color: #ffffff;
+    box-shadow: 0 0 10px rgba(186, 92, 255, 0.6);
+  }
+  .menu-btn:active {
+    transform: translateY(2px);
+    border-bottom-width: 2px;
+  }
+  .levels-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .btn-start {
+    width: 100%;
+    margin-top: 10px;
+    background: #00b4d8;
+    border: 2px solid #90e0ef;
+    border-bottom: 5px solid #0077b6;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    box-shadow: 0 0 14px rgba(0, 180, 216, 0.5);
+  }
+  .btn-start:active {
+    transform: translateY(3px);
+    border-bottom-width: 2px;
+  }
+</style>
+</head>
+<body>
+
+<div class="app-container">
+  
+  <!-- Menu Principal In-Game -->
+  <div class="menu-screen" id="menuScreen">
+    <div class="menu-title">✨ MATEMÁGICA ✨</div>
+    <div class="menu-subtitle">DEFESA DE TORRE MATEMÁTICA</div>
+
+    <!-- Escolha da Operação -->
+    <div class="menu-section">
+      <div class="section-label">1. Escolha a Operação:</div>
+      <div class="grid-options">
+        <button class="menu-btn active" id="op-add" onclick="chooseMenuOp('+')">+ SOMA</button>
+        <button class="menu-btn" id="op-sub" onclick="chooseMenuOp('-')">- SUBTRAÇÃO</button>
+        <button class="menu-btn" id="op-mul" onclick="chooseMenuOp('x')">× MULTIPLICAÇÃO</button>
+        <button class="menu-btn" id="op-div" onclick="chooseMenuOp('/')">÷ DIVISÃO</button>
+      </div>
+    </div>
+
+    <!-- Escolha do Nível Inicial -->
+    <div class="menu-section">
+      <div class="section-label">2. Nível Inicial:</div>
+      <div class="levels-row">
+        <button class="menu-btn active" id="lvl-1" onclick="chooseMenuLvl(1)">NÍVEL 1</button>
+        <button class="menu-btn" id="lvl-2" onclick="chooseMenuLvl(2)">NÍVEL 2</button>
+        <button class="menu-btn" id="lvl-3" onclick="chooseMenuLvl(3)">NÍVEL 3</button>
+      </div>
+    </div>
+
+    <!-- Botão de Iniciar -->
+    <button class="btn-start" onclick="startGame()">▶ COMEÇAR A JOGAR</button>
+  </div>
+
+  <!-- HUD In-Game -->
+  <div class="ingame-hud">
+    <button class="btn-back-menu" onclick="returnToMenu()">🔙 MENU</button>
+    <div class="hud-stats">
+      <span id="dispLevel">NÍVEL 1</span>
+      <span id="dispScore">0 PTS</span>
+    </div>
+  </div>
+
+  <!-- Arena 2D -->
+  <canvas id="gameCanvas" width="400" height="300"></canvas>
+
+  <!-- Painel de Resposta -->
+  <div class="answer-panel">
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <span class="answer-label">RESPOSTA:</span>
+      <div class="answer-value" id="dispAnswer"></div>
+    </div>
+    <div class="level-progress-text" id="dispProgress">FASE: 0/5</div>
+  </div>
+
+  <!-- Teclado Numérico -->
+  <div class="numpad">
+    <button class="btn-key" onclick="pressKey('1')">1</button>
+    <button class="btn-key" onclick="pressKey('2')">2</button>
+    <button class="btn-key" onclick="pressKey('3')">3</button>
+    <button class="btn-key" onclick="pressKey('4')">4</button>
+    <button class="btn-key" onclick="pressKey('5')">5</button>
+    <button class="btn-key" onclick="pressKey('6')">6</button>
+    <button class="btn-key" onclick="pressKey('7')">7</button>
+    <button class="btn-key" onclick="pressKey('8')">8</button>
+    <button class="btn-key" onclick="pressKey('9')">9</button>
+    <button class="btn-key delete" onclick="clearAnswer()">DEL</button>
+    <button class="btn-key" onclick="pressKey('0')">0</button>
+    <button class="btn-key confirm" onclick="checkAnswer()">OK</button>
+  </div>
+
+</div>
+
+<script>
+  // Efeitos Sonoros Retro (Web Audio API)
+  const AudioEngine = {
+    ctx: null,
+    init() {
+      if (!this.ctx) {
+        this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+    },
+    playTone(freq, type, duration, endFreq = null) {
+      if (!this.ctx) return;
+      try {
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+        if (endFreq) {
+          osc.frequency.exponentialRampToValueAtTime(endFreq, this.ctx.currentTime + duration);
+        }
+        gain.gain.setValueAtTime(0.12, this.ctx.currentTime);
+        gain.gain.linearRampToValueAtTime(0.01, this.ctx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        osc.start();
+        osc.stop(this.ctx.currentTime + duration);
+      } catch (e) {}
+    },
+    keyClick() { this.playTone(460, 'triangle', 0.04); },
+    spellCast() { this.playTone(320, 'sine', 0.28, 760); },
+    pixelHit() { this.playTone(150, 'square', 0.24, 40); },
+    wrongError() { this.playTone(110, 'sawtooth', 0.2, 70); },
+    levelUpTone() {
+      this.playTone(260, 'triangle', 0.14);
+      setTimeout(() => this.playTone(390, 'triangle', 0.14), 110);
+      setTimeout(() => this.playTone(520, 'triangle', 0.28), 220);
+    }
+  };
+
+  // Canvas
+  const canvas = document.getElementById('gameCanvas');
+  const ctx = canvas.getContext('2d');
+  ctx.imageSmoothingEnabled = false;
+
+  // Estados e Configurações
+  let gameState = 'MENU'; // 'MENU' ou 'PLAYING'
+  let selectedOp = '+';
+  let selectedLvl = 1;
+  let currentLevel = 1;
+  let monstersDefeated = 0;
+  const MONSTERS_PER_LEVEL = 5;
+
+  let player = { x: 50, y: 195, hp: 100, maxHp: 100, castingTime: 0, hurtTime: 0 };
+  let currentMonster = null; // Apenas um monstro na tela
+  let currentInput = "";
+  let score = 0;
+  let particles = [];
+  let projectiles = [];
+  let screenShake = 0;
+  let errorPulse = 0;
+  let levelUpBannerTime = 0;
+
+  const MONSTER_TYPES = [
+    { type: 'horned', color: '#c93434', baseSpeed: 0.045, size: 26 },
+    { type: 'flying_eye', color: '#8844cc', baseSpeed: 0.060, size: 20 },
+    { type: 'cyclops', color: '#2a9d8f', baseSpeed: 0.050, size: 24 }
+  ];
+
+  // Configurações do Menu
+  function chooseMenuOp(op) {
+    AudioEngine.init();
+    AudioEngine.keyClick();
+    selectedOp = op;
+    document.querySelectorAll('.grid-options .menu-btn').forEach(b => b.classList.remove('active'));
+    if (op === '+') document.getElementById('op-add').classList.add('active');
+    if (op === '-') document.getElementById('op-sub').classList.add('active');
+    if (op === 'x') document.getElementById('op-mul').classList.add('active');
+    if (op === '/') document.getElementById('op-div').classList.add('active');
+  }
+
+  function chooseMenuLvl(lvl) {
+    AudioEngine.init();
+    AudioEngine.keyClick();
+    selectedLvl = lvl;
+    document.querySelectorAll('.levels-row .menu-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(`lvl-${lvl}`).classList.add('active');
+  }
+
+  function startGame() {
+    AudioEngine.init();
+    AudioEngine.keyClick();
+    currentLevel = selectedLvl;
+    monstersDefeated = 0;
+    score = 0;
+    player.hp = player.maxHp;
+    clearAnswer();
+    currentMonster = null;
+    spawnSingleMonster();
+    
+    document.getElementById('menuScreen').style.display = 'none';
+    gameState = 'PLAYING';
+    updateHUD();
+  }
+
+  function returnToMenu() {
+    AudioEngine.init();
+    AudioEngine.keyClick();
+    gameState = 'MENU';
+    document.getElementById('menuScreen').style.display = 'flex';
+  }
+
+  // Gerador de Contas
+  function generateMathProblem() {
+    let a, b, answer, symbol;
+
+    if (selectedOp === '+') {
+      symbol = '+';
+      if (currentLevel === 1) {
+        a = Math.floor(Math.random() * 8) + 1;
+        b = Math.floor(Math.random() * 8) + 1;
+      } else if (currentLevel === 2) {
+        a = Math.floor(Math.random() * 12) + 3;
+        b = Math.floor(Math.random() * 10) + 2;
+      } else {
+        a = Math.floor(Math.random() * 25) + 5;
+        b = Math.floor(Math.random() * 20) + 5;
+      }
+      answer = a + b;
+    } else if (selectedOp === '-') {
+      symbol = '-';
+      if (currentLevel === 1) {
+        a = Math.floor(Math.random() * 8) + 2;
+        b = Math.floor(Math.random() * a) + 1;
+      } else if (currentLevel === 2) {
+        a = Math.floor(Math.random() * 14) + 6;
+        b = Math.floor(Math.random() * (a - 1)) + 1;
+      } else {
+        a = Math.floor(Math.random() * 25) + 15;
+        b = Math.floor(Math.random() * (a - 5)) + 2;
+      }
+      answer = a - b;
+    } else if (selectedOp === 'x') {
+      symbol = '×';
+      if (currentLevel === 1) {
+        const mults = [2, 3, 4, 5, 6, 7, 8, 9, 10];
+        a = mults[Math.floor(Math.random() * mults.length)];
+        b = Math.floor(Math.random() * 5) + 1;
+      } else if (currentLevel === 2) {
+        a = Math.floor(Math.random() * 5) + 2;
+        b = Math.floor(Math.random() * 6) + 1;
+      } else {
+        a = Math.floor(Math.random() * 7) + 3;
+        b = Math.floor(Math.random() * 7) + 2;
+      }
+      answer = a * b;
+    } else {
+      symbol = '÷';
+      if (currentLevel === 1) {
+        const divisors = [2, 3, 4, 5, 6, 7, 8, 9, 10];
+        b = divisors[Math.floor(Math.random() * divisors.length)];
+        answer = Math.floor(Math.random() * 5) + 1;
+        a = b * answer;
+      } else if (currentLevel === 2) {
+        b = Math.floor(Math.random() * 4) + 2;
+        answer = Math.floor(Math.random() * 6) + 2;
+        a = b * answer;
+      } else {
+        b = Math.floor(Math.random() * 6) + 3;
+        answer = Math.floor(Math.random() * 7) + 2;
+        a = b * answer;
+      }
+    }
+
+    return { text: `${a} ${symbol} ${b}`, answer };
+  }
+
+  // Gera um único monstro
+  function spawnSingleMonster() {
+    const template = MONSTER_TYPES[Math.floor(Math.random() * MONSTER_TYPES.length)];
+    const speedBonus = (currentLevel - 1) * 0.007;
+    currentMonster = {
+      ...template,
+      x: 360,
+      baseY: 200,
+      y: 200,
+      speed: template.baseSpeed + speedBonus,
+      problem: generateMathProblem(),
+      animTimer: 0
+    };
+  }
+
+  // Teclado
+  function pressKey(num) {
+    if (gameState !== 'PLAYING') return;
+    AudioEngine.init();
+    AudioEngine.keyClick();
+    if (currentInput.length < 3) {
+      currentInput += num;
+      document.getElementById('dispAnswer').innerText = currentInput;
+    }
+    if (currentMonster && currentInput.length === String(currentMonster.problem.answer).length) {
+      checkAnswer();
+    }
+  }
+
+  function clearAnswer() {
+    if (gameState !== 'PLAYING') return;
+    AudioEngine.init();
+    AudioEngine.keyClick();
+    currentInput = "";
+    document.getElementById('dispAnswer').innerText = "";
+  }
+
+  function checkAnswer() {
+    if (gameState !== 'PLAYING' || !currentMonster || currentInput === "") return;
+    const val = parseInt(currentInput, 10);
+
+    if (val === currentMonster.problem.answer) {
+      AudioEngine.spellCast();
+      player.castingTime = 18;
+      projectiles.push({
+        x: player.x + 20,
+        y: player.y - 10,
+        targetMonster: currentMonster,
+        speed: 15
+      });
+      score += 100 * currentLevel;
+      monstersDefeated++;
+
+      if (monstersDefeated >= MONSTERS_PER_LEVEL) {
+        monstersDefeated = 0;
+        currentLevel++;
+        levelUpBannerTime = 70;
+        AudioEngine.levelUpTone();
+      }
+
+      clearAnswer();
+    } else {
+      AudioEngine.wrongError();
+      errorPulse = 16;
+      screenShake = 5;
+      currentMonster.x = Math.max(player.x + 55, currentMonster.x - 14);
+      clearAnswer();
+    }
+    updateHUD();
+  }
+
+  function updateHUD() {
+    document.getElementById('dispScore').innerText = `${score} PTS`;
+    document.getElementById('dispLevel').innerText = `NÍVEL ${currentLevel}`;
+    document.getElementById('dispProgress').innerText = `FASE: ${monstersDefeated}/${MONSTERS_PER_LEVEL}`;
+  }
+
+  // Partículas
+  function createPixelExplosion(x, y, color) {
+    for (let i = 0; i < 24; i++) {
+      particles.push({
+        x: x,
+        y: y,
+        vx: (Math.random() - 0.5) * 5,
+        vy: (Math.random() - 0.7) * 5,
+        size: Math.floor(Math.random() * 3) + 2,
+        color: Math.random() > 0.3 ? color : '#ffffff',
+        alpha: 1,
+        life: 25
+      });
+    }
+  }
+
+  // Loop de Atualização
+  function update() {
+    if (gameState !== 'PLAYING') return;
+
+    if (screenShake > 0) screenShake--;
+    if (errorPulse > 0) errorPulse--;
+    if (player.castingTime > 0) player.castingTime--;
+    if (player.hurtTime > 0) player.hurtTime--;
+    if (levelUpBannerTime > 0) levelUpBannerTime--;
+
+    // Monstro
+    if (currentMonster) {
+      currentMonster.animTimer += 0.05;
+      if (currentMonster.x > player.x + 36) {
+        currentMonster.x -= currentMonster.speed;
+      }
+
+      if (currentMonster.type === 'flying_eye') {
+        currentMonster.y = currentMonster.baseY - 14 + Math.sin(currentMonster.animTimer * 1.8) * 6;
+      } else {
+        currentMonster.y = currentMonster.baseY;
+      }
+
+      // Contato com a feiticeira
+      if (currentMonster.x <= player.x + 38) {
+        player.hp -= 0.25;
+        player.hurtTime = 6;
+        if (player.hp <= 0) {
+          player.hp = player.maxHp;
+          currentMonster.x = 300;
+        }
+      }
+    }
+
+    // Projéteis
+    for (let i = projectiles.length - 1; i >= 0; i--) {
+      const p = projectiles[i];
+      if (!p.targetMonster) {
+        projectiles.splice(i, 1);
+        continue;
+      }
+      const dx = p.targetMonster.x - p.x;
+      const dy = p.targetMonster.y - p.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+
+      if (dist < p.speed) {
+        AudioEngine.pixelHit();
+        createPixelExplosion(p.targetMonster.x, p.targetMonster.y, p.targetMonster.color);
+        screenShake = 4;
+        
+        // Destrói e faz surgir o próximo monstro
+        currentMonster = null;
+        spawnSingleMonster();
+        projectiles.splice(i, 1);
+      } else {
+        p.x += (dx / dist) * p.speed;
+        p.y += (dy / dist) * p.speed;
+      }
+    }
+
+    // Partículas
+    for (let i = particles.length - 1; i >= 0; i--) {
+      const pt = particles[i];
+      pt.x += pt.vx;
+      pt.y += pt.vy;
+      pt.vy += 0.16;
+      pt.alpha -= 1 / pt.life;
+      if (pt.alpha <= 0) particles.splice(i, 1);
+    }
+  }
+
+  // Renderização
+  function draw() {
+    ctx.save();
+    if (screenShake > 0) {
+      const sx = (Math.random() - 0.5) * screenShake;
+      const sy = (Math.random() - 0.5) * screenShake;
+      ctx.translate(sx, sy);
+    }
+
+    // Fundo do Calabouço
+    ctx.fillStyle = "#120f1e";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Paredes de Pedra
+    for (let row = 0; row < 7; row++) {
+      for (let col = 0; col < 13; col++) {
+        const brickX = col * 32 + (row % 2 === 0 ? 0 : 16);
+        const brickY = row * 24;
+        ctx.fillStyle = (row + col) % 3 === 0 ? "#1c172d" : "#241e3a";
+        ctx.fillRect(brickX, brickY, 30, 22);
+        ctx.fillStyle = "#0c0a14";
+        ctx.fillRect(brickX, brickY + 20, 30, 2);
+      }
+    }
+
+    // Tochas com Glow
+    const torchPositions = [80, 320];
+    const flicker = Math.sin(Date.now() * 0.015) * 3;
+    torchPositions.forEach(tx => {
+      ctx.fillStyle = "#4a445e";
+      ctx.fillRect(tx, 70, 6, 14);
+
+      const grad = ctx.createRadialGradient(tx + 3, 64, 2, tx + 3, 64, 34 + flicker);
+      grad.addColorStop(0, "rgba(255, 170, 0, 0.4)");
+      grad.addColorStop(0.6, "rgba(255, 77, 0, 0.12)");
+      grad.addColorStop(1, "rgba(255, 77, 0, 0)");
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.arc(tx + 3, 64, 35 + flicker, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = "#ffaa00";
+      ctx.fillRect(tx, 60 + Math.floor(flicker * 0.3), 6, 8);
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(tx + 2, 62 + Math.floor(flicker * 0.3), 2, 3);
+    });
+
+    // Chão
+    ctx.fillStyle = "#1e1830";
+    ctx.fillRect(0, 215, canvas.width, 85);
+    ctx.fillStyle = "#332a4f";
+    ctx.fillRect(0, 215, canvas.width, 3);
+
+    // Feiticeira
+    drawWitch(player.x, player.y);
+
+    // Monstro Ativo
+    if (currentMonster) {
+      drawMonster(currentMonster);
+    }
+
+    // Projéteis
+    projectiles.forEach(p => {
+      ctx.fillStyle = "#a64dff";
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 6, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = "#ffffff";
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 2.5, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    // Partículas
+    particles.forEach(pt => {
+      ctx.fillStyle = pt.color;
+      ctx.globalAlpha = Math.max(0, pt.alpha);
+      ctx.fillRect(Math.floor(pt.x), Math.floor(pt.y), pt.size, pt.size);
+    });
+    ctx.globalAlpha = 1.0;
+
+    // Banner de Level Up
+    if (levelUpBannerTime > 0) {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
+      ctx.fillRect(0, 115, canvas.width, 42);
+      ctx.fillStyle = "#ffe600";
+      ctx.font = "bold 16px 'Courier New', monospace";
+      ctx.textAlign = "center";
+      ctx.fillText(`✨ LEVEL UP! NÍVEL ${currentLevel} ✨`, canvas.width / 2, 142);
+    }
+
+    ctx.restore();
+  }
+
+  // Render Feiticeira
+  function drawWitch(x, y) {
+    const isHurt = player.hurtTime > 0;
+    const isCasting = player.castingTime > 0;
+    const bob = Math.sin(Date.now() * 0.005) * 2;
+
+    ctx.save();
+    ctx.translate(x, y + bob);
+
+    // Barra de HP
+    ctx.fillStyle = "#0c0a14";
+    ctx.fillRect(-15, -45, 30, 5);
+    ctx.fillStyle = "#00ff88";
+    ctx.fillRect(-14, -44, 28 * (player.hp / player.maxHp), 3);
+
+    // Vestido
+    ctx.fillStyle = isHurt ? "#ffffff" : "#6a2599";
+    ctx.fillRect(-8, -22, 16, 22);
+
+    // Cabeça
+    ctx.fillStyle = isHurt ? "#ffffff" : "#ffd4a3";
+    ctx.fillRect(-6, -32, 12, 10);
+
+    // Olho
+    ctx.fillStyle = "#1b0b2e";
+    ctx.fillRect(1, -28, 2, 3);
+
+    // Chapéu
+    ctx.fillStyle = "#3e125e";
+    ctx.fillRect(-10, -34, 20, 3);
+    ctx.fillRect(-7, -40, 14, 6);
+    ctx.fillRect(-4, -46, 8, 6);
+    ctx.fillRect(-1, -50, 3, 4);
+
+    // Cajado
+    ctx.fillStyle = "#8a5833";
+    ctx.fillRect(8, isCasting ? -36 : -24, 3, 26);
+    ctx.fillStyle = isCasting ? "#00ffff" : "#cc66ff";
+    ctx.fillRect(7, isCasting ? -40 : -28, 5, 5);
+
+    ctx.restore();
+  }
+
+  // Render Monstro
+  function drawMonster(m) {
+    ctx.save();
+    ctx.translate(m.x, m.y);
+
+    // Mira circular
+    const pulse = Math.sin(Date.now() * 0.008) * 3;
+    ctx.strokeStyle = errorPulse > 0 ? "#ff2244" : "#00ffcc";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.arc(0, -12, m.size + 2 + pulse, 0, Math.PI * 2);
+    ctx.stroke();
+
+    // Balão de Pergunta
+    ctx.fillStyle = errorPulse > 0 ? "#ff3355" : "#1a162b";
+    ctx.strokeStyle = errorPulse > 0 ? "#ffffff" : "#8971b8";
+    ctx.lineWidth = 1.5;
+    ctx.fillRect(-44, -54, 88, 24);
+    ctx.strokeRect(-44, -54, 88, 24);
+
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "bold 13px 'Courier New', monospace";
+    ctx.textAlign = "center";
+    ctx.fillText(m.problem.text + " = ?", 0, -38);
+
+    if (m.type === 'horned') {
+      ctx.fillStyle = m.color;
+      ctx.fillRect(-12, -24, 24, 24);
+      ctx.fillStyle = "#e5b158";
+      ctx.fillRect(-14, -32, 4, 10);
+      ctx.fillRect(10, -32, 4, 10);
+      ctx.fillStyle = "#ffe600";
+      ctx.fillRect(-8, -18, 4, 4);
+      ctx.fillRect(4, -18, 4, 4);
+    } else if (m.type === 'flying_eye') {
+      ctx.fillStyle = m.color;
+      ctx.beginPath();
+      ctx.arc(0, -12, 12, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = "#ffffff";
+      ctx.beginPath();
+      ctx.arc(-2, -12, 6, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = "#ff0044";
+      ctx.beginPath();
+      ctx.arc(-4, -12, 3, 0, Math.PI * 2);
+      ctx.fill();
+      const wingY = Math.sin(m.animTimer * 4) * 4;
+      ctx.fillStyle = "#552288";
+      ctx.fillRect(-20, -16 + wingY, 9, 5);
+      ctx.fillRect(11, -16 + wingY, 9, 5);
+    } else {
+      ctx.fillStyle = m.color;
+      ctx.fillRect(-11, -26, 22, 26);
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(-5, -20, 10, 10);
+      ctx.fillStyle = "#0c1821";
+      ctx.fillRect(-3, -18, 5, 6);
+      ctx.fillStyle = "#1b0b2e";
+      ctx.fillRect(-6, -6, 12, 3);
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(-2, -6, 3, 2);
+    }
+
+    ctx.restore();
+  }
+
+  // Loop
+  function gameLoop() {
+    update();
+    draw();
+    requestAnimationFrame(gameLoop);
+  }
+  requestAnimationFrame(gameLoop);
+</script>
+</body>
+</html>

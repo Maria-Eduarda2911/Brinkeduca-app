@@ -1,0 +1,249 @@
+{
+  "matematica": {
+    "ano1": {
+      "titulo": "Matemática 1º Ano",
+      "questoes": [
+        {
+          "pergunta": "Qual é o resultado de 3 + 4?",
+          "opcoes": ["5", "7", "8"],
+          "resposta": "7",
+          "explicacao": "3 + 4 = 7.",
+          "emoji": "➕"
+        },
+        {
+          "pergunta": "Qual número vem depois do 7?",
+          "opcoes": ["5", "8", "9"],
+          "resposta": "8",
+          "explicacao": "Depois de 7 vem 8.",
+          "emoji": "🔢"
+        },
+        {
+          "pergunta": "Qual é a cor do sol?",
+          "opcoes": ["Azul", "Amarelo", "Verde"],
+          "resposta": "Amarelo",
+          "explicacao": "O sol é amarelo e brilhante.",
+          "emoji": "☀️"
+        },
+        {
+          "pergunta": "Quantas maçãs estão na árvore?",
+          "opcoes": ["2", "4", "3"],
+          "resposta": "3",
+          "explicacao": "Contando uma a uma, temos três maçãs.",
+          "emoji": "🍎"
+        },
+        {
+          "pergunta": "Quantos patinhos estão na lagoa?",
+          "opcoes": ["3", "1", "2"],
+          "resposta": "2",
+          "explicacao": "A lagoa tem dois patinhos nadando.",
+          "emoji": "🦆"
+        }
+      ]
+    },
+    "ano2": {
+      "titulo": "Matemática 2º Ano",
+      "questoes": [
+        {
+          "pergunta": "Quanto é 15 + 4?",
+          "opcoes": ["18", "19", "20"],
+          "resposta": "19",
+          "explicacao": "Quinze mais quatro é dezenove.",
+          "emoji": "🔢"
+        },
+        {
+          "pergunta": "Quanto é 12 - 5?",
+          "opcoes": ["7", "6", "8"],
+          "resposta": "7",
+          "explicacao": "Doze menos cinco deixa sete.",
+          "emoji": "🔢"
+        },
+        {
+          "pergunta": "Qual número vem antes do 30?",
+          "opcoes": ["29", "31", "28"],
+          "resposta": "29",
+          "explicacao": "Antes do trinta vem o vinte e nove.",
+          "emoji": "🔢"
+        },
+        {
+          "pergunta": "Se eu tenho 12 doces e dou 4 para meu irmão, quantos sobram?",
+          "opcoes": ["8", "7", "9"],
+          "resposta": "8",
+          "explicacao": "Doze menos quatro sobram oito doces.",
+          "emoji": "🍬"
+        },
+        {
+          "pergunta": "Quanto é 8 + 7?",
+          "opcoes": ["15", "16", "14"],
+          "resposta": "15",
+          "explicacao": "Oito mais sete é quinze.",
+          "emoji": "🔢"
+        }
+      ]
+    }
+  },
+  "portugues": {
+    "ano1": {
+      "titulo": "Português 1º Ano",
+      "questoes": [
+        {
+          "pergunta": "Qual letra começa a palavra 'sol'?",
+          "opcoes": ["S", "L", "T"],
+          "resposta": "S",
+          "explicacao": "A palavra sol começa com a letra S.",
+          "emoji": "☀️"
+        },
+        {
+          "pergunta": "Qual palavra é um animal?",
+          "opcoes": ["Pato", "Casa", "Mesa"],
+          "resposta": "Pato",
+          "explicacao": "Pato é um animal que nada no lago.",
+          "emoji": "🦆"
+        },
+        {
+          "pergunta": "Qual palavra começa com C?",
+          "opcoes": ["Cachorro", "Gato", "Peixe"],
+          "resposta": "Cachorro",
+          "explicacao": "Cachorro começa com a letra C.",
+          "emoji": "🐾"
+        },
+        {
+          "pergunta": "Qual palavra é uma fruta?",
+          "opcoes": ["Banana", "Livro", "Copo"],
+          "resposta": "Banana",
+          "explicacao": "Banana é uma fruta gostosa.",
+          "emoji": "🍌"
+        },
+        {
+          "pergunta": "Qual letra começa a palavra 'bola'?",
+          "opcoes": ["B", "P", "D"],
+          "resposta": "B",
+          "explicacao": "A palavra bola começa com B.",
+          "emoji": "⚽"
+        }
+      ]
+    },
+    "ano2": {
+      "titulo": "Português 2º Ano",
+      "questoes": [
+        {
+          "pergunta": "Qual palavra é um verbo?",
+          "opcoes": ["Cadeira", "Correr", "Mesa"],
+          "resposta": "Correr",
+          "explicacao": "Correr indica ação, então é um verbo.",
+          "emoji": "✍️"
+        },
+        {
+          "pergunta": "Qual palavra está no singular?",
+          "opcoes": ["Livros", "Livro", "Livrarias"],
+          "resposta": "Livro",
+          "explicacao": "Livro está no singular, enquanto os demais estão no plural.",
+          "emoji": "📖"
+        },
+        {
+          "pergunta": "Qual palavra rima com 'bola'?",
+          "opcoes": ["Bola", "Dado", "Mesa"],
+          "resposta": "Bola",
+          "explicacao": "Co-la e Bo-la têm sons finais iguais.",
+          "emoji": "🧴"
+        },
+        {
+          "pergunta": "Qual palavra indica o nome de uma pessoa?",
+          "opcoes": ["João", "Menino", "Cachorro"],
+          "resposta": "João",
+          "explicacao": "João é nome próprio e por isso começa com letra maiúscula.",
+          "emoji": "👦"
+        },
+        {
+          "pergunta": "O antônimo de grande é:",
+          "opcoes": ["Pequeno", "Maior", "Grosso"],
+          "resposta": "Pequeno",
+          "explicacao": "O contrário de ser grande é ser pequeno.",
+          "emoji": "📏"
+        }
+      ]
+    }
+  },
+  "ingles": {
+    "ano1": {
+      "titulo": "Inglês 1º Ano",
+      "questoes": [
+        {
+          "pergunta": "How do you say 'gato' in English?",
+          "opcoes": ["Dog", "Cat", "Bird"],
+          "resposta": "Cat",
+          "explicacao": "Cat significa gato em inglês.",
+          "emoji": "🐱"
+        },
+        {
+          "pergunta": "What color is the sky?",
+          "opcoes": ["Blue", "Red", "Green"],
+          "resposta": "Blue",
+          "explicacao": "The sky is blue on a sunny day.",
+          "emoji": "🌤️"
+        },
+        {
+          "pergunta": "What is the number 1 in English?",
+          "opcoes": ["One", "Two", "Three"],
+          "resposta": "One",
+          "explicacao": "O número um em inglês se diz 'One'.",
+          "emoji": "1️⃣"
+        },
+        {
+          "pergunta": "How do we say 'Oi' in English?",
+          "opcoes": ["Hi / Hello", "Goodbye", "Please"],
+          "resposta": "Hi / Hello",
+          "explicacao": "Usamos Hello ou Hi para dizer Oi.",
+          "emoji": "👋"
+        },
+        {
+          "pergunta": "What is the number 3 in English?",
+          "opcoes": ["Three", "Five", "Four"],
+          "resposta": "Three",
+          "explicacao": "Um, dois, TRÊS: One, two, THREE.",
+          "emoji": "3️⃣"
+        }
+      ]
+    },
+    "ano2": {
+      "titulo": "Inglês 2º Ano",
+      "questoes": [
+        {
+          "pergunta": "How do we say 'Mãe' in English?",
+          "opcoes": ["Mother (Mom)", "Father (Dad)", "Brother"],
+          "resposta": "Mother (Mom)",
+          "explicacao": "Mother ou Mom significa mãe.",
+          "emoji": "👩‍👦"
+        },
+        {
+          "pergunta": "What is a 'Book'?",
+          "opcoes": ["Um livro", "Um lápis", "Uma borracha"],
+          "resposta": "Um livro",
+          "explicacao": "Usamos o book para ler.",
+          "emoji": "📚"
+        },
+        {
+          "pergunta": "How do we say 'Pai' in English?",
+          "opcoes": ["Father (Dad)", "Sister", "Uncle"],
+          "resposta": "Father (Dad)",
+          "explicacao": "Father ou Dad significa pai.",
+          "emoji": "👨‍👧"
+        },
+        {
+          "pergunta": "What is the color of the Sun?",
+          "opcoes": ["Yellow", "Pink", "Black"],
+          "resposta": "Yellow",
+          "explicacao": "The sun is yellow (amarelo).",
+          "emoji": "☀️"
+        },
+        {
+          "pergunta": "How do we say 'Bom dia'?",
+          "opcoes": ["Good morning", "Good night", "Good afternoon"],
+          "resposta": "Good morning",
+          "explicacao": "Morning significa manhã.",
+          "emoji": "🌅"
+        }
+      ]
+    }
+  }
+}
+
