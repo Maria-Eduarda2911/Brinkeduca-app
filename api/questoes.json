@@ -1,249 +1,4504 @@
-{
-  "matematica": {
-    "ano1": {
-      "titulo": "Matemática 1º Ano",
-      "questoes": [
-        {
-          "pergunta": "Qual é o resultado de 3 + 4?",
-          "opcoes": ["5", "7", "8"],
-          "resposta": "7",
-          "explicacao": "3 + 4 = 7.",
-          "emoji": "➕"
-        },
-        {
-          "pergunta": "Qual número vem depois do 7?",
-          "opcoes": ["5", "8", "9"],
-          "resposta": "8",
-          "explicacao": "Depois de 7 vem 8.",
-          "emoji": "🔢"
-        },
-        {
-          "pergunta": "Qual é a cor do sol?",
-          "opcoes": ["Azul", "Amarelo", "Verde"],
-          "resposta": "Amarelo",
-          "explicacao": "O sol é amarelo e brilhante.",
-          "emoji": "☀️"
-        },
-        {
-          "pergunta": "Quantas maçãs estão na árvore?",
-          "opcoes": ["2", "4", "3"],
-          "resposta": "3",
-          "explicacao": "Contando uma a uma, temos três maçãs.",
-          "emoji": "🍎"
-        },
-        {
-          "pergunta": "Quantos patinhos estão na lagoa?",
-          "opcoes": ["3", "1", "2"],
-          "resposta": "2",
-          "explicacao": "A lagoa tem dois patinhos nadando.",
-          "emoji": "🦆"
-        }
-      ]
-    },
-    "ano2": {
-      "titulo": "Matemática 2º Ano",
-      "questoes": [
-        {
-          "pergunta": "Quanto é 15 + 4?",
-          "opcoes": ["18", "19", "20"],
-          "resposta": "19",
-          "explicacao": "Quinze mais quatro é dezenove.",
-          "emoji": "🔢"
-        },
-        {
-          "pergunta": "Quanto é 12 - 5?",
-          "opcoes": ["7", "6", "8"],
-          "resposta": "7",
-          "explicacao": "Doze menos cinco deixa sete.",
-          "emoji": "🔢"
-        },
-        {
-          "pergunta": "Qual número vem antes do 30?",
-          "opcoes": ["29", "31", "28"],
-          "resposta": "29",
-          "explicacao": "Antes do trinta vem o vinte e nove.",
-          "emoji": "🔢"
-        },
-        {
-          "pergunta": "Se eu tenho 12 doces e dou 4 para meu irmão, quantos sobram?",
-          "opcoes": ["8", "7", "9"],
-          "resposta": "8",
-          "explicacao": "Doze menos quatro sobram oito doces.",
-          "emoji": "🍬"
-        },
-        {
-          "pergunta": "Quanto é 8 + 7?",
-          "opcoes": ["15", "16", "14"],
-          "resposta": "15",
-          "explicacao": "Oito mais sete é quinze.",
-          "emoji": "🔢"
-        }
-      ]
-    }
-  },
-  "portugues": {
-    "ano1": {
-      "titulo": "Português 1º Ano",
-      "questoes": [
-        {
-          "pergunta": "Qual letra começa a palavra 'sol'?",
-          "opcoes": ["S", "L", "T"],
-          "resposta": "S",
-          "explicacao": "A palavra sol começa com a letra S.",
-          "emoji": "☀️"
-        },
-        {
-          "pergunta": "Qual palavra é um animal?",
-          "opcoes": ["Pato", "Casa", "Mesa"],
-          "resposta": "Pato",
-          "explicacao": "Pato é um animal que nada no lago.",
-          "emoji": "🦆"
-        },
-        {
-          "pergunta": "Qual palavra começa com C?",
-          "opcoes": ["Cachorro", "Gato", "Peixe"],
-          "resposta": "Cachorro",
-          "explicacao": "Cachorro começa com a letra C.",
-          "emoji": "🐾"
-        },
-        {
-          "pergunta": "Qual palavra é uma fruta?",
-          "opcoes": ["Banana", "Livro", "Copo"],
-          "resposta": "Banana",
-          "explicacao": "Banana é uma fruta gostosa.",
-          "emoji": "🍌"
-        },
-        {
-          "pergunta": "Qual letra começa a palavra 'bola'?",
-          "opcoes": ["B", "P", "D"],
-          "resposta": "B",
-          "explicacao": "A palavra bola começa com B.",
-          "emoji": "⚽"
-        }
-      ]
-    },
-    "ano2": {
-      "titulo": "Português 2º Ano",
-      "questoes": [
-        {
-          "pergunta": "Qual palavra é um verbo?",
-          "opcoes": ["Cadeira", "Correr", "Mesa"],
-          "resposta": "Correr",
-          "explicacao": "Correr indica ação, então é um verbo.",
-          "emoji": "✍️"
-        },
-        {
-          "pergunta": "Qual palavra está no singular?",
-          "opcoes": ["Livros", "Livro", "Livrarias"],
-          "resposta": "Livro",
-          "explicacao": "Livro está no singular, enquanto os demais estão no plural.",
-          "emoji": "📖"
-        },
-        {
-          "pergunta": "Qual palavra rima com 'bola'?",
-          "opcoes": ["Bola", "Dado", "Mesa"],
-          "resposta": "Bola",
-          "explicacao": "Co-la e Bo-la têm sons finais iguais.",
-          "emoji": "🧴"
-        },
-        {
-          "pergunta": "Qual palavra indica o nome de uma pessoa?",
-          "opcoes": ["João", "Menino", "Cachorro"],
-          "resposta": "João",
-          "explicacao": "João é nome próprio e por isso começa com letra maiúscula.",
-          "emoji": "👦"
-        },
-        {
-          "pergunta": "O antônimo de grande é:",
-          "opcoes": ["Pequeno", "Maior", "Grosso"],
-          "resposta": "Pequeno",
-          "explicacao": "O contrário de ser grande é ser pequeno.",
-          "emoji": "📏"
-        }
-      ]
-    }
-  },
-  "ingles": {
-    "ano1": {
-      "titulo": "Inglês 1º Ano",
-      "questoes": [
-        {
-          "pergunta": "How do you say 'gato' in English?",
-          "opcoes": ["Dog", "Cat", "Bird"],
-          "resposta": "Cat",
-          "explicacao": "Cat significa gato em inglês.",
-          "emoji": "🐱"
-        },
-        {
-          "pergunta": "What color is the sky?",
-          "opcoes": ["Blue", "Red", "Green"],
-          "resposta": "Blue",
-          "explicacao": "The sky is blue on a sunny day.",
-          "emoji": "🌤️"
-        },
-        {
-          "pergunta": "What is the number 1 in English?",
-          "opcoes": ["One", "Two", "Three"],
-          "resposta": "One",
-          "explicacao": "O número um em inglês se diz 'One'.",
-          "emoji": "1️⃣"
-        },
-        {
-          "pergunta": "How do we say 'Oi' in English?",
-          "opcoes": ["Hi / Hello", "Goodbye", "Please"],
-          "resposta": "Hi / Hello",
-          "explicacao": "Usamos Hello ou Hi para dizer Oi.",
-          "emoji": "👋"
-        },
-        {
-          "pergunta": "What is the number 3 in English?",
-          "opcoes": ["Three", "Five", "Four"],
-          "resposta": "Three",
-          "explicacao": "Um, dois, TRÊS: One, two, THREE.",
-          "emoji": "3️⃣"
-        }
-      ]
-    },
-    "ano2": {
-      "titulo": "Inglês 2º Ano",
-      "questoes": [
-        {
-          "pergunta": "How do we say 'Mãe' in English?",
-          "opcoes": ["Mother (Mom)", "Father (Dad)", "Brother"],
-          "resposta": "Mother (Mom)",
-          "explicacao": "Mother ou Mom significa mãe.",
-          "emoji": "👩‍👦"
-        },
-        {
-          "pergunta": "What is a 'Book'?",
-          "opcoes": ["Um livro", "Um lápis", "Uma borracha"],
-          "resposta": "Um livro",
-          "explicacao": "Usamos o book para ler.",
-          "emoji": "📚"
-        },
-        {
-          "pergunta": "How do we say 'Pai' in English?",
-          "opcoes": ["Father (Dad)", "Sister", "Uncle"],
-          "resposta": "Father (Dad)",
-          "explicacao": "Father ou Dad significa pai.",
-          "emoji": "👨‍👧"
-        },
-        {
-          "pergunta": "What is the color of the Sun?",
-          "opcoes": ["Yellow", "Pink", "Black"],
-          "resposta": "Yellow",
-          "explicacao": "The sun is yellow (amarelo).",
-          "emoji": "☀️"
-        },
-        {
-          "pergunta": "How do we say 'Bom dia'?",
-          "opcoes": ["Good morning", "Good night", "Good afternoon"],
-          "resposta": "Good morning",
-          "explicacao": "Morning significa manhã.",
-          "emoji": "🌅"
-        }
-      ]
-    }
-  }
-}
 
+
+[
+  {
+    "id": 1,
+    "materia": "matematica",
+    "ano": 1,
+    "pergunta": "Quantas maçãs estão na árvore?",
+    "opcoes": [
+      "2",
+      "4",
+      "3"
+    ],
+    "resposta": "3",
+    "resposta_correta": 2,
+    "explicacao": "Contando uma a uma, temos três maçãs.",
+    "emoji": "🍎🍎🍎"
+  },
+  {
+    "id": 2,
+    "materia": "matematica",
+    "ano": 1,
+    "pergunta": "Qual é a cor do sol?",
+    "opcoes": [
+      "Amarelo",
+      "Azul",
+      "Verde"
+    ],
+    "resposta": "Amarelo",
+    "resposta_correta": 0,
+    "explicacao": "O sol é amarelo e brilhante.",
+    "emoji": "☀️"
+  },
+  {
+    "id": 3,
+    "materia": "matematica",
+    "ano": 1,
+    "pergunta": "Quantos balões aparecem?",
+    "opcoes": [
+      "5",
+      "2",
+      "4"
+    ],
+    "resposta": "4",
+    "resposta_correta": 2,
+    "explicacao": "Contamos quatro balões coloridos.",
+    "emoji": "🎈🎈🎈🎈"
+  },
+  {
+    "id": 4,
+    "materia": "matematica",
+    "ano": 1,
+    "pergunta": "Qual forma é um quadrado?",
+    "opcoes": [
+      "Tem quatro lados iguais",
+      "Tem três lados",
+      "Não tem lados retos"
+    ],
+    "resposta": "Tem quatro lados iguais",
+    "resposta_correta": 0,
+    "explicacao": "O quadrado tem todos os quatro lados do mesmo tamanho.",
+    "emoji": "⬛"
+  },
+  {
+    "id": 5,
+    "materia": "matematica",
+    "ano": 1,
+    "pergunta": "Quantos patinhos estão na lagoa?",
+    "opcoes": [
+      "3",
+      "1",
+      "2"
+    ],
+    "resposta": "2",
+    "resposta_correta": 2,
+    "explicacao": "A lagoa tem dois patinhos nadando.",
+    "emoji": "🦆🦆"
+  },
+  {
+    "id": 6,
+    "materia": "matematica",
+    "ano": 1,
+    "pergunta": "Qual é o próximo número na sequência: 1, 2, 3, __?",
+    "opcoes": [
+      "4",
+      "5",
+      "6"
+    ],
+    "resposta": "4",
+    "resposta_correta": 0,
+    "explicacao": "Depois do três, vem o número quatro.",
+    "emoji": "🔢"
+  },
+  {
+    "id": 7,
+    "materia": "matematica",
+    "ano": 1,
+    "pergunta": "Quantos peixinhos nadam no aquário?",
+    "opcoes": [
+      "3",
+      "4",
+      "5"
+    ],
+    "resposta": "3",
+    "resposta_correta": 0,
+    "explicacao": "Contamos três peixinhos felizes.",
+    "emoji": "🐟🐟🐟"
+  },
+  {
+    "id": 8,
+    "materia": "matematica",
+    "ano": 1,
+    "pergunta": "Qual forma é redonda como uma bola?",
+    "opcoes": [
+      "Círculo",
+      "Retângulo",
+      "Triângulo"
+    ],
+    "resposta": "Círculo",
+    "resposta_correta": 0,
+    "explicacao": "O círculo é redondo e não tem cantos.",
+    "emoji": "⚪"
+  },
+  {
+    "id": 9,
+    "materia": "matematica",
+    "ano": 1,
+    "pergunta": "Quantas estrelas brilham no céu?",
+    "opcoes": [
+      "5",
+      "6",
+      "4"
+    ],
+    "resposta": "5",
+    "resposta_correta": 0,
+    "explicacao": "No céu há cinco estrelinhas.",
+    "emoji": "⭐⭐⭐⭐⭐"
+  },
+  {
+    "id": 10,
+    "materia": "matematica",
+    "ano": 1,
+    "pergunta": "O que é maior: um elefante ou um cachorro?",
+    "opcoes": [
+      "Elefante",
+      "Cachorro",
+      "São iguais"
+    ],
+    "resposta": "Elefante",
+    "resposta_correta": 0,
+    "explicacao": "O elefante é um animal muito grande!",
+    "emoji": "🐘"
+  },
+  {
+    "id": 11,
+    "materia": "matematica",
+    "ano": 1,
+    "pergunta": "Quantas laranjas estão no cesto?",
+    "opcoes": [
+      "2",
+      "3",
+      "1"
+    ],
+    "resposta": "2",
+    "resposta_correta": 0,
+    "explicacao": "Há duas laranjas no cesto.",
+    "emoji": "🍊🍊"
+  },
+  {
+    "id": 12,
+    "materia": "matematica",
+    "ano": 1,
+    "pergunta": "Qual forma tem três lados?",
+    "opcoes": [
+      "Triângulo",
+      "Quadrado",
+      "Círculo"
+    ],
+    "resposta": "Triângulo",
+    "resposta_correta": 0,
+    "explicacao": "O triângulo tem três pontas e três lados.",
+    "emoji": "🔺"
+  },
+  {
+    "id": 13,
+    "materia": "matematica",
+    "ano": 1,
+    "pergunta": "Quantos lápis estão sobre a mesa?",
+    "opcoes": [
+      "4",
+      "3",
+      "2"
+    ],
+    "resposta": "3",
+    "resposta_correta": 1,
+    "explicacao": "A mesa tem três lápis.",
+    "emoji": "✏️✏️✏️"
+  },
+  {
+    "id": 14,
+    "materia": "matematica",
+    "ano": 1,
+    "pergunta": "Se você tem 2 balas e ganha 1, com quantas fica?",
+    "opcoes": [
+      "3",
+      "4",
+      "2"
+    ],
+    "resposta": "3",
+    "resposta_correta": 0,
+    "explicacao": "Dois mais um é igual a três.",
+    "emoji": "🍬"
+  },
+  {
+    "id": 15,
+    "materia": "matematica",
+    "ano": 1,
+    "pergunta": "Quantos carros estão na rua?",
+    "opcoes": [
+      "2",
+      "3",
+      "4"
+    ],
+    "resposta": "3",
+    "resposta_correta": 1,
+    "explicacao": "Há três carrinhos na rua.",
+    "emoji": "🚗🚗🚗"
+  },
+  {
+    "id": 16,
+    "materia": "matematica",
+    "ano": 1,
+    "pergunta": "O que usamos para ver a hora?",
+    "opcoes": [
+      "Relógio",
+      "Caderno",
+      "Lápis"
+    ],
+    "resposta": "Relógio",
+    "resposta_correta": 0,
+    "explicacao": "O relógio nos mostra que horas são.",
+    "emoji": "⏰"
+  },
+  {
+    "id": 17,
+    "materia": "matematica",
+    "ano": 1,
+    "pergunta": "Quantas frutas estão na cesta?",
+    "opcoes": [
+      "4",
+      "5",
+      "6"
+    ],
+    "resposta": "5",
+    "resposta_correta": 1,
+    "explicacao": "A cesta tem cinco frutinhas.",
+    "emoji": "🍎🍎🍎🍎🍎"
+  },
+  {
+    "id": 18,
+    "materia": "matematica",
+    "ano": 1,
+    "pergunta": "Qual é a forma de uma fatia de pizza?",
+    "opcoes": [
+      "Triângulo",
+      "Círculo",
+      "Quadrado"
+    ],
+    "resposta": "Triângulo",
+    "resposta_correta": 0,
+    "explicacao": "Uma fatia de pizza parece muito com um triângulo.",
+    "emoji": "🍕"
+  },
+  {
+    "id": 19,
+    "materia": "matematica",
+    "ano": 1,
+    "pergunta": "Quantos foguetes estão no espaço?",
+    "opcoes": [
+      "2",
+      "1",
+      "3"
+    ],
+    "resposta": "2",
+    "resposta_correta": 0,
+    "explicacao": "Temos dois foguetes voando no espaço.",
+    "emoji": "🚀🚀"
+  },
+  {
+    "id": 20,
+    "materia": "matematica",
+    "ano": 1,
+    "pergunta": "Qual dia vem depois de segunda-feira?",
+    "opcoes": [
+      "Terça-feira",
+      "Domingo",
+      "Quinta-feira"
+    ],
+    "resposta": "Terça-feira",
+    "resposta_correta": 0,
+    "explicacao": "Depois da segunda, vem a terça-feira.",
+    "emoji": "📅"
+  },
+  {
+    "id": 21,
+    "materia": "matematica",
+    "ano": 2,
+    "pergunta": "Quanto é 15 + 4?",
+    "opcoes": [
+      "19",
+      "18",
+      "20"
+    ],
+    "resposta": "19",
+    "resposta_correta": 0,
+    "explicacao": "Quinze mais quatro é dezenove.",
+    "emoji": "🔢"
+  },
+  {
+    "id": 22,
+    "materia": "matematica",
+    "ano": 2,
+    "pergunta": "Quanto é 12 - 5?",
+    "opcoes": [
+      "7",
+      "6",
+      "8"
+    ],
+    "resposta": "7",
+    "resposta_correta": 0,
+    "explicacao": "Doze menos cinco deixa sete.",
+    "emoji": "🔢"
+  },
+  {
+    "id": 23,
+    "materia": "matematica",
+    "ano": 2,
+    "pergunta": "Se eu tenho 12 doces e dou 4 para meu irmão, quantos sobram?",
+    "opcoes": [
+      "8",
+      "7",
+      "9"
+    ],
+    "resposta": "8",
+    "resposta_correta": 0,
+    "explicacao": "Doze menos quatro sobram oito doces.",
+    "emoji": "🍬"
+  },
+  {
+    "id": 24,
+    "materia": "matematica",
+    "ano": 2,
+    "pergunta": "Qual número vem antes do 30?",
+    "opcoes": [
+      "29",
+      "31",
+      "28"
+    ],
+    "resposta": "29",
+    "resposta_correta": 0,
+    "explicacao": "Antes do trinta vem o vinte e nove.",
+    "emoji": "🔢"
+  },
+  {
+    "id": 25,
+    "materia": "matematica",
+    "ano": 2,
+    "pergunta": "O que é mais pesado: 1 kg de algodão ou 1 kg de chumbo?",
+    "opcoes": [
+      "Pesam o mesmo",
+      "O chumbo",
+      "O algodão"
+    ],
+    "resposta": "Pesam o mesmo",
+    "resposta_correta": 0,
+    "explicacao": "Ambos têm 1 kg, então o peso é igual.",
+    "emoji": "⚖️"
+  },
+  {
+    "id": 26,
+    "materia": "matematica",
+    "ano": 2,
+    "pergunta": "Se você tem 6 pirulitos e compra mais 6, quantos ficam?",
+    "opcoes": [
+      "12",
+      "10",
+      "11"
+    ],
+    "resposta": "12",
+    "resposta_correta": 0,
+    "explicacao": "Seis mais seis é doze.",
+    "emoji": "🍭"
+  },
+  {
+    "id": 27,
+    "materia": "matematica",
+    "ano": 2,
+    "pergunta": "Quanto é 10 + 20?",
+    "opcoes": [
+      "30",
+      "40",
+      "20"
+    ],
+    "resposta": "30",
+    "resposta_correta": 0,
+    "explicacao": "Uma dezena mais duas dezenas são três dezenas (30).",
+    "emoji": "🔢"
+  },
+  {
+    "id": 28,
+    "materia": "matematica",
+    "ano": 2,
+    "pergunta": "Quanto é 25 - 5?",
+    "opcoes": [
+      "20",
+      "15",
+      "30"
+    ],
+    "resposta": "20",
+    "resposta_correta": 0,
+    "explicacao": "Vinte e cinco menos cinco é vinte.",
+    "emoji": "🔢"
+  },
+  {
+    "id": 29,
+    "materia": "matematica",
+    "ano": 2,
+    "pergunta": "Quantos dias tem uma semana inteira?",
+    "opcoes": [
+      "7 dias",
+      "5 dias",
+      "10 dias"
+    ],
+    "resposta": "7 dias",
+    "resposta_correta": 0,
+    "explicacao": "Uma semana tem sete dias.",
+    "emoji": "📅"
+  },
+  {
+    "id": 30,
+    "materia": "matematica",
+    "ano": 2,
+    "pergunta": "Quanto é 8 + 7?",
+    "opcoes": [
+      "15",
+      "16",
+      "14"
+    ],
+    "resposta": "15",
+    "resposta_correta": 0,
+    "explicacao": "Oito mais sete é quinze.",
+    "emoji": "🔢"
+  },
+  {
+    "id": 31,
+    "materia": "matematica",
+    "ano": 2,
+    "pergunta": "Qual o dobro de 4?",
+    "opcoes": [
+      "8",
+      "6",
+      "10"
+    ],
+    "resposta": "8",
+    "resposta_correta": 0,
+    "explicacao": "O dobro é fazer 4 + 4, que dá 8.",
+    "emoji": "🔢"
+  },
+  {
+    "id": 32,
+    "materia": "matematica",
+    "ano": 2,
+    "pergunta": "Quantos meses tem um ano?",
+    "opcoes": [
+      "12 meses",
+      "10 meses",
+      "6 meses"
+    ],
+    "resposta": "12 meses",
+    "resposta_correta": 0,
+    "explicacao": "Um ano completo tem doze meses.",
+    "emoji": "📆"
+  },
+  {
+    "id": 33,
+    "materia": "matematica",
+    "ano": 2,
+    "pergunta": "Qual soma faz 20?",
+    "opcoes": [
+      "10 + 10",
+      "15 + 10",
+      "5 + 10"
+    ],
+    "resposta": "10 + 10",
+    "resposta_correta": 0,
+    "explicacao": "Dez mais dez é igual a vinte.",
+    "emoji": "🔢"
+  },
+  {
+    "id": 34,
+    "materia": "matematica",
+    "ano": 2,
+    "pergunta": "Na tabela de frutas, há 3 maçãs e 5 bananas. Quantas frutas há no total?",
+    "opcoes": [
+      "8 frutas",
+      "7 frutas",
+      "9 frutas"
+    ],
+    "resposta": "8 frutas",
+    "resposta_correta": 0,
+    "explicacao": "Três mais cinco dá oito.",
+    "emoji": "📊"
+  },
+  {
+    "id": 35,
+    "materia": "matematica",
+    "ano": 2,
+    "pergunta": "Se você tem uma nota de 10 reais e gasta 3, quanto recebe de troco?",
+    "opcoes": [
+      "7 reais",
+      "6 reais",
+      "8 reais"
+    ],
+    "resposta": "7 reais",
+    "resposta_correta": 0,
+    "explicacao": "Dez menos três é igual a sete reais.",
+    "emoji": "💵"
+  },
+  {
+    "id": 36,
+    "materia": "matematica",
+    "ano": 2,
+    "pergunta": "Quanto é 18 - 9?",
+    "opcoes": [
+      "9",
+      "8",
+      "10"
+    ],
+    "resposta": "9",
+    "resposta_correta": 0,
+    "explicacao": "Dezoito menos nove é nove.",
+    "emoji": "🔢"
+  },
+  {
+    "id": 37,
+    "materia": "matematica",
+    "ano": 2,
+    "pergunta": "Uma caixa tem o formato de qual figura?",
+    "opcoes": [
+      "Cubo (ou paralelepípedo)",
+      "Esfera",
+      "Cilindro"
+    ],
+    "resposta": "Cubo (ou paralelepípedo)",
+    "resposta_correta": 0,
+    "explicacao": "Uma caixa lembra blocos retangulares ou um cubo.",
+    "emoji": "📦"
+  },
+  {
+    "id": 38,
+    "materia": "matematica",
+    "ano": 2,
+    "pergunta": "Qual número está entre 49 e 51?",
+    "opcoes": [
+      "50",
+      "48",
+      "52"
+    ],
+    "resposta": "50",
+    "resposta_correta": 0,
+    "explicacao": "O número cinquenta está no meio.",
+    "emoji": "🔢"
+  },
+  {
+    "id": 39,
+    "materia": "matematica",
+    "ano": 2,
+    "pergunta": "Quanto é 22 - 2?",
+    "opcoes": [
+      "20",
+      "24",
+      "18"
+    ],
+    "resposta": "20",
+    "resposta_correta": 0,
+    "explicacao": "Vinte e dois menos dois é vinte.",
+    "emoji": "🔢"
+  },
+  {
+    "id": 40,
+    "materia": "matematica",
+    "ano": 2,
+    "pergunta": "Se a aula começa às 8h e dura 2 horas, a que horas termina?",
+    "opcoes": [
+      "10h",
+      "9h",
+      "11h"
+    ],
+    "resposta": "10h",
+    "resposta_correta": 0,
+    "explicacao": "Oito mais duas horas dá dez horas.",
+    "emoji": "⏰"
+  },
+  {
+    "id": 41,
+    "materia": "matematica",
+    "ano": 3,
+    "pergunta": "Se há 4 sacolas com 3 maçãs em cada, quantas maçãs há no total?",
+    "opcoes": [
+      "12",
+      "10",
+      "14"
+    ],
+    "resposta": "12",
+    "resposta_correta": 0,
+    "explicacao": "Quatro vezes três é doze.",
+    "emoji": "🍎"
+  },
+  {
+    "id": 42,
+    "materia": "matematica",
+    "ano": 3,
+    "pergunta": "Marina tem 15 figurinhas e quer dividir entre 3 amigas. Quantas cada uma ganha?",
+    "opcoes": [
+      "5",
+      "4",
+      "6"
+    ],
+    "resposta": "5",
+    "resposta_correta": 0,
+    "explicacao": "Quinze dividido por três é igual a cinco.",
+    "emoji": "📚"
+  },
+  {
+    "id": 43,
+    "materia": "matematica",
+    "ano": 3,
+    "pergunta": "Se um pacote traz 5 chocolates e você tem 4 pacotes, quantos chocolates são?",
+    "opcoes": [
+      "20",
+      "15",
+      "25"
+    ],
+    "resposta": "20",
+    "resposta_correta": 0,
+    "explicacao": "Cinco vezes quatro é vinte.",
+    "emoji": "🍬"
+  },
+  {
+    "id": 44,
+    "materia": "matematica",
+    "ano": 3,
+    "pergunta": "Um metro tem quantos centímetros?",
+    "opcoes": [
+      "100 centímetros",
+      "10 centímetros",
+      "1000 centímetros"
+    ],
+    "resposta": "100 centímetros",
+    "resposta_correta": 0,
+    "explicacao": "Em um metro cabem exatamente 100 centímetros.",
+    "emoji": "📏"
+  },
+  {
+    "id": 45,
+    "materia": "matematica",
+    "ano": 3,
+    "pergunta": "A amizade de 2 corações traz 8 sorrisos. Quantos sorrisos cada coração dá, se são iguais?",
+    "opcoes": [
+      "4",
+      "3",
+      "5"
+    ],
+    "resposta": "4",
+    "resposta_correta": 0,
+    "explicacao": "Oito dividido por dois é quatro.",
+    "emoji": "😊"
+  },
+  {
+    "id": 46,
+    "materia": "matematica",
+    "ano": 3,
+    "pergunta": "Quantos lados tem um pentágono?",
+    "opcoes": [
+      "5 lados",
+      "4 lados",
+      "6 lados"
+    ],
+    "resposta": "5 lados",
+    "resposta_correta": 0,
+    "explicacao": "Penta significa cinco.",
+    "emoji": "⬟"
+  },
+  {
+    "id": 47,
+    "materia": "matematica",
+    "ano": 3,
+    "pergunta": "Se a turma tem 5 filas com 4 crianças em cada fila, quantas crianças há?",
+    "opcoes": [
+      "20",
+      "18",
+      "24"
+    ],
+    "resposta": "20",
+    "resposta_correta": 0,
+    "explicacao": "Cinco vezes quatro são vinte crianças.",
+    "emoji": "🎒"
+  },
+  {
+    "id": 48,
+    "materia": "matematica",
+    "ano": 3,
+    "pergunta": "Tico tem 12 bolinhas e divide em 2 caixinhas iguais. Quantas bolinhas em cada?",
+    "opcoes": [
+      "6",
+      "5",
+      "7"
+    ],
+    "resposta": "6",
+    "resposta_correta": 0,
+    "explicacao": "Doze dividido por dois dá seis.",
+    "emoji": "📦"
+  },
+  {
+    "id": 49,
+    "materia": "matematica",
+    "ano": 3,
+    "pergunta": "Qual multiplicação dá 18?",
+    "opcoes": [
+      "3 × 6",
+      "4 × 4",
+      "2 × 8"
+    ],
+    "resposta": "3 × 6",
+    "resposta_correta": 0,
+    "explicacao": "Três vezes seis é dezoito.",
+    "emoji": "🔢"
+  },
+  {
+    "id": 50,
+    "materia": "matematica",
+    "ano": 3,
+    "pergunta": "O ponteiro grande do relógio marca os minutos. Se ele está no 6, quantos minutos são?",
+    "opcoes": [
+      "30 minutos",
+      "6 minutos",
+      "15 minutos"
+    ],
+    "resposta": "30 minutos",
+    "resposta_correta": 0,
+    "explicacao": "O 6 representa a metade da hora, ou seja, 30 minutos.",
+    "emoji": "⌚"
+  },
+  {
+    "id": 51,
+    "materia": "matematica",
+    "ano": 3,
+    "pergunta": "Se 10 amigos sentam em 2 mesas iguais, quantos amigos cabem em cada mesa?",
+    "opcoes": [
+      "5",
+      "4",
+      "6"
+    ],
+    "resposta": "5",
+    "resposta_correta": 0,
+    "explicacao": "Dez dividido por dois é cinco amigos por mesa.",
+    "emoji": "🪑"
+  },
+  {
+    "id": 52,
+    "materia": "matematica",
+    "ano": 3,
+    "pergunta": "A vaca dá 5 litros de leite por dia. Quantos litros em 3 dias?",
+    "opcoes": [
+      "15",
+      "10",
+      "20"
+    ],
+    "resposta": "15",
+    "resposta_correta": 0,
+    "explicacao": "Cinco litros vezes três dias dá quinze.",
+    "emoji": "🥛"
+  },
+  {
+    "id": 53,
+    "materia": "matematica",
+    "ano": 3,
+    "pergunta": "Qual é o número que falta em 3 × __ = 21?",
+    "opcoes": [
+      "7",
+      "6",
+      "8"
+    ],
+    "resposta": "7",
+    "resposta_correta": 0,
+    "explicacao": "Três vezes sete é vinte e um.",
+    "emoji": "❓"
+  },
+  {
+    "id": 54,
+    "materia": "matematica",
+    "ano": 3,
+    "pergunta": "Marta comprou 1 quilo de feijão. Quantas gramas há em um quilo?",
+    "opcoes": [
+      "1000 gramas",
+      "100 gramas",
+      "500 gramas"
+    ],
+    "resposta": "1000 gramas",
+    "resposta_correta": 0,
+    "explicacao": "Um quilograma (kg) é igual a 1000 gramas.",
+    "emoji": "⚖️"
+  },
+  {
+    "id": 55,
+    "materia": "matematica",
+    "ano": 3,
+    "pergunta": "Se uma árvore tem 6 galhos e cada galho tem 2 ninhos, quantos ninhos existem?",
+    "opcoes": [
+      "12",
+      "10",
+      "14"
+    ],
+    "resposta": "12",
+    "resposta_correta": 0,
+    "explicacao": "Seis vezes dois dão doze ninhos.",
+    "emoji": "🐦"
+  },
+  {
+    "id": 56,
+    "materia": "matematica",
+    "ano": 3,
+    "pergunta": "O trem tem 4 vagões com 10 cadeiras em cada. Quantas cadeiras há no trem?",
+    "opcoes": [
+      "40",
+      "30",
+      "50"
+    ],
+    "resposta": "40",
+    "resposta_correta": 0,
+    "explicacao": "Quatro vezes dez são quarenta cadeiras.",
+    "emoji": "🚆"
+  },
+  {
+    "id": 57,
+    "materia": "matematica",
+    "ano": 3,
+    "pergunta": "João leu 15 páginas em 5 dias. Quantas páginas leu em cada dia, lendo o mesmo tanto?",
+    "opcoes": [
+      "3",
+      "4",
+      "5"
+    ],
+    "resposta": "3",
+    "resposta_correta": 0,
+    "explicacao": "Quinze dividido por cinco dá três páginas por dia.",
+    "emoji": "📖"
+  },
+  {
+    "id": 58,
+    "materia": "matematica",
+    "ano": 3,
+    "pergunta": "Qual conta é igual a 24?",
+    "opcoes": [
+      "4 × 6",
+      "5 × 5",
+      "3 × 7"
+    ],
+    "resposta": "4 × 6",
+    "resposta_correta": 0,
+    "explicacao": "Quatro vezes seis dá vinte e quatro.",
+    "emoji": "🔢"
+  },
+  {
+    "id": 59,
+    "materia": "matematica",
+    "ano": 3,
+    "pergunta": "Se um pacote de figurinhas custa R$2,00, quanto custam 4 pacotes?",
+    "opcoes": [
+      "R$8,00",
+      "R$6,00",
+      "R$10,00"
+    ],
+    "resposta": "R$8,00",
+    "resposta_correta": 0,
+    "explicacao": "Quatro vezes dois é oito reais.",
+    "emoji": "💵"
+  },
+  {
+    "id": 60,
+    "materia": "matematica",
+    "ano": 3,
+    "pergunta": "Quanto é o triplo de 5?",
+    "opcoes": [
+      "15",
+      "10",
+      "20"
+    ],
+    "resposta": "15",
+    "resposta_correta": 0,
+    "explicacao": "Triplo significa vezes três. Três vezes cinco é quinze.",
+    "emoji": "🔢"
+  },
+  {
+    "id": 61,
+    "materia": "matematica",
+    "ano": 4,
+    "pergunta": "Qual é o resultado de 4 × 5 + 10?",
+    "opcoes": [
+      "30",
+      "25",
+      "40"
+    ],
+    "resposta": "30",
+    "resposta_correta": 0,
+    "explicacao": "Primeiro multiplicamos (4×5=20), depois somamos 10 (20+10=30).",
+    "emoji": "🔢"
+  },
+  {
+    "id": 62,
+    "materia": "matematica",
+    "ano": 4,
+    "pergunta": "Como se lê a fração 1/2?",
+    "opcoes": [
+      "Um meio (metade)",
+      "Um dois",
+      "Duas partes"
+    ],
+    "resposta": "Um meio (metade)",
+    "resposta_correta": 0,
+    "explicacao": "Lemos 1/2 como um meio ou metade de algo.",
+    "emoji": "🍰"
+  },
+  {
+    "id": 63,
+    "materia": "matematica",
+    "ano": 4,
+    "pergunta": "Uma viagem dura 120 minutos. Isso equivale a quantas horas?",
+    "opcoes": [
+      "2 horas",
+      "1 hora",
+      "3 horas"
+    ],
+    "resposta": "2 horas",
+    "resposta_correta": 0,
+    "explicacao": "Como 1 hora tem 60 minutos, 120 minutos são 2 horas.",
+    "emoji": "⏰"
+  },
+  {
+    "id": 64,
+    "materia": "matematica",
+    "ano": 4,
+    "pergunta": "Resolva: 15 + (5 × 2).",
+    "opcoes": [
+      "25",
+      "40",
+      "20"
+    ],
+    "resposta": "25",
+    "resposta_correta": 0,
+    "explicacao": "Multiplica primeiro: 5 × 2 = 10; depois soma 15 + 10 = 25.",
+    "emoji": "❓"
+  },
+  {
+    "id": 65,
+    "materia": "matematica",
+    "ano": 4,
+    "pergunta": "Quantos centímetros tem meio metro?",
+    "opcoes": [
+      "50 centímetros",
+      "100 centímetros",
+      "25 centímetros"
+    ],
+    "resposta": "50 centímetros",
+    "resposta_correta": 0,
+    "explicacao": "Um metro tem 100 cm, a metade é 50 cm.",
+    "emoji": "📏"
+  },
+  {
+    "id": 66,
+    "materia": "matematica",
+    "ano": 4,
+    "pergunta": "Qual conta dá 20 se fizermos 8 + 3 × 4?",
+    "opcoes": [
+      "20",
+      "44",
+      "32"
+    ],
+    "resposta": "20",
+    "resposta_correta": 0,
+    "explicacao": "Multiplique primeiro: 3 × 4 = 12; somando 8 dá 20.",
+    "emoji": "❓"
+  },
+  {
+    "id": 67,
+    "materia": "matematica",
+    "ano": 4,
+    "pergunta": "Se um quadrado tem lado de 5 cm, qual é o seu perímetro?",
+    "opcoes": [
+      "20 cm",
+      "25 cm",
+      "15 cm"
+    ],
+    "resposta": "20 cm",
+    "resposta_correta": 0,
+    "explicacao": "O quadrado tem 4 lados. 4 vezes 5 cm = 20 cm.",
+    "emoji": "⬛"
+  },
+  {
+    "id": 68,
+    "materia": "matematica",
+    "ano": 4,
+    "pergunta": "A loja vende 3 pacotes com 12 peças cada. Quantas peças são ao todo?",
+    "opcoes": [
+      "36",
+      "24",
+      "48"
+    ],
+    "resposta": "36",
+    "resposta_correta": 0,
+    "explicacao": "Três pacotes vezes doze peças dá trinta e seis.",
+    "emoji": "📦"
+  },
+  {
+    "id": 69,
+    "materia": "matematica",
+    "ano": 4,
+    "pergunta": "Quanto é 50 dividido por 5?",
+    "opcoes": [
+      "10",
+      "5",
+      "15"
+    ],
+    "resposta": "10",
+    "resposta_correta": 0,
+    "explicacao": "Cinquenta dividido por cinco é igual a dez.",
+    "emoji": "🔢"
+  },
+  {
+    "id": 70,
+    "materia": "matematica",
+    "ano": 4,
+    "pergunta": "Qual número falta: 10 + __ × 3 = 19?",
+    "opcoes": [
+      "3",
+      "4",
+      "2"
+    ],
+    "resposta": "3",
+    "resposta_correta": 0,
+    "explicacao": "Três vezes três é nove; dez mais nove dá dezenove.",
+    "emoji": "❓"
+  },
+  {
+    "id": 71,
+    "materia": "matematica",
+    "ano": 4,
+    "pergunta": "Se João tem R$50,00 e compra um brinquedo por R$35,00, qual o troco?",
+    "opcoes": [
+      "R$15,00",
+      "R$25,00",
+      "R$10,00"
+    ],
+    "resposta": "R$15,00",
+    "resposta_correta": 0,
+    "explicacao": "Cinquenta menos trinta e cinco sobra quinze reais.",
+    "emoji": "💵"
+  },
+  {
+    "id": 72,
+    "materia": "matematica",
+    "ano": 4,
+    "pergunta": "Como chamamos um ângulo que parece a quina perfeita de um quadrado?",
+    "opcoes": [
+      "Ângulo reto",
+      "Ângulo agudo",
+      "Ângulo obtuso"
+    ],
+    "resposta": "Ângulo reto",
+    "resposta_correta": 0,
+    "explicacao": "A quina de um quadrado forma um ângulo reto de 90 graus.",
+    "emoji": "📐"
+  },
+  {
+    "id": 73,
+    "materia": "matematica",
+    "ano": 4,
+    "pergunta": "Temos 4 carros com 4 rodas cada, e mais um estepe no porta-malas de cada um. Quantos pneus ao todo?",
+    "opcoes": [
+      "20",
+      "16",
+      "24"
+    ],
+    "resposta": "20",
+    "resposta_correta": 0,
+    "explicacao": "Cada carro tem 5 pneus (4+1). Quatro vezes cinco é 20.",
+    "emoji": "🚗"
+  },
+  {
+    "id": 74,
+    "materia": "matematica",
+    "ano": 4,
+    "pergunta": "Qual é o dobro de 45?",
+    "opcoes": [
+      "90",
+      "80",
+      "100"
+    ],
+    "resposta": "90",
+    "resposta_correta": 0,
+    "explicacao": "45 mais 45 (ou 45x2) dá 90.",
+    "emoji": "🔢"
+  },
+  {
+    "id": 75,
+    "materia": "matematica",
+    "ano": 4,
+    "pergunta": "Qual destas frações é maior: 1/2 ou 1/4?",
+    "opcoes": [
+      "1/2",
+      "1/4",
+      "São iguais"
+    ],
+    "resposta": "1/2",
+    "resposta_correta": 0,
+    "explicacao": "1/2 (metade) é maior que 1/4 (um quarto).",
+    "emoji": "🍕"
+  },
+  {
+    "id": 76,
+    "materia": "matematica",
+    "ano": 4,
+    "pergunta": "Qual é o resultado de 100 - (30 + 20)?",
+    "opcoes": [
+      "50",
+      "90",
+      "40"
+    ],
+    "resposta": "50",
+    "resposta_correta": 0,
+    "explicacao": "Primeiro resolve os parênteses: 30+20=50. Depois, 100-50=50.",
+    "emoji": "❓"
+  },
+  {
+    "id": 77,
+    "materia": "matematica",
+    "ano": 4,
+    "pergunta": "Se um caderno tem 100 folhas, quantas folhas têm 8 cadernos iguais?",
+    "opcoes": [
+      "800",
+      "80",
+      "180"
+    ],
+    "resposta": "800",
+    "resposta_correta": 0,
+    "explicacao": "Cem folhas vezes oito cadernos dão oitocentas folhas.",
+    "emoji": "📖"
+  },
+  {
+    "id": 78,
+    "materia": "matematica",
+    "ano": 4,
+    "pergunta": "O carro faz 4 voltas de 5 minutos cada. Quanto tempo ele demora?",
+    "opcoes": [
+      "20 minutos",
+      "15 minutos",
+      "25 minutos"
+    ],
+    "resposta": "20 minutos",
+    "resposta_correta": 0,
+    "explicacao": "Quatro vezes cinco minutos são vinte minutos.",
+    "emoji": "🏎️"
+  },
+  {
+    "id": 79,
+    "materia": "matematica",
+    "ano": 4,
+    "pergunta": "Se dividirmos uma pizza em 8 pedaços e comermos 3, qual a fração que sobrou?",
+    "opcoes": [
+      "5/8",
+      "3/8",
+      "8/5"
+    ],
+    "resposta": "5/8",
+    "resposta_correta": 0,
+    "explicacao": "Oito pedaços menos três sobram cinco. Logo, 5/8.",
+    "emoji": "🍕"
+  },
+  {
+    "id": 80,
+    "materia": "matematica",
+    "ano": 4,
+    "pergunta": "Mil metros equivalem a:",
+    "opcoes": [
+      "1 Quilômetro (km)",
+      "10 Centímetros",
+      "1 Milímetro"
+    ],
+    "resposta": "1 Quilômetro (km)",
+    "resposta_correta": 0,
+    "explicacao": "A sigla \"kilo\" significa mil, portanto 1 km = 1000 metros.",
+    "emoji": "🛣️"
+  },
+  {
+    "id": 81,
+    "materia": "matematica",
+    "ano": 5,
+    "pergunta": "Qual é a forma decimal da fração 1/2?",
+    "opcoes": [
+      "0,5",
+      "1,2",
+      "0,2"
+    ],
+    "resposta": "0,5",
+    "resposta_correta": 0,
+    "explicacao": "Dividindo 1 por 2 obtemos 0,5 (cinco décimos).",
+    "emoji": "🔢"
+  },
+  {
+    "id": 82,
+    "materia": "matematica",
+    "ano": 5,
+    "pergunta": "Se 25% de uma turma de 40 alunos usa óculos, quantos alunos usam óculos?",
+    "opcoes": [
+      "10 alunos",
+      "25 alunos",
+      "15 alunos"
+    ],
+    "resposta": "10 alunos",
+    "resposta_correta": 0,
+    "explicacao": "25% é o mesmo que dividir por 4. 40 dividido por 4 é 10.",
+    "emoji": "👓"
+  },
+  {
+    "id": 83,
+    "materia": "matematica",
+    "ano": 5,
+    "pergunta": "Lucas tem 12 balas e divide com 3 amigos. Porém ele guardou 3 para si. Quantas ele dividiu?",
+    "opcoes": [
+      "9",
+      "12",
+      "3"
+    ],
+    "resposta": "9",
+    "resposta_correta": 0,
+    "explicacao": "Ele tinha 12 e tirou 3 para ele, sobrando 9 balas para dividir.",
+    "emoji": "🍬"
+  },
+  {
+    "id": 84,
+    "materia": "matematica",
+    "ano": 5,
+    "pergunta": "Um gráfico de colunas mostra vendas: Jan (20), Fev (30), Mar (50). Qual foi a média mensal?",
+    "opcoes": [
+      "Aproximadamente 33",
+      "20",
+      "50"
+    ],
+    "resposta": "Aproximadamente 33",
+    "resposta_correta": 0,
+    "explicacao": "20+30+50 = 100. 100 dividido por 3 meses é igual a 33,33.",
+    "emoji": "📊"
+  },
+  {
+    "id": 85,
+    "materia": "matematica",
+    "ano": 5,
+    "pergunta": "Uma caixa tem o volume de 2m x 3m x 1m. Qual é o volume total em m³?",
+    "opcoes": [
+      "6 m³",
+      "5 m³",
+      "10 m³"
+    ],
+    "resposta": "6 m³",
+    "resposta_correta": 0,
+    "explicacao": "O volume é a multiplicação das três medidas: 2 x 3 x 1 = 6.",
+    "emoji": "📦"
+  },
+  {
+    "id": 86,
+    "materia": "matematica",
+    "ano": 5,
+    "pergunta": "Se sobra 1/4 da maçã e ela tinha 8 pedaços no total, quantos pedaços sobraram?",
+    "opcoes": [
+      "2 pedaços",
+      "4 pedaços",
+      "1 pedaço"
+    ],
+    "resposta": "2 pedaços",
+    "resposta_correta": 0,
+    "explicacao": "Um quarto (1/4) de oito é oito dividido por quatro, que dá 2.",
+    "emoji": "🍎"
+  },
+  {
+    "id": 87,
+    "materia": "matematica",
+    "ano": 5,
+    "pergunta": "Quanto é R$1,50 + R$2,25?",
+    "opcoes": [
+      "R$3,75",
+      "R$4,00",
+      "R$3,50"
+    ],
+    "resposta": "R$3,75",
+    "resposta_correta": 0,
+    "explicacao": "Somando reais e centavos: 1+2=3 reais e 50+25=75 centavos.",
+    "emoji": "💵"
+  },
+  {
+    "id": 88,
+    "materia": "matematica",
+    "ano": 5,
+    "pergunta": "Se você comprar 3 cadernos por R$15,00 cada, quanto gastará?",
+    "opcoes": [
+      "R$45,00",
+      "R$30,00",
+      "R$50,00"
+    ],
+    "resposta": "R$45,00",
+    "resposta_correta": 0,
+    "explicacao": "Três vezes quinze dá quarenta e cinco.",
+    "emoji": "📓"
+  },
+  {
+    "id": 89,
+    "materia": "matematica",
+    "ano": 5,
+    "pergunta": "Qual fração é equivalente a 2/4?",
+    "opcoes": [
+      "1/2",
+      "3/4",
+      "1/3"
+    ],
+    "resposta": "1/2",
+    "resposta_correta": 0,
+    "explicacao": "Simplificando 2/4, dividimos ambos por 2 e obtemos 1/2.",
+    "emoji": "🍕"
+  },
+  {
+    "id": 90,
+    "materia": "matematica",
+    "ano": 5,
+    "pergunta": "Se um trem viaja a 80 km/h, quantos quilômetros percorre em 2 horas?",
+    "opcoes": [
+      "160 km",
+      "100 km",
+      "80 km"
+    ],
+    "resposta": "160 km",
+    "resposta_correta": 0,
+    "explicacao": "Oitenta quilômetros por hora vezes duas horas dão 160 km.",
+    "emoji": "🚆"
+  },
+  {
+    "id": 91,
+    "materia": "matematica",
+    "ano": 5,
+    "pergunta": "Se você come 2/3 de um bolo dividido em 9 pedaços, quantos pedaços comeu?",
+    "opcoes": [
+      "6",
+      "3",
+      "4"
+    ],
+    "resposta": "6",
+    "resposta_correta": 0,
+    "explicacao": "Divida 9 por 3 (=3) e multiplique por 2 (=6).",
+    "emoji": "🍰"
+  },
+  {
+    "id": 92,
+    "materia": "matematica",
+    "ano": 5,
+    "pergunta": "Qual conta é verdadeira: 5 × 4 + 10 = ?",
+    "opcoes": [
+      "30",
+      "40",
+      "50"
+    ],
+    "resposta": "30",
+    "resposta_correta": 0,
+    "explicacao": "Cinco vezes quatro é vinte; mais dez dá trinta.",
+    "emoji": "❓"
+  },
+  {
+    "id": 93,
+    "materia": "matematica",
+    "ano": 5,
+    "pergunta": "Se 1 kg de carne custa R$40,00, quanto custam 500 gramas?",
+    "opcoes": [
+      "R$20,00",
+      "R$30,00",
+      "R$15,00"
+    ],
+    "resposta": "R$20,00",
+    "resposta_correta": 0,
+    "explicacao": "500g é meio quilo, então custa a metade de R$40,00.",
+    "emoji": "🥩"
+  },
+  {
+    "id": 94,
+    "materia": "matematica",
+    "ano": 5,
+    "pergunta": "Tia Ana tinha uma fita de 2 metros. Ela cortou 50 centímetros. Quanto sobrou?",
+    "opcoes": [
+      "1,5 metros (150 cm)",
+      "1 metro",
+      "50 centímetros"
+    ],
+    "resposta": "1,5 metros (150 cm)",
+    "resposta_correta": 0,
+    "explicacao": "2 metros (200 cm) menos 50 cm é igual a 150 cm (ou 1,5m).",
+    "emoji": "🎀"
+  },
+  {
+    "id": 95,
+    "materia": "matematica",
+    "ano": 5,
+    "pergunta": "Em um jogo, as moedas caem em Cara ou Coroa. Qual a chance de cair Cara?",
+    "opcoes": [
+      "50%",
+      "100%",
+      "25%"
+    ],
+    "resposta": "50%",
+    "resposta_correta": 0,
+    "explicacao": "Como só há duas opções, a chance é de metade (50%).",
+    "emoji": "🪙"
+  },
+  {
+    "id": 96,
+    "materia": "matematica",
+    "ano": 5,
+    "pergunta": "Uma viagem de avião sai às 14h30 e dura 2h15. Que horas o avião chega?",
+    "opcoes": [
+      "16h45",
+      "16h30",
+      "17h00"
+    ],
+    "resposta": "16h45",
+    "resposta_correta": 0,
+    "explicacao": "14h + 2h = 16h; 30min + 15min = 45min.",
+    "emoji": "✈️"
+  },
+  {
+    "id": 97,
+    "materia": "matematica",
+    "ano": 5,
+    "pergunta": "Qual é o resultado de 0,5 + 0,5?",
+    "opcoes": [
+      "1,0",
+      "0,10",
+      "0,25"
+    ],
+    "resposta": "1,0",
+    "resposta_correta": 0,
+    "explicacao": "Meio mais meio forma um inteiro (1,0).",
+    "emoji": "🔢"
+  },
+  {
+    "id": 98,
+    "materia": "matematica",
+    "ano": 5,
+    "pergunta": "Se 1/4 da turma de 32 alunos faltou, quantos alunos faltaram?",
+    "opcoes": [
+      "8 alunos",
+      "10 alunos",
+      "6 alunos"
+    ],
+    "resposta": "8 alunos",
+    "resposta_correta": 0,
+    "explicacao": "Dividindo trinta e dois por quatro, encontramos oito.",
+    "emoji": "🏫"
+  },
+  {
+    "id": 99,
+    "materia": "matematica",
+    "ano": 5,
+    "pergunta": "Como escrevemos \"três décimos\" em número decimal?",
+    "opcoes": [
+      "0,3",
+      "3,0",
+      "0,03"
+    ],
+    "resposta": "0,3",
+    "resposta_correta": 0,
+    "explicacao": "O 3 logo após a vírgula indica a casa dos décimos.",
+    "emoji": "🔢"
+  },
+  {
+    "id": 100,
+    "materia": "matematica",
+    "ano": 5,
+    "pergunta": "Qual polígono tem 6 lados e 6 vértices?",
+    "opcoes": [
+      "Hexágono",
+      "Pentágono",
+      "Octógono"
+    ],
+    "resposta": "Hexágono",
+    "resposta_correta": 0,
+    "explicacao": "O prefixo \"hexa\" indica o número seis.",
+    "emoji": "⬡"
+  },
+  {
+    "id": 101,
+    "materia": "portugues",
+    "ano": 1,
+    "pergunta": "Qual letra começa a palavra \"sol\"?",
+    "opcoes": [
+      "S",
+      "L",
+      "T"
+    ],
+    "resposta": "S",
+    "resposta_correta": 0,
+    "explicacao": "A palavra sol começa com a letra S.",
+    "emoji": "☀️"
+  },
+  {
+    "id": 102,
+    "materia": "portugues",
+    "ano": 1,
+    "pergunta": "Qual letra começa a palavra \"bola\"?",
+    "opcoes": [
+      "B",
+      "P",
+      "D"
+    ],
+    "resposta": "B",
+    "resposta_correta": 0,
+    "explicacao": "A palavra bola começa com B.",
+    "emoji": "⚽"
+  },
+  {
+    "id": 103,
+    "materia": "portugues",
+    "ano": 1,
+    "pergunta": "Qual dessas palavras termina com a vogal O?",
+    "opcoes": [
+      "Gato",
+      "Mesa",
+      "Uva"
+    ],
+    "resposta": "Gato",
+    "resposta_correta": 0,
+    "explicacao": "A palavra G-A-T-O termina com a letra O.",
+    "emoji": "🐈"
+  },
+  {
+    "id": 104,
+    "materia": "portugues",
+    "ano": 1,
+    "pergunta": "Qual palavra é um animal?",
+    "opcoes": [
+      "Pato",
+      "Casa",
+      "Mesa"
+    ],
+    "resposta": "Pato",
+    "resposta_correta": 0,
+    "explicacao": "Pato é um animal que nada no lago.",
+    "emoji": "🦆"
+  },
+  {
+    "id": 105,
+    "materia": "portugues",
+    "ano": 1,
+    "pergunta": "A palavra \"MACACO\" começa com qual sílaba?",
+    "opcoes": [
+      "MA",
+      "CA",
+      "CO"
+    ],
+    "resposta": "MA",
+    "resposta_correta": 0,
+    "explicacao": "A primeira sílaba de MA-CA-CO é MA.",
+    "emoji": "🐒"
+  },
+  {
+    "id": 106,
+    "materia": "portugues",
+    "ano": 1,
+    "pergunta": "Qual palavra rima com \"PÃO\"?",
+    "opcoes": [
+      "Mão",
+      "Pé",
+      "Cama"
+    ],
+    "resposta": "Mão",
+    "resposta_correta": 0,
+    "explicacao": "Mão e Pão terminam com o mesmo som ão.",
+    "emoji": "🍞"
+  },
+  {
+    "id": 107,
+    "materia": "portugues",
+    "ano": 1,
+    "pergunta": "Qual cor está escondida na palavra \"Amarelo\"?",
+    "opcoes": [
+      "Azul",
+      "Não tem cor escondida, a palavra É a cor!",
+      "Roxo"
+    ],
+    "resposta": "Não tem cor escondida, a palavra É a cor!",
+    "resposta_correta": 1,
+    "explicacao": "Amarelo é o nome próprio da cor.",
+    "emoji": "💛"
+  },
+  {
+    "id": 108,
+    "materia": "portugues",
+    "ano": 1,
+    "pergunta": "Qual palavra começa com C?",
+    "opcoes": [
+      "Cachorro",
+      "Gato",
+      "Peixe"
+    ],
+    "resposta": "Cachorro",
+    "resposta_correta": 0,
+    "explicacao": "Cachorro começa com a letra C.",
+    "emoji": "🐾"
+  },
+  {
+    "id": 109,
+    "materia": "portugues",
+    "ano": 1,
+    "pergunta": "Qual vogal está no meio da palavra \"SOL\"?",
+    "opcoes": [
+      "O",
+      "A",
+      "U"
+    ],
+    "resposta": "O",
+    "resposta_correta": 0,
+    "explicacao": "A letra O fica entre o S e o L.",
+    "emoji": "☀️"
+  },
+  {
+    "id": 110,
+    "materia": "portugues",
+    "ano": 1,
+    "pergunta": "Qual palavra é uma fruta?",
+    "opcoes": [
+      "Banana",
+      "Livro",
+      "Copo"
+    ],
+    "resposta": "Banana",
+    "resposta_correta": 0,
+    "explicacao": "Banana é uma fruta gostosa.",
+    "emoji": "🍌"
+  },
+  {
+    "id": 111,
+    "materia": "portugues",
+    "ano": 1,
+    "pergunta": "Qual palavra rima com \"COLA\"?",
+    "opcoes": [
+      "Bola",
+      "Dado",
+      "Mesa"
+    ],
+    "resposta": "Bola",
+    "resposta_correta": 0,
+    "explicacao": "Co-la e Bo-la têm sons finais iguais.",
+    "emoji": "🧴"
+  },
+  {
+    "id": 112,
+    "materia": "portugues",
+    "ano": 1,
+    "pergunta": "Qual é a primeira letra da palavra \"LUA\"?",
+    "opcoes": [
+      "L",
+      "M",
+      "N"
+    ],
+    "resposta": "L",
+    "resposta_correta": 0,
+    "explicacao": "A palavra lua começa com L.",
+    "emoji": "🌙"
+  },
+  {
+    "id": 113,
+    "materia": "portugues",
+    "ano": 1,
+    "pergunta": "Quantas sílabas (pedacinhos) tem a palavra \"CA-SA\"?",
+    "opcoes": [
+      "2",
+      "3",
+      "1"
+    ],
+    "resposta": "2",
+    "resposta_correta": 0,
+    "explicacao": "Quando falamos, abrimos a boca duas vezes: CA - SA.",
+    "emoji": "🏠"
+  },
+  {
+    "id": 114,
+    "materia": "portugues",
+    "ano": 1,
+    "pergunta": "Qual palavra indica comida?",
+    "opcoes": [
+      "Maçã",
+      "Janela",
+      "Chapéu"
+    ],
+    "resposta": "Maçã",
+    "resposta_correta": 0,
+    "explicacao": "A maçã é uma fruta que comemos.",
+    "emoji": "🍎"
+  },
+  {
+    "id": 115,
+    "materia": "portugues",
+    "ano": 1,
+    "pergunta": "Se juntarmos B com A, fazemos o som de:",
+    "opcoes": [
+      "BA",
+      "BO",
+      "BE"
+    ],
+    "resposta": "BA",
+    "resposta_correta": 0,
+    "explicacao": "B mais A forma a sílaba BA.",
+    "emoji": "🔤"
+  },
+  {
+    "id": 116,
+    "materia": "portugues",
+    "ano": 1,
+    "pergunta": "Qual palavra tem um som nasal (feito pelo nariz)?",
+    "opcoes": [
+      "Maçã",
+      "Livro",
+      "Pato"
+    ],
+    "resposta": "Maçã",
+    "resposta_correta": 0,
+    "explicacao": "O til (~) em maçã faz o som nasal.",
+    "emoji": "👃"
+  },
+  {
+    "id": 117,
+    "materia": "portugues",
+    "ano": 1,
+    "pergunta": "Qual palavra começa com F?",
+    "opcoes": [
+      "Foca",
+      "Pato",
+      "Cama"
+    ],
+    "resposta": "Foca",
+    "resposta_correta": 0,
+    "explicacao": "Foca começa com a letra F.",
+    "emoji": "🦭"
+  },
+  {
+    "id": 118,
+    "materia": "portugues",
+    "ano": 1,
+    "pergunta": "Na cantiga \"Sapo cururu\", qual animal é citado?",
+    "opcoes": [
+      "Sapo",
+      "Cachorro",
+      "Gato"
+    ],
+    "resposta": "Sapo",
+    "resposta_correta": 0,
+    "explicacao": "A cantiga fala sobre o sapo cururu.",
+    "emoji": "🐸"
+  },
+  {
+    "id": 119,
+    "materia": "portugues",
+    "ano": 1,
+    "pergunta": "Qual letra começa a palavra \"PIPA\"?",
+    "opcoes": [
+      "P",
+      "T",
+      "S"
+    ],
+    "resposta": "P",
+    "resposta_correta": 0,
+    "explicacao": "A palavra pipa começa com a letra P.",
+    "emoji": "🪁"
+  },
+  {
+    "id": 120,
+    "materia": "portugues",
+    "ano": 1,
+    "pergunta": "Qual grupo de letras tem APENAS VOGAIS?",
+    "opcoes": [
+      "A, E, I, O, U",
+      "A, B, C, D",
+      "Z, X, Y, W"
+    ],
+    "resposta": "A, E, I, O, U",
+    "resposta_correta": 0,
+    "explicacao": "As cinco vogais do nosso alfabeto.",
+    "emoji": "🅰️"
+  },
+  {
+    "id": 121,
+    "materia": "portugues",
+    "ano": 2,
+    "pergunta": "Que palavra formamos com sí + la + ba?",
+    "opcoes": [
+      "Sílaba",
+      "Sala",
+      "Sábia"
+    ],
+    "resposta": "Sílaba",
+    "resposta_correta": 0,
+    "explicacao": "Si + la + ba juntas formam a palavra sílaba.",
+    "emoji": "📖"
+  },
+  {
+    "id": 122,
+    "materia": "portugues",
+    "ano": 2,
+    "pergunta": "A palavra \"CASA\" se escreve com S, mas tem som de:",
+    "opcoes": [
+      "Z",
+      "C",
+      "X"
+    ],
+    "resposta": "Z",
+    "resposta_correta": 0,
+    "explicacao": "O S no meio de duas vogais ganha som de Z.",
+    "emoji": "🏠"
+  },
+  {
+    "id": 123,
+    "materia": "portugues",
+    "ano": 2,
+    "pergunta": "Complete corretamente: A __enina brinca.",
+    "opcoes": [
+      "M",
+      "P",
+      "T"
+    ],
+    "resposta": "M",
+    "resposta_correta": 0,
+    "explicacao": "A letra M forma a palavra Menina.",
+    "emoji": "👧"
+  },
+  {
+    "id": 124,
+    "materia": "portugues",
+    "ano": 2,
+    "pergunta": "Qual palavra é escrita com Ç?",
+    "opcoes": [
+      "Palhaço",
+      "Passaro",
+      "Vaso"
+    ],
+    "resposta": "Palhaço",
+    "resposta_correta": 0,
+    "explicacao": "Palhaço usa C-cedilha para fazer o som de SS.",
+    "emoji": "🤡"
+  },
+  {
+    "id": 125,
+    "materia": "portugues",
+    "ano": 2,
+    "pergunta": "Na frase \"O cachorro morde\", quem é que morde?",
+    "opcoes": [
+      "O cachorro",
+      "O menino",
+      "O gato"
+    ],
+    "resposta": "O cachorro",
+    "resposta_correta": 0,
+    "explicacao": "O texto indica claramente que o cachorro realiza a ação.",
+    "emoji": "🐾"
+  },
+  {
+    "id": 126,
+    "materia": "portugues",
+    "ano": 2,
+    "pergunta": "Complete a palavra: B__LÃO.",
+    "opcoes": [
+      "A",
+      "E",
+      "O"
+    ],
+    "resposta": "A",
+    "resposta_correta": 0,
+    "explicacao": "A vogal A forma a palavra BALÃO.",
+    "emoji": "🎈"
+  },
+  {
+    "id": 127,
+    "materia": "portugues",
+    "ano": 2,
+    "pergunta": "Qual palavra está escrita de forma errada?",
+    "opcoes": [
+      "Caxo",
+      "Cachorro",
+      "Chuva"
+    ],
+    "resposta": "Caxo",
+    "resposta_correta": 0,
+    "explicacao": "O correto é cacho, com CH.",
+    "emoji": "❌"
+  },
+  {
+    "id": 128,
+    "materia": "portugues",
+    "ano": 2,
+    "pergunta": "A sílaba final de \"GIRASSOL\" é:",
+    "opcoes": [
+      "SOL",
+      "RAS",
+      "GI"
+    ],
+    "resposta": "SOL",
+    "resposta_correta": 0,
+    "explicacao": "A palavra se divide em GI-RAS-SOL.",
+    "emoji": "🌻"
+  },
+  {
+    "id": 129,
+    "materia": "portugues",
+    "ano": 2,
+    "pergunta": "Qual palavra indica o nome de uma pessoa (Substantivo Próprio)?",
+    "opcoes": [
+      "João",
+      "Menino",
+      "Cachorro"
+    ],
+    "resposta": "João",
+    "resposta_correta": 0,
+    "explicacao": "João é nome próprio e por isso começa com letra maiúscula.",
+    "emoji": "👦"
+  },
+  {
+    "id": 130,
+    "materia": "portugues",
+    "ano": 2,
+    "pergunta": "Qual palavra descreve um animal com casca dura que anda devagar?",
+    "opcoes": [
+      "Tartaruga",
+      "Coelho",
+      "Passarinho"
+    ],
+    "resposta": "Tartaruga",
+    "resposta_correta": 0,
+    "explicacao": "A tartaruga tem carapaça e anda lentamente.",
+    "emoji": "🐢"
+  },
+  {
+    "id": 131,
+    "materia": "portugues",
+    "ano": 2,
+    "pergunta": "Na frase \"A flor é cheirosa\", a palavra cheirosa nos conta como a flor é. Isso é um:",
+    "opcoes": [
+      "Adjetivo (qualidade)",
+      "Substantivo (nome)",
+      "Verbo (ação)"
+    ],
+    "resposta": "Adjetivo (qualidade)",
+    "resposta_correta": 0,
+    "explicacao": "Cheirosa descreve uma qualidade da flor.",
+    "emoji": "🌸"
+  },
+  {
+    "id": 132,
+    "materia": "portugues",
+    "ano": 2,
+    "pergunta": "O antônimo (oposto) de GRANDE é:",
+    "opcoes": [
+      "Pequeno",
+      "Maior",
+      "Grosso"
+    ],
+    "resposta": "Pequeno",
+    "resposta_correta": 0,
+    "explicacao": "O contrário de ser grande é ser pequeno.",
+    "emoji": "📏"
+  },
+  {
+    "id": 133,
+    "materia": "portugues",
+    "ano": 2,
+    "pergunta": "A palavra \"BANANA\" tem quantas sílabas?",
+    "opcoes": [
+      "3",
+      "2",
+      "4"
+    ],
+    "resposta": "3",
+    "resposta_correta": 0,
+    "explicacao": "BA - NA - NA (três pedacinhos).",
+    "emoji": "🍌"
+  },
+  {
+    "id": 134,
+    "materia": "portugues",
+    "ano": 2,
+    "pergunta": "Qual palavra tem o encontro de duas consoantes (BR)?",
+    "opcoes": [
+      "Braço",
+      "Bala",
+      "Boca"
+    ],
+    "resposta": "Braço",
+    "resposta_correta": 0,
+    "explicacao": "O B e o R estão juntos na mesma sílaba.",
+    "emoji": "💪"
+  },
+  {
+    "id": 135,
+    "materia": "portugues",
+    "ano": 2,
+    "pergunta": "Qual a pontuação para fazer uma pergunta?",
+    "opcoes": [
+      "Ponto de interrogação (?)",
+      "Ponto final (.)",
+      "Vírgula (,)"
+    ],
+    "resposta": "Ponto de interrogação (?)",
+    "resposta_correta": 0,
+    "explicacao": "O ponto de interrogação indica que é uma pergunta.",
+    "emoji": "❓"
+  },
+  {
+    "id": 136,
+    "materia": "portugues",
+    "ano": 2,
+    "pergunta": "No diminutivo, a palavra \"LIVRO\" vira:",
+    "opcoes": [
+      "Livrinho",
+      "Livrão",
+      "Livreiro"
+    ],
+    "resposta": "Livrinho",
+    "resposta_correta": 0,
+    "explicacao": "O sufixo \"inho\" indica algo menor.",
+    "emoji": "📚"
+  },
+  {
+    "id": 137,
+    "materia": "portugues",
+    "ano": 2,
+    "pergunta": "Que palavra usamos para indicar algo que está perto?",
+    "opcoes": [
+      "Este / Esta",
+      "Aquele",
+      "Longe"
+    ],
+    "resposta": "Este / Esta",
+    "resposta_correta": 0,
+    "explicacao": "Usamos este ou esta para objetos próximos.",
+    "emoji": "👇"
+  },
+  {
+    "id": 138,
+    "materia": "portugues",
+    "ano": 2,
+    "pergunta": "Qual dessas palavras está no plural (mais de um)?",
+    "opcoes": [
+      "Carros",
+      "Bola",
+      "Sol"
+    ],
+    "resposta": "Carros",
+    "resposta_correta": 0,
+    "explicacao": "O \"S\" no final de \"carros\" indica que há mais de um.",
+    "emoji": "🚗"
+  },
+  {
+    "id": 139,
+    "materia": "portugues",
+    "ano": 2,
+    "pergunta": "Qual letra colocamos antes de P e B nas palavras?",
+    "opcoes": [
+      "M",
+      "N",
+      "L"
+    ],
+    "resposta": "M",
+    "resposta_correta": 0,
+    "explicacao": "A regra diz que antes de P e B sempre usamos M.",
+    "emoji": "🔤"
+  },
+  {
+    "id": 140,
+    "materia": "portugues",
+    "ano": 2,
+    "pergunta": "Qual é a ordem alfabética correta?",
+    "opcoes": [
+      "Abelha, Bola, Casa",
+      "Bola, Abelha, Casa",
+      "Casa, Bola, Abelha"
+    ],
+    "resposta": "Abelha, Bola, Casa",
+    "resposta_correta": 0,
+    "explicacao": "Segue a ordem do A, B e depois C.",
+    "emoji": "📚"
+  },
+  {
+    "id": 141,
+    "materia": "portugues",
+    "ano": 3,
+    "pergunta": "Leia: \"O passarinho cantou no galho da goiabeira\". Qual é o verbo da frase?",
+    "opcoes": [
+      "Cantou",
+      "Passarinho",
+      "Goiabeira"
+    ],
+    "resposta": "Cantou",
+    "resposta_correta": 0,
+    "explicacao": "Cantou é a ação (o que ele fez).",
+    "emoji": "🐦"
+  },
+  {
+    "id": 142,
+    "materia": "portugues",
+    "ano": 3,
+    "pergunta": "No texto: \"O sol brilhava e a família foi ao parque\", onde a família foi?",
+    "opcoes": [
+      "Ao parque",
+      "Ficou em casa",
+      "À praia"
+    ],
+    "resposta": "Ao parque",
+    "resposta_correta": 0,
+    "explicacao": "O texto afirma explicitamente que foram ao parque.",
+    "emoji": "🌳"
+  },
+  {
+    "id": 143,
+    "materia": "portugues",
+    "ano": 3,
+    "pergunta": "Uma história que ensina uma lição de moral no final, geralmente com animais, chama-se:",
+    "opcoes": [
+      "Fábula",
+      "Receita",
+      "Poesia"
+    ],
+    "resposta": "Fábula",
+    "resposta_correta": 0,
+    "explicacao": "Fábulas são narrativas curtas com lição de moral.",
+    "emoji": "🦊"
+  },
+  {
+    "id": 144,
+    "materia": "portugues",
+    "ano": 3,
+    "pergunta": "O plural de \"PÃO\" é:",
+    "opcoes": [
+      "Pães",
+      "Pãos",
+      "Pões"
+    ],
+    "resposta": "Pães",
+    "resposta_correta": 0,
+    "explicacao": "A palavra pão faz plural com terminação \"ães\".",
+    "emoji": "🍞"
+  },
+  {
+    "id": 145,
+    "materia": "portugues",
+    "ano": 3,
+    "pergunta": "Qual a separação silábica correta da palavra \"CARRO\"?",
+    "opcoes": [
+      "CAR-RO",
+      "CA-RRO",
+      "CARR-O"
+    ],
+    "resposta": "CAR-RO",
+    "resposta_correta": 0,
+    "explicacao": "Os dois \"R\" devem ficar em sílabas diferentes.",
+    "emoji": "🚗"
+  },
+  {
+    "id": 146,
+    "materia": "portugues",
+    "ano": 3,
+    "pergunta": "No trecho: \"Ana fez um desenho colorido\". \"Colorido\" é um:",
+    "opcoes": [
+      "Adjetivo",
+      "Substantivo",
+      "Verbo"
+    ],
+    "resposta": "Adjetivo",
+    "resposta_correta": 0,
+    "explicacao": "Colorido dá uma característica (qualidade) ao desenho.",
+    "emoji": "🎨"
+  },
+  {
+    "id": 147,
+    "materia": "portugues",
+    "ano": 3,
+    "pergunta": "Leia: \"Eu gosto de maçã, mas prefiro banana.\" A palavra \"mas\" indica:",
+    "opcoes": [
+      "Oposição/Ideia contrária",
+      "Soma",
+      "Tempo"
+    ],
+    "resposta": "Oposição/Ideia contrária",
+    "resposta_correta": 0,
+    "explicacao": "A palavra MAS traz uma ideia contrária ao que foi dito antes.",
+    "emoji": "🤔"
+  },
+  {
+    "id": 148,
+    "materia": "portugues",
+    "ano": 3,
+    "pergunta": "O que é um substantivo comum?",
+    "opcoes": [
+      "Nomeia coisas, objetos, animais (ex: livro)",
+      "Nomeia cidades e pessoas (ex: Brasil)",
+      "Indica ação (ex: correr)"
+    ],
+    "resposta": "Nomeia coisas, objetos, animais (ex: livro)",
+    "resposta_correta": 0,
+    "explicacao": "Nomes genéricos que damos aos seres e objetos da mesma espécie.",
+    "emoji": "📦"
+  },
+  {
+    "id": 149,
+    "materia": "portugues",
+    "ano": 3,
+    "pergunta": "Qual acento usamos na palavra \"ÁRVORE\"?",
+    "opcoes": [
+      "Acento Agudo (´)",
+      "Acento Circunflexo (^)",
+      "Til (~)"
+    ],
+    "resposta": "Acento Agudo (´)",
+    "resposta_correta": 0,
+    "explicacao": "O acento agudo marca o som aberto na sílaba tônica ÁR.",
+    "emoji": "🌳"
+  },
+  {
+    "id": 150,
+    "materia": "portugues",
+    "ano": 3,
+    "pergunta": "Qual palavra é o aumentativo de BOCA?",
+    "opcoes": [
+      "Bocarra",
+      "Bocona",
+      "Boquinha"
+    ],
+    "resposta": "Bocarra",
+    "resposta_correta": 0,
+    "explicacao": "A forma culta do aumentativo de boca é bocarra.",
+    "emoji": "👄"
+  },
+  {
+    "id": 151,
+    "materia": "portugues",
+    "ano": 3,
+    "pergunta": "A frase \"Que susto!\" deve terminar com qual ponto?",
+    "opcoes": [
+      "Ponto de Exclamação (!)",
+      "Ponto de Interrogação (?)",
+      "Ponto Final (.)"
+    ],
+    "resposta": "Ponto de Exclamação (!)",
+    "resposta_correta": 0,
+    "explicacao": "A exclamação indica espanto, admiração ou susto.",
+    "emoji": "❗"
+  },
+  {
+    "id": 152,
+    "materia": "portugues",
+    "ano": 3,
+    "pergunta": "O coletivo (grupo) de peixes se chama:",
+    "opcoes": [
+      "Cardume",
+      "Bando",
+      "Matilha"
+    ],
+    "resposta": "Cardume",
+    "resposta_correta": 0,
+    "explicacao": "Cardume é o nome dado a um conjunto de peixes.",
+    "emoji": "🐟"
+  },
+  {
+    "id": 153,
+    "materia": "portugues",
+    "ano": 3,
+    "pergunta": "No texto \"Ontem nós brincamos muito\", a palavra ONTEM indica:",
+    "opcoes": [
+      "Tempo passado",
+      "Tempo futuro",
+      "Lugar"
+    ],
+    "resposta": "Tempo passado",
+    "resposta_correta": 0,
+    "explicacao": "Ontem marca algo que já aconteceu (passado).",
+    "emoji": "🕰️"
+  },
+  {
+    "id": 154,
+    "materia": "portugues",
+    "ano": 3,
+    "pergunta": "A história diz que a menina correu muito. A palavra \"muito\" é:",
+    "opcoes": [
+      "Advérbio de intensidade",
+      "Verbo",
+      "Nome"
+    ],
+    "resposta": "Advérbio de intensidade",
+    "resposta_correta": 0,
+    "explicacao": "Indica a quantidade/intensidade com que a ação ocorreu.",
+    "emoji": "🏃♀️"
+  },
+  {
+    "id": 155,
+    "materia": "portugues",
+    "ano": 3,
+    "pergunta": "Qual dessas palavras está no feminino?",
+    "opcoes": [
+      "A rainha",
+      "O rei",
+      "O príncipe"
+    ],
+    "resposta": "A rainha",
+    "resposta_correta": 0,
+    "explicacao": "Rainha é o feminino de rei.",
+    "emoji": "👑"
+  },
+  {
+    "id": 156,
+    "materia": "portugues",
+    "ano": 3,
+    "pergunta": "Se o céu estava \"estrelado\", significa que:",
+    "opcoes": [
+      "Tinha muitas estrelas",
+      "Estava chovendo",
+      "Era dia"
+    ],
+    "resposta": "Tinha muitas estrelas",
+    "resposta_correta": 0,
+    "explicacao": "A palavra estrelado deriva de estrela, indicando muitas no céu.",
+    "emoji": "🌌"
+  },
+  {
+    "id": 157,
+    "materia": "portugues",
+    "ano": 3,
+    "pergunta": "Qual é o sujeito (de quem se fala) na frase: \"O cão latiu alto\"?",
+    "opcoes": [
+      "O cão",
+      "Latiu",
+      "Alto"
+    ],
+    "resposta": "O cão",
+    "resposta_correta": 0,
+    "explicacao": "O sujeito é quem pratica a ação do verbo (latir).",
+    "emoji": "🐕"
+  },
+  {
+    "id": 158,
+    "materia": "portugues",
+    "ano": 3,
+    "pergunta": "Complete com G ou J: __enipapo.",
+    "opcoes": [
+      "J",
+      "G",
+      "X"
+    ],
+    "resposta": "J",
+    "resposta_correta": 0,
+    "explicacao": "As frutas de origem tupi geralmente são escritas com J.",
+    "emoji": "🌳"
+  },
+  {
+    "id": 159,
+    "materia": "portugues",
+    "ano": 3,
+    "pergunta": "Um texto com instruções de como preparar uma comida é uma:",
+    "opcoes": [
+      "Receita",
+      "Poesia",
+      "Notícia"
+    ],
+    "resposta": "Receita",
+    "resposta_correta": 0,
+    "explicacao": "Receitas culinárias ensinam a preparar alimentos.",
+    "emoji": "🍳"
+  },
+  {
+    "id": 160,
+    "materia": "portugues",
+    "ano": 3,
+    "pergunta": "A palavra \"CAFÉ\" é paroxítona ou oxítona?",
+    "opcoes": [
+      "Oxítona (sílaba forte no final)",
+      "Paroxítona (sílaba forte no meio)",
+      "Proparoxítona"
+    ],
+    "resposta": "Oxítona (sílaba forte no final)",
+    "resposta_correta": 0,
+    "explicacao": "A última sílaba (FÉ) é a mais forte.",
+    "emoji": "☕"
+  },
+  {
+    "id": 161,
+    "materia": "portugues",
+    "ano": 4,
+    "pergunta": "Na frase \"Ele comeu o lanche\", a palavra \"Ele\" é um:",
+    "opcoes": [
+      "Pronome",
+      "Adjetivo",
+      "Substantivo"
+    ],
+    "resposta": "Pronome",
+    "resposta_correta": 0,
+    "explicacao": "Os pronomes substituem os nomes (ex: Ele no lugar de João).",
+    "emoji": "👦"
+  },
+  {
+    "id": 162,
+    "materia": "portugues",
+    "ano": 4,
+    "pergunta": "Qual frase está no FUTURO?",
+    "opcoes": [
+      "Eu viajarei amanhã.",
+      "Eu viajei ontem.",
+      "Eu viajo hoje."
+    ],
+    "resposta": "Eu viajarei amanhã.",
+    "resposta_correta": 0,
+    "explicacao": "Viajarei indica uma ação que ainda vai acontecer.",
+    "emoji": "✈️"
+  },
+  {
+    "id": 163,
+    "materia": "portugues",
+    "ano": 4,
+    "pergunta": "A palavra \"PÁSSARO\" leva acento porque:",
+    "opcoes": [
+      "Todas as proparoxítonas são acentuadas",
+      "Termina com O",
+      "Não tem motivo"
+    ],
+    "resposta": "Todas as proparoxítonas são acentuadas",
+    "resposta_correta": 0,
+    "explicacao": "A sílaba tônica é a antepenúltima (PÁS).",
+    "emoji": "🐦"
+  },
+  {
+    "id": 164,
+    "materia": "portugues",
+    "ano": 4,
+    "pergunta": "Qual par de palavras são Sinônimos (têm o mesmo sentido)?",
+    "opcoes": [
+      "Alegre e Contente",
+      "Lindo e Feio",
+      "Dia e Noite"
+    ],
+    "resposta": "Alegre e Contente",
+    "resposta_correta": 0,
+    "explicacao": "Sinônimos são palavras diferentes com significados iguais ou muito parecidos.",
+    "emoji": "😁"
+  },
+  {
+    "id": 165,
+    "materia": "portugues",
+    "ano": 4,
+    "pergunta": "Na frase \"A menina gosta de ler\", o verbo está no infinitivo (sua forma base). Qual é?",
+    "opcoes": [
+      "ler",
+      "menina",
+      "gosta"
+    ],
+    "resposta": "ler",
+    "resposta_correta": 0,
+    "explicacao": "Os verbos no infinitivo terminam em AR, ER, IR.",
+    "emoji": "📖"
+  },
+  {
+    "id": 166,
+    "materia": "portugues",
+    "ano": 4,
+    "pergunta": "O que usamos para indicar a fala de um personagem em uma história?",
+    "opcoes": [
+      "Travessão (—)",
+      "Ponto Final (.)",
+      "Ponto e vírgula (;)"
+    ],
+    "resposta": "Travessão (—)",
+    "resposta_correta": 0,
+    "explicacao": "O travessão introduz o discurso direto.",
+    "emoji": "💬"
+  },
+  {
+    "id": 167,
+    "materia": "portugues",
+    "ano": 4,
+    "pergunta": "Em \"Cachorro-quente\", temos uma palavra formada por:",
+    "opcoes": [
+      "Composição (duas palavras que viram uma)",
+      "Apenas um adjetivo",
+      "Verbo e Nome"
+    ],
+    "resposta": "Composição (duas palavras que viram uma)",
+    "resposta_correta": 0,
+    "explicacao": "Duas palavras com hífen que formam um novo significado (Substantivo Composto).",
+    "emoji": "🌭"
+  },
+  {
+    "id": 168,
+    "materia": "portugues",
+    "ano": 4,
+    "pergunta": "A frase \"Eu não quero ir.\" tem sentido:",
+    "opcoes": [
+      "Negativo",
+      "Afirmativo",
+      "Interrogativo"
+    ],
+    "resposta": "Negativo",
+    "resposta_correta": 0,
+    "explicacao": "A palavra \"não\" exprime negação.",
+    "emoji": "🚫"
+  },
+  {
+    "id": 169,
+    "materia": "portugues",
+    "ano": 4,
+    "pergunta": "Qual palavra indica o lugar onde as ações da história acontecem?",
+    "opcoes": [
+      "Cenário / Espaço",
+      "Personagem",
+      "Tempo"
+    ],
+    "resposta": "Cenário / Espaço",
+    "resposta_correta": 0,
+    "explicacao": "O cenário é o ambiente físico da narrativa.",
+    "emoji": "🎭"
+  },
+  {
+    "id": 170,
+    "materia": "portugues",
+    "ano": 4,
+    "pergunta": "Encontre a grafia correta com X ou CH:",
+    "opcoes": [
+      "Xícara",
+      "Chícara",
+      "Chicara"
+    ],
+    "resposta": "Xícara",
+    "resposta_correta": 0,
+    "explicacao": "A palavra xícara escreve-se sempre com X.",
+    "emoji": "☕"
+  },
+  {
+    "id": 171,
+    "materia": "portugues",
+    "ano": 4,
+    "pergunta": "Qual conjunção dá ideia de adição na frase: \"Estudei ___ brinquei\"?",
+    "opcoes": [
+      "e",
+      "mas",
+      "ou"
+    ],
+    "resposta": "e",
+    "resposta_correta": 0,
+    "explicacao": "O \"e\" soma as duas ações (estudar + brincar).",
+    "emoji": "➕"
+  },
+  {
+    "id": 172,
+    "materia": "portugues",
+    "ano": 4,
+    "pergunta": "Na frase \"Nós fomos ao cinema\", o verbo concorda com qual pessoa?",
+    "opcoes": [
+      "1ª pessoa do plural (Nós)",
+      "3ª pessoa (Eles)",
+      "1ª pessoa do singular (Eu)"
+    ],
+    "resposta": "1ª pessoa do plural (Nós)",
+    "resposta_correta": 0,
+    "explicacao": "\"Fomos\" é conjugado para o pronome \"Nós\".",
+    "emoji": "🎬"
+  },
+  {
+    "id": 173,
+    "materia": "portugues",
+    "ano": 4,
+    "pergunta": "Um texto poético é dividido em linhas e blocos chamados:",
+    "opcoes": [
+      "Versos e Estrofes",
+      "Parágrafos e Capítulos",
+      "Notícias e Manchetes"
+    ],
+    "resposta": "Versos e Estrofes",
+    "resposta_correta": 0,
+    "explicacao": "O poema usa versos (cada linha) e estrofes (o grupo de linhas).",
+    "emoji": "📜"
+  },
+  {
+    "id": 174,
+    "materia": "portugues",
+    "ano": 4,
+    "pergunta": "Qual palavra é um numeral?",
+    "opcoes": [
+      "Primeiro",
+      "Feliz",
+      "Correr"
+    ],
+    "resposta": "Primeiro",
+    "resposta_correta": 0,
+    "explicacao": "Primeiro é um numeral ordinal que indica posição/ordem.",
+    "emoji": "🥇"
+  },
+  {
+    "id": 175,
+    "materia": "portugues",
+    "ano": 4,
+    "pergunta": "Quando lemos uma reportagem no jornal, ela serve para:",
+    "opcoes": [
+      "Informar sobre um fato real",
+      "Contar um conto de fadas",
+      "Ensinar uma receita"
+    ],
+    "resposta": "Informar sobre um fato real",
+    "resposta_correta": 0,
+    "explicacao": "Textos jornalísticos têm a função de informar.",
+    "emoji": "📰"
+  },
+  {
+    "id": 176,
+    "materia": "portugues",
+    "ano": 4,
+    "pergunta": "A separação de sílabas correta da palavra \"PÁSSARO\" é:",
+    "opcoes": [
+      "PÁS-SA-RO",
+      "PÁ-SSA-RO",
+      "PASSA-RO"
+    ],
+    "resposta": "PÁS-SA-RO",
+    "resposta_correta": 0,
+    "explicacao": "Letras iguais como \"SS\" não ficam na mesma sílaba.",
+    "emoji": "🐦"
+  },
+  {
+    "id": 177,
+    "materia": "portugues",
+    "ano": 4,
+    "pergunta": "A frase \"Puxa, que lindo!\" expressa:",
+    "opcoes": [
+      "Admiração/Emoção",
+      "Uma dúvida",
+      "Uma ordem"
+    ],
+    "resposta": "Admiração/Emoção",
+    "resposta_correta": 0,
+    "explicacao": "A interjeição \"Puxa!\" junto da exclamação marcam o sentimento.",
+    "emoji": "✨"
+  },
+  {
+    "id": 178,
+    "materia": "portugues",
+    "ano": 4,
+    "pergunta": "Qual palavra é paroxítona terminada em ditongo e por isso leva acento?",
+    "opcoes": [
+      "História",
+      "Café",
+      "Sabiá"
+    ],
+    "resposta": "História",
+    "resposta_correta": 0,
+    "explicacao": "His-tó-ria. A sílaba forte é TÓ e termina em ia (ditongo).",
+    "emoji": "📖"
+  },
+  {
+    "id": 179,
+    "materia": "portugues",
+    "ano": 4,
+    "pergunta": "Se o cachorro é \"manso\", o antônimo seria:",
+    "opcoes": [
+      "Bravo",
+      "Peludo",
+      "Pequeno"
+    ],
+    "resposta": "Bravo",
+    "resposta_correta": 0,
+    "explicacao": "Bravo ou feroz é o oposto de manso.",
+    "emoji": "🐕"
+  },
+  {
+    "id": 180,
+    "materia": "portugues",
+    "ano": 4,
+    "pergunta": "Em \"Caminhamos rapidamente\", a palavra \"rapidamente\" indica:",
+    "opcoes": [
+      "Modo",
+      "Lugar",
+      "Tempo"
+    ],
+    "resposta": "Modo",
+    "resposta_correta": 0,
+    "explicacao": "Indica a maneira (como) a ação foi feita.",
+    "emoji": "🏃"
+  },
+  {
+    "id": 181,
+    "materia": "portugues",
+    "ano": 5,
+    "pergunta": "O que garante que um texto faça sentido do começo ao fim?",
+    "opcoes": [
+      "Coerência",
+      "Rimas",
+      "Apenas ter letras maiúsculas"
+    ],
+    "resposta": "Coerência",
+    "resposta_correta": 0,
+    "explicacao": "A coerência é a lógica interna que dá sentido ao texto.",
+    "emoji": "🧠"
+  },
+  {
+    "id": 182,
+    "materia": "portugues",
+    "ano": 5,
+    "pergunta": "No texto: \"O menino caiu, porém não chorou.\" A conjunção \"porém\" indica:",
+    "opcoes": [
+      "Ideia de oposição",
+      "Soma de ideias",
+      "Causa da queda"
+    ],
+    "resposta": "Ideia de oposição",
+    "resposta_correta": 0,
+    "explicacao": "Porém (como mas, contudo) introduz uma quebra de expectativa.",
+    "emoji": "🤕"
+  },
+  {
+    "id": 183,
+    "materia": "portugues",
+    "ano": 5,
+    "pergunta": "A locução adjetiva \"de rei\" pode ser substituída pelo adjetivo:",
+    "opcoes": [
+      "Real",
+      "Reino",
+      "Régio (ou Real)"
+    ],
+    "resposta": "Régio (ou Real)",
+    "resposta_correta": 2,
+    "explicacao": "Um tratamento de rei é um tratamento real.",
+    "emoji": "👑"
+  },
+  {
+    "id": 184,
+    "materia": "portugues",
+    "ano": 5,
+    "pergunta": "Leia: \"A noite estava calma e as estrelas brilhavam.\" A vírgula (se houvesse) antes do \"e\" seria errada, por quê?",
+    "opcoes": [
+      "Porque não se separa sujeito de verbo sem motivo.",
+      "Porque a regra é sempre usar.",
+      "Porque as estrelas são brilhantes."
+    ],
+    "resposta": "Porque não se separa sujeito de verbo sem motivo.",
+    "resposta_correta": 0,
+    "explicacao": "Neste caso, o aditivo \"e\" liga orações, mas a pontuação básica pede evitar vírgula antes do e se os sujeitos não mudam bruscamente.",
+    "emoji": "⭐"
+  },
+  {
+    "id": 185,
+    "materia": "portugues",
+    "ano": 5,
+    "pergunta": "Qual é o sentido figurado (conotativo) na frase: \"João é um touro trabalhando\"?",
+    "opcoes": [
+      "João é forte/trabalhador",
+      "João tem chifres",
+      "João vive no pasto"
+    ],
+    "resposta": "João é forte/trabalhador",
+    "resposta_correta": 0,
+    "explicacao": "Foi usada uma metáfora para indicar a força dele.",
+    "emoji": "🐂"
+  },
+  {
+    "id": 186,
+    "materia": "portugues",
+    "ano": 5,
+    "pergunta": "Se o texto diz \"O gato pulou graciosamente\", \"graciosamente\" é um advérbio de:",
+    "opcoes": [
+      "Modo",
+      "Tempo",
+      "Intensidade"
+    ],
+    "resposta": "Modo",
+    "resposta_correta": 0,
+    "explicacao": "O sufixo \"mente\" normalmente forma advérbios de modo.",
+    "emoji": "🐈"
+  },
+  {
+    "id": 187,
+    "materia": "portugues",
+    "ano": 5,
+    "pergunta": "Um texto com opinião do autor sobre uma notícia é um:",
+    "opcoes": [
+      "Artigo de opinião",
+      "Fábula",
+      "Receita culinária"
+    ],
+    "resposta": "Artigo de opinião",
+    "resposta_correta": 0,
+    "explicacao": "Textos argumentativos expõem o ponto de vista do autor.",
+    "emoji": "✍️"
+  },
+  {
+    "id": 188,
+    "materia": "portugues",
+    "ano": 5,
+    "pergunta": "O trecho \"A árvore era alta.\" Qual adjetivo está flexionado no grau superlativo?",
+    "opcoes": [
+      "Altíssima",
+      "Mais alta que",
+      "Alta"
+    ],
+    "resposta": "Altíssima",
+    "resposta_correta": 0,
+    "explicacao": "O superlativo absoluto sintético de alta é altíssima.",
+    "emoji": "🌲"
+  },
+  {
+    "id": 189,
+    "materia": "portugues",
+    "ano": 5,
+    "pergunta": "Leia: \"Os alunos compraram os livros. Eles adoraram a leitura\". O pronome \"Eles\" se refere a quem?",
+    "opcoes": [
+      "Aos alunos",
+      "Aos livros",
+      "À leitura"
+    ],
+    "resposta": "Aos alunos",
+    "resposta_correta": 0,
+    "explicacao": "A coesão textual usa pronomes para evitar repetições.",
+    "emoji": "👦"
+  },
+  {
+    "id": 190,
+    "materia": "portugues",
+    "ano": 5,
+    "pergunta": "O texto conta sobre um rio muito calmo. Qual palavra é sinônimo literário para calmo?",
+    "opcoes": [
+      "Sereno",
+      "Agitado",
+      "Veloz"
+    ],
+    "resposta": "Sereno",
+    "resposta_correta": 0,
+    "explicacao": "Sereno indica algo pacífico, brando e calmo.",
+    "emoji": "🌊"
+  },
+  {
+    "id": 191,
+    "materia": "portugues",
+    "ano": 5,
+    "pergunta": "Identifique o erro de concordância: \"Nós vai no parque amanhã\". O correto é:",
+    "opcoes": [
+      "Nós vamos ao parque amanhã",
+      "A gente vamos no parque",
+      "Nós fomos ao parque amanhã"
+    ],
+    "resposta": "Nós vamos ao parque amanhã",
+    "resposta_correta": 0,
+    "explicacao": "O pronome \"Nós\" exige o verbo na 1ª pessoa do plural.",
+    "emoji": "🎢"
+  },
+  {
+    "id": 192,
+    "materia": "portugues",
+    "ano": 5,
+    "pergunta": "O verbo no tempo Pretérito Perfeito indica algo que:",
+    "opcoes": [
+      "Começou e terminou no passado",
+      "Ainda está acontecendo",
+      "Vai acontecer amanhã"
+    ],
+    "resposta": "Começou e terminou no passado",
+    "resposta_correta": 0,
+    "explicacao": "Ex: \"Eu li o livro\". A ação foi completamente finalizada.",
+    "emoji": "🕰️"
+  },
+  {
+    "id": 193,
+    "materia": "portugues",
+    "ano": 5,
+    "pergunta": "Nas histórias em quadrinhos, os balões com \"nuvenzinhas\" indicam:",
+    "opcoes": [
+      "Pensamento",
+      "Grito",
+      "Fala comum"
+    ],
+    "resposta": "Pensamento",
+    "resposta_correta": 0,
+    "explicacao": "Balões em formato de nuvem com bolinhas mostram o que o personagem pensa.",
+    "emoji": "💭"
+  },
+  {
+    "id": 194,
+    "materia": "portugues",
+    "ano": 5,
+    "pergunta": "Na frase \"A menina dividiu o bolo\", quem é o objeto direto da ação?",
+    "opcoes": [
+      "o bolo",
+      "a menina",
+      "dividiu"
+    ],
+    "resposta": "o bolo",
+    "resposta_correta": 0,
+    "explicacao": "O bolo é o alvo da ação de dividir feita pela menina.",
+    "emoji": "🍰"
+  },
+  {
+    "id": 195,
+    "materia": "portugues",
+    "ano": 5,
+    "pergunta": "Qual palavra tem um Hífen (-) usado corretamente?",
+    "opcoes": [
+      "Guarda-chuva",
+      "Cachorro-quente",
+      "Ambas estão certas"
+    ],
+    "resposta": "Ambas estão certas",
+    "resposta_correta": 2,
+    "explicacao": "São palavras compostas que mantêm o hífen pelas regras ortográficas.",
+    "emoji": "🌂"
+  },
+  {
+    "id": 196,
+    "materia": "portugues",
+    "ano": 5,
+    "pergunta": "Quando um texto relata as memórias e a vida de uma pessoa importante, escrito por ela mesma, chamamos de:",
+    "opcoes": [
+      "Autobiografia",
+      "Bula de Remédio",
+      "Diário fictício"
+    ],
+    "resposta": "Autobiografia",
+    "resposta_correta": 0,
+    "explicacao": "Auto (si mesmo) + bio (vida) + grafia (escrita).",
+    "emoji": "📖"
+  },
+  {
+    "id": 197,
+    "materia": "portugues",
+    "ano": 5,
+    "pergunta": "Em \"Foi o vento QUE derrubou o vaso\", a palavra em destaque atua como:",
+    "opcoes": [
+      "Pronome Relativo",
+      "Verbo",
+      "Adjetivo"
+    ],
+    "resposta": "Pronome Relativo",
+    "resposta_correta": 0,
+    "explicacao": "Retoma o termo anterior (vento) conectando a frase.",
+    "emoji": "💨"
+  },
+  {
+    "id": 198,
+    "materia": "portugues",
+    "ano": 5,
+    "pergunta": "Uso de Porque, Por que, Porquê, Por quê. Em perguntas no início da frase, usamos:",
+    "opcoes": [
+      "Por que (separado e sem acento)",
+      "Porque (junto)",
+      "Porquê (junto com acento)"
+    ],
+    "resposta": "Por que (separado e sem acento)",
+    "resposta_correta": 0,
+    "explicacao": "Início de interrogação sempre se usa \"Por que\".",
+    "emoji": "❓"
+  },
+  {
+    "id": 199,
+    "materia": "portugues",
+    "ano": 5,
+    "pergunta": "A floresta era silenciosa. Qual figura de linguagem usamos ao dizer \"A floresta sussurrava segredos\"?",
+    "opcoes": [
+      "Personificação (Dar vida a seres inanimados)",
+      "Metáfora",
+      "Hipérbole (Exagero)"
+    ],
+    "resposta": "Personificação (Dar vida a seres inanimados)",
+    "resposta_correta": 0,
+    "explicacao": "Demos características humanas (sussurrar) à floresta.",
+    "emoji": "🌲"
+  },
+  {
+    "id": 200,
+    "materia": "portugues",
+    "ano": 5,
+    "pergunta": "Complete com MAS ou MAIS: \"Eu quero brincar, ___ tenho que estudar primeiro.\"",
+    "opcoes": [
+      "MAS",
+      "MAIS",
+      "As duas servem"
+    ],
+    "resposta": "MAS",
+    "resposta_correta": 0,
+    "explicacao": "MAS indica oposição/contraste. MAIS indica quantidade.",
+    "emoji": "📚"
+  },
+  {
+    "id": 201,
+    "materia": "ingles",
+    "ano": 1,
+    "pergunta": "What color is the sky?",
+    "opcoes": [
+      "Blue",
+      "Red",
+      "Green"
+    ],
+    "resposta": "Blue",
+    "resposta_correta": 0,
+    "explicacao": "The sky is blue on a sunny day.",
+    "emoji": "🌤️"
+  },
+  {
+    "id": 202,
+    "materia": "ingles",
+    "ano": 1,
+    "pergunta": "What color is an apple usually?",
+    "opcoes": [
+      "Red",
+      "Purple",
+      "Black"
+    ],
+    "resposta": "Red",
+    "resposta_correta": 0,
+    "explicacao": "Apples are usually red or green.",
+    "emoji": "🍎"
+  },
+  {
+    "id": 203,
+    "materia": "ingles",
+    "ano": 1,
+    "pergunta": "What color is a banana?",
+    "opcoes": [
+      "Yellow",
+      "Blue",
+      "Black"
+    ],
+    "resposta": "Yellow",
+    "resposta_correta": 0,
+    "explicacao": "Bananas are yellow when they are ripe.",
+    "emoji": "🍌"
+  },
+  {
+    "id": 204,
+    "materia": "ingles",
+    "ano": 1,
+    "pergunta": "What word means the animal that says \"meow\"?",
+    "opcoes": [
+      "Cat",
+      "Dog",
+      "Cow"
+    ],
+    "resposta": "Cat",
+    "resposta_correta": 0,
+    "explicacao": "The animal that says meow is a cat.",
+    "emoji": "🐈"
+  },
+  {
+    "id": 205,
+    "materia": "ingles",
+    "ano": 1,
+    "pergunta": "What is the number 1 in English?",
+    "opcoes": [
+      "One",
+      "Two",
+      "Three"
+    ],
+    "resposta": "One",
+    "resposta_correta": 0,
+    "explicacao": "O número um em inglês se diz \"One\".",
+    "emoji": "1️⃣"
+  },
+  {
+    "id": 206,
+    "materia": "ingles",
+    "ano": 1,
+    "pergunta": "What color is grass?",
+    "opcoes": [
+      "Green",
+      "Red",
+      "Purple"
+    ],
+    "resposta": "Green",
+    "resposta_correta": 0,
+    "explicacao": "Grass (grama) is green outside.",
+    "emoji": "🌱"
+  },
+  {
+    "id": 207,
+    "materia": "ingles",
+    "ano": 1,
+    "pergunta": "How do we say \"Oi\" in English?",
+    "opcoes": [
+      "Hi / Hello",
+      "Goodbye",
+      "Please"
+    ],
+    "resposta": "Hi / Hello",
+    "resposta_correta": 0,
+    "explicacao": "Usamos Hello ou Hi para dizer Oi.",
+    "emoji": "👋"
+  },
+  {
+    "id": 208,
+    "materia": "ingles",
+    "ano": 1,
+    "pergunta": "What is the number 3 in English?",
+    "opcoes": [
+      "Three",
+      "Five",
+      "Four"
+    ],
+    "resposta": "Three",
+    "resposta_correta": 0,
+    "explicacao": "Um, dois, TRÊS: One, two, THREE.",
+    "emoji": "3️⃣"
+  },
+  {
+    "id": 209,
+    "materia": "ingles",
+    "ano": 1,
+    "pergunta": "What word means the animal that says \"woof\"?",
+    "opcoes": [
+      "Dog",
+      "Cat",
+      "Cow"
+    ],
+    "resposta": "Dog",
+    "resposta_correta": 0,
+    "explicacao": "Dog says woof.",
+    "emoji": "🐕"
+  },
+  {
+    "id": 210,
+    "materia": "ingles",
+    "ano": 1,
+    "pergunta": "Which word means a house?",
+    "opcoes": [
+      "House / Home",
+      "Car",
+      "Tree"
+    ],
+    "resposta": "House / Home",
+    "resposta_correta": 0,
+    "explicacao": "House is the word for casa.",
+    "emoji": "🏠"
+  },
+  {
+    "id": 211,
+    "materia": "ingles",
+    "ano": 1,
+    "pergunta": "What color is the moon?",
+    "opcoes": [
+      "White",
+      "Pink",
+      "Orange"
+    ],
+    "resposta": "White",
+    "resposta_correta": 0,
+    "explicacao": "The moon is white (branca) in the night sky.",
+    "emoji": "🌕"
+  },
+  {
+    "id": 212,
+    "materia": "ingles",
+    "ano": 1,
+    "pergunta": "How do we say \"Obrigado\"?",
+    "opcoes": [
+      "Thank you",
+      "Yes",
+      "No"
+    ],
+    "resposta": "Thank you",
+    "resposta_correta": 0,
+    "explicacao": "Thank you means obrigado.",
+    "emoji": "🙏"
+  },
+  {
+    "id": 213,
+    "materia": "ingles",
+    "ano": 1,
+    "pergunta": "What is the number 5?",
+    "opcoes": [
+      "Five",
+      "Ten",
+      "Two"
+    ],
+    "resposta": "Five",
+    "resposta_correta": 0,
+    "explicacao": "The number 5 is Five.",
+    "emoji": "5️⃣"
+  },
+  {
+    "id": 214,
+    "materia": "ingles",
+    "ano": 1,
+    "pergunta": "Which word is an animal with a long trunk (tromba)?",
+    "opcoes": [
+      "Elephant",
+      "Tiger",
+      "Bird"
+    ],
+    "resposta": "Elephant",
+    "resposta_correta": 0,
+    "explicacao": "Elephant is the animal with a trunk.",
+    "emoji": "🐘"
+  },
+  {
+    "id": 215,
+    "materia": "ingles",
+    "ano": 1,
+    "pergunta": "What color is the frog?",
+    "opcoes": [
+      "Green",
+      "Brown",
+      "Blue"
+    ],
+    "resposta": "Green",
+    "resposta_correta": 0,
+    "explicacao": "The frog (sapo) is green.",
+    "emoji": "🐸"
+  },
+  {
+    "id": 216,
+    "materia": "ingles",
+    "ano": 1,
+    "pergunta": "What is a \"Boy\"?",
+    "opcoes": [
+      "Um menino",
+      "Uma menina",
+      "Um cachorro"
+    ],
+    "resposta": "Um menino",
+    "resposta_correta": 0,
+    "explicacao": "Boy significa menino.",
+    "emoji": "👦"
+  },
+  {
+    "id": 217,
+    "materia": "ingles",
+    "ano": 1,
+    "pergunta": "What is a \"Girl\"?",
+    "opcoes": [
+      "Uma menina",
+      "Um menino",
+      "Um gato"
+    ],
+    "resposta": "Uma menina",
+    "resposta_correta": 0,
+    "explicacao": "Girl significa menina.",
+    "emoji": "👧"
+  },
+  {
+    "id": 218,
+    "materia": "ingles",
+    "ano": 1,
+    "pergunta": "How do we say \"Tchau\"?",
+    "opcoes": [
+      "Bye / Goodbye",
+      "Hello",
+      "Please"
+    ],
+    "resposta": "Bye / Goodbye",
+    "resposta_correta": 0,
+    "explicacao": "Goodbye é a forma de despedida.",
+    "emoji": "👋"
+  },
+  {
+    "id": 219,
+    "materia": "ingles",
+    "ano": 1,
+    "pergunta": "What color is a lemon?",
+    "opcoes": [
+      "Yellow",
+      "Green",
+      "Blue"
+    ],
+    "resposta": "Yellow",
+    "resposta_correta": 0,
+    "explicacao": "A lemon (limão siciliano) is yellow.",
+    "emoji": "🍋"
+  },
+  {
+    "id": 220,
+    "materia": "ingles",
+    "ano": 1,
+    "pergunta": "Which animal swims in the water?",
+    "opcoes": [
+      "Fish",
+      "Bird",
+      "Monkey"
+    ],
+    "resposta": "Fish",
+    "resposta_correta": 0,
+    "explicacao": "Fish (peixe) swims in the water.",
+    "emoji": "🐟"
+  },
+  {
+    "id": 221,
+    "materia": "ingles",
+    "ano": 2,
+    "pergunta": "How do we say \"Mãe\" in English?",
+    "opcoes": [
+      "Mother (Mom)",
+      "Father (Dad)",
+      "Brother"
+    ],
+    "resposta": "Mother (Mom)",
+    "resposta_correta": 0,
+    "explicacao": "Mother ou Mom significa mãe.",
+    "emoji": "👩👦"
+  },
+  {
+    "id": 222,
+    "materia": "ingles",
+    "ano": 2,
+    "pergunta": "Which animal is small and likes cheese?",
+    "opcoes": [
+      "Mouse",
+      "Lion",
+      "Horse"
+    ],
+    "resposta": "Mouse",
+    "resposta_correta": 0,
+    "explicacao": "A mouse (rato) is small and likes cheese.",
+    "emoji": "🐭"
+  },
+  {
+    "id": 223,
+    "materia": "ingles",
+    "ano": 2,
+    "pergunta": "What is a \"Book\"?",
+    "opcoes": [
+      "Um livro",
+      "Um lápis",
+      "Uma borracha"
+    ],
+    "resposta": "Um livro",
+    "resposta_correta": 0,
+    "explicacao": "Usamos o book para ler.",
+    "emoji": "📚"
+  },
+  {
+    "id": 224,
+    "materia": "ingles",
+    "ano": 2,
+    "pergunta": "How do we say \"Pai\" in English?",
+    "opcoes": [
+      "Father (Dad)",
+      "Sister",
+      "Uncle"
+    ],
+    "resposta": "Father (Dad)",
+    "resposta_correta": 0,
+    "explicacao": "Father ou Dad significa pai.",
+    "emoji": "👨👧"
+  },
+  {
+    "id": 225,
+    "materia": "ingles",
+    "ano": 2,
+    "pergunta": "What is a \"Pencil\"?",
+    "opcoes": [
+      "Um lápis",
+      "Uma caneta",
+      "Uma mesa"
+    ],
+    "resposta": "Um lápis",
+    "resposta_correta": 0,
+    "explicacao": "Pencil é usado para escrever e desenhar.",
+    "emoji": "✏️"
+  },
+  {
+    "id": 226,
+    "materia": "ingles",
+    "ano": 2,
+    "pergunta": "Which animal is described by \"long neck, eats leaves\"?",
+    "opcoes": [
+      "Giraffe",
+      "Elephant",
+      "Rabbit"
+    ],
+    "resposta": "Giraffe",
+    "resposta_correta": 0,
+    "explicacao": "A giraffe has a long neck.",
+    "emoji": "🦒"
+  },
+  {
+    "id": 227,
+    "materia": "ingles",
+    "ano": 2,
+    "pergunta": "What is the color of the Sun?",
+    "opcoes": [
+      "Yellow",
+      "Pink",
+      "Black"
+    ],
+    "resposta": "Yellow",
+    "resposta_correta": 0,
+    "explicacao": "The sun is yellow (amarelo).",
+    "emoji": "☀️"
+  },
+  {
+    "id": 228,
+    "materia": "ingles",
+    "ano": 2,
+    "pergunta": "What is the animal that likes carrots and hops?",
+    "opcoes": [
+      "Rabbit",
+      "Cat",
+      "Frog"
+    ],
+    "resposta": "Rabbit",
+    "resposta_correta": 0,
+    "explicacao": "A rabbit (coelho) likes carrots and hops.",
+    "emoji": "🐰"
+  },
+  {
+    "id": 229,
+    "materia": "ingles",
+    "ano": 2,
+    "pergunta": "Which word means the sound \"moo\"?",
+    "opcoes": [
+      "Cow",
+      "Dog",
+      "Cat"
+    ],
+    "resposta": "Cow",
+    "resposta_correta": 0,
+    "explicacao": "Cow (vaca) says moo.",
+    "emoji": "🐄"
+  },
+  {
+    "id": 230,
+    "materia": "ingles",
+    "ano": 2,
+    "pergunta": "How do we say \"Bom dia\"?",
+    "opcoes": [
+      "Good morning",
+      "Good night",
+      "Good afternoon"
+    ],
+    "resposta": "Good morning",
+    "resposta_correta": 0,
+    "explicacao": "Morning significa manhã.",
+    "emoji": "🌅"
+  },
+  {
+    "id": 231,
+    "materia": "ingles",
+    "ano": 2,
+    "pergunta": "What is an \"Eraser\"?",
+    "opcoes": [
+      "Uma borracha",
+      "Um caderno",
+      "Um estojo"
+    ],
+    "resposta": "Uma borracha",
+    "resposta_correta": 0,
+    "explicacao": "Eraser é a borracha de apagar.",
+    "emoji": "🧽"
+  },
+  {
+    "id": 232,
+    "materia": "ingles",
+    "ano": 2,
+    "pergunta": "Which animal has stripes and lives in the jungle?",
+    "opcoes": [
+      "Tiger",
+      "Horse",
+      "Monkey"
+    ],
+    "resposta": "Tiger",
+    "resposta_correta": 0,
+    "explicacao": "A tiger (tigre) has stripes.",
+    "emoji": "🐅"
+  },
+  {
+    "id": 233,
+    "materia": "ingles",
+    "ano": 2,
+    "pergunta": "What word means the season when it is very cold?",
+    "opcoes": [
+      "Winter",
+      "Summer",
+      "Autumn"
+    ],
+    "resposta": "Winter",
+    "resposta_correta": 0,
+    "explicacao": "Winter é o inverno.",
+    "emoji": "❄️"
+  },
+  {
+    "id": 234,
+    "materia": "ingles",
+    "ano": 2,
+    "pergunta": "How do we say \"Irmão\"?",
+    "opcoes": [
+      "Brother",
+      "Sister",
+      "Baby"
+    ],
+    "resposta": "Brother",
+    "resposta_correta": 0,
+    "explicacao": "Brother é irmão menino.",
+    "emoji": "👦"
+  },
+  {
+    "id": 235,
+    "materia": "ingles",
+    "ano": 2,
+    "pergunta": "How do we say \"Irmã\"?",
+    "opcoes": [
+      "Sister",
+      "Mother",
+      "Aunt"
+    ],
+    "resposta": "Sister",
+    "resposta_correta": 0,
+    "explicacao": "Sister é irmã menina.",
+    "emoji": "👧"
+  },
+  {
+    "id": 236,
+    "materia": "ingles",
+    "ano": 2,
+    "pergunta": "Which word is the opposite of HOT (Quente)?",
+    "opcoes": [
+      "Cold (Frio)",
+      "Warm (Morno)",
+      "Bright (Brilhante)"
+    ],
+    "resposta": "Cold (Frio)",
+    "resposta_correta": 0,
+    "explicacao": "Cold is the opposite of hot.",
+    "emoji": "🥶"
+  },
+  {
+    "id": 237,
+    "materia": "ingles",
+    "ano": 2,
+    "pergunta": "Which animal hops and says ribbit?",
+    "opcoes": [
+      "Frog",
+      "Bird",
+      "Fish"
+    ],
+    "resposta": "Frog",
+    "resposta_correta": 0,
+    "explicacao": "A frog (sapo) hops and says ribbit.",
+    "emoji": "🐸"
+  },
+  {
+    "id": 238,
+    "materia": "ingles",
+    "ano": 2,
+    "pergunta": "What falls from the clouds? (Ra _ n)",
+    "opcoes": [
+      "Rain",
+      "Ran",
+      "Ring"
+    ],
+    "resposta": "Rain",
+    "resposta_correta": 0,
+    "explicacao": "Rain é chuva.",
+    "emoji": "🌧️"
+  },
+  {
+    "id": 239,
+    "materia": "ingles",
+    "ano": 2,
+    "pergunta": "What do we say when we go to sleep?",
+    "opcoes": [
+      "Good night",
+      "Good morning",
+      "Hello"
+    ],
+    "resposta": "Good night",
+    "resposta_correta": 0,
+    "explicacao": "Usamos Good night para nos despedirmos à noite.",
+    "emoji": "🌜"
+  },
+  {
+    "id": 240,
+    "materia": "ingles",
+    "ano": 2,
+    "pergunta": "Which word means a place where we learn?",
+    "opcoes": [
+      "School",
+      "Store",
+      "Car"
+    ],
+    "resposta": "School",
+    "resposta_correta": 0,
+    "explicacao": "School is the place where we learn (escola).",
+    "emoji": "🏫"
+  },
+  {
+    "id": 241,
+    "materia": "ingles",
+    "ano": 3,
+    "pergunta": "The children \"play\" outside. What does \"play\" mean?",
+    "opcoes": [
+      "Brincar / Jogar",
+      "Dormir",
+      "Comer"
+    ],
+    "resposta": "Brincar / Jogar",
+    "resposta_correta": 0,
+    "explicacao": "To play significa brincar, jogar ou tocar um instrumento.",
+    "emoji": "⚽"
+  },
+  {
+    "id": 242,
+    "materia": "ingles",
+    "ano": 3,
+    "pergunta": "The bird \"sings\" on the tree. What does it do?",
+    "opcoes": [
+      "Canta",
+      "Dança",
+      "Corre"
+    ],
+    "resposta": "Canta",
+    "resposta_correta": 0,
+    "explicacao": "Sing em inglês é cantar.",
+    "emoji": "🎶"
+  },
+  {
+    "id": 243,
+    "materia": "ingles",
+    "ano": 3,
+    "pergunta": "What part of the body do we use to see? (Olhos)",
+    "opcoes": [
+      "Eyes",
+      "Ears",
+      "Nose"
+    ],
+    "resposta": "Eyes",
+    "resposta_correta": 0,
+    "explicacao": "Eyes são os nossos olhos.",
+    "emoji": "👁️"
+  },
+  {
+    "id": 244,
+    "materia": "ingles",
+    "ano": 3,
+    "pergunta": "The dog \"runs\" fast. What does the dog do?",
+    "opcoes": [
+      "Corre",
+      "Dorme",
+      "Come"
+    ],
+    "resposta": "Corre",
+    "resposta_correta": 0,
+    "explicacao": "Run significa correr.",
+    "emoji": "🐕"
+  },
+  {
+    "id": 245,
+    "materia": "ingles",
+    "ano": 3,
+    "pergunta": "What part of the body do we use to hear? (Orelhas)",
+    "opcoes": [
+      "Ears",
+      "Mouth",
+      "Hands"
+    ],
+    "resposta": "Ears",
+    "resposta_correta": 0,
+    "explicacao": "Ears são os ouvidos/orelhas.",
+    "emoji": "👂"
+  },
+  {
+    "id": 246,
+    "materia": "ingles",
+    "ano": 3,
+    "pergunta": "The boy eats an apple. What is he doing?",
+    "opcoes": [
+      "Comendo",
+      "Brincando",
+      "Lendo"
+    ],
+    "resposta": "Comendo",
+    "resposta_correta": 0,
+    "explicacao": "Eat significa comer.",
+    "emoji": "🍎"
+  },
+  {
+    "id": 247,
+    "materia": "ingles",
+    "ano": 3,
+    "pergunta": "What is a \"Head\"?",
+    "opcoes": [
+      "Cabeça",
+      "Pé",
+      "Braço"
+    ],
+    "resposta": "Cabeça",
+    "resposta_correta": 0,
+    "explicacao": "Head é a nossa cabeça.",
+    "emoji": "🗣️"
+  },
+  {
+    "id": 248,
+    "materia": "ingles",
+    "ano": 3,
+    "pergunta": "The fish \"swim\" in the river. What is \"swim\"?",
+    "opcoes": [
+      "Nadar",
+      "Voar",
+      "Pular"
+    ],
+    "resposta": "Nadar",
+    "resposta_correta": 0,
+    "explicacao": "Swim significa nadar.",
+    "emoji": "🐟"
+  },
+  {
+    "id": 249,
+    "materia": "ingles",
+    "ano": 3,
+    "pergunta": "How do we say \"Eu gosto de maçãs\"?",
+    "opcoes": [
+      "I like apples",
+      "I hate apples",
+      "I see apples"
+    ],
+    "resposta": "I like apples",
+    "resposta_correta": 0,
+    "explicacao": "\"I like\" expressa que você gosta de algo.",
+    "emoji": "👍"
+  },
+  {
+    "id": 250,
+    "materia": "ingles",
+    "ano": 3,
+    "pergunta": "My friend has a red bike. What does he have?",
+    "opcoes": [
+      "Uma bicicleta vermelha",
+      "Um carro azul",
+      "Uma bola verde"
+    ],
+    "resposta": "Uma bicicleta vermelha",
+    "resposta_correta": 0,
+    "explicacao": "Red = vermelho, Bike = bicicleta.",
+    "emoji": "🚲"
+  },
+  {
+    "id": 251,
+    "materia": "ingles",
+    "ano": 3,
+    "pergunta": "Which animal is BIG?",
+    "opcoes": [
+      "The elephant",
+      "The mouse",
+      "The ant"
+    ],
+    "resposta": "The elephant",
+    "resposta_correta": 0,
+    "explicacao": "Big significa grande.",
+    "emoji": "🐘"
+  },
+  {
+    "id": 252,
+    "materia": "ingles",
+    "ano": 3,
+    "pergunta": "The sun \"warms\" the flowers. O que o sol faz?",
+    "opcoes": [
+      "Aquece",
+      "Esfria",
+      "Congela"
+    ],
+    "resposta": "Aquece",
+    "resposta_correta": 0,
+    "explicacao": "Warm significa aquecer.",
+    "emoji": "☀️"
+  },
+  {
+    "id": 253,
+    "materia": "ingles",
+    "ano": 3,
+    "pergunta": "Which word is a piece of clothing for our feet?",
+    "opcoes": [
+      "Shoes (sapatos)",
+      "Hat (chapéu)",
+      "Shirt (camisa)"
+    ],
+    "resposta": "Shoes (sapatos)",
+    "resposta_correta": 0,
+    "explicacao": "Usamos shoes nos pés.",
+    "emoji": "👟"
+  },
+  {
+    "id": 254,
+    "materia": "ingles",
+    "ano": 3,
+    "pergunta": "My sister \"drinks\" milk. What does she do?",
+    "opcoes": [
+      "Bebe",
+      "Come",
+      "Canta"
+    ],
+    "resposta": "Bebe",
+    "resposta_correta": 0,
+    "explicacao": "Drink significa beber algo.",
+    "emoji": "🥛"
+  },
+  {
+    "id": 255,
+    "materia": "ingles",
+    "ano": 3,
+    "pergunta": "What color are the leaves on a healthy tree?",
+    "opcoes": [
+      "Green",
+      "Red",
+      "Brown"
+    ],
+    "resposta": "Green",
+    "resposta_correta": 0,
+    "explicacao": "Folhas saudáveis (leaves) geralmente são verdes (green).",
+    "emoji": "🍃"
+  },
+  {
+    "id": 256,
+    "materia": "ingles",
+    "ano": 3,
+    "pergunta": "How do we say \"Feliz\" in English?",
+    "opcoes": [
+      "Happy",
+      "Sad",
+      "Angry"
+    ],
+    "resposta": "Happy",
+    "resposta_correta": 0,
+    "explicacao": "Happy é o estado de estar feliz.",
+    "emoji": "😊"
+  },
+  {
+    "id": 257,
+    "materia": "ingles",
+    "ano": 3,
+    "pergunta": "If someone is \"Sad\", how are they feeling?",
+    "opcoes": [
+      "Triste",
+      "Feliz",
+      "Bravo"
+    ],
+    "resposta": "Triste",
+    "resposta_correta": 0,
+    "explicacao": "Sad significa estar triste.",
+    "emoji": "😢"
+  },
+  {
+    "id": 258,
+    "materia": "ingles",
+    "ano": 3,
+    "pergunta": "The pink flower \"smells\" nice. What does it do?",
+    "opcoes": [
+      "Cheira bem",
+      "Corre rápido",
+      "Faz barulho"
+    ],
+    "resposta": "Cheira bem",
+    "resposta_correta": 0,
+    "explicacao": "Smell refere-se ao sentido do olfato/cheiro.",
+    "emoji": "👃"
+  },
+  {
+    "id": 259,
+    "materia": "ingles",
+    "ano": 3,
+    "pergunta": "What is the opposite of BIG?",
+    "opcoes": [
+      "Small",
+      "Tall",
+      "Fast"
+    ],
+    "resposta": "Small",
+    "resposta_correta": 0,
+    "explicacao": "Small (pequeno) é o contrário de Big (grande).",
+    "emoji": "🐜"
+  },
+  {
+    "id": 260,
+    "materia": "ingles",
+    "ano": 3,
+    "pergunta": "What is a \"T-shirt\"?",
+    "opcoes": [
+      "Camiseta",
+      "Calça",
+      "Meia"
+    ],
+    "resposta": "Camiseta",
+    "resposta_correta": 0,
+    "explicacao": "T-shirt é uma blusa/camiseta comum.",
+    "emoji": "👕"
+  },
+  {
+    "id": 261,
+    "materia": "ingles",
+    "ano": 4,
+    "pergunta": "Which sentence is grammatically correct?",
+    "opcoes": [
+      "The bird is flying.",
+      "The bird are flying.",
+      "The bird is fly."
+    ],
+    "resposta": "The bird is flying.",
+    "resposta_correta": 0,
+    "explicacao": "Para um pássaro (it), usamos \"is\" + o verbo com \"ing\".",
+    "emoji": "🦅"
+  },
+  {
+    "id": 262,
+    "materia": "ingles",
+    "ano": 4,
+    "pergunta": "The sun is bright. What does \"bright\" mean?",
+    "opcoes": [
+      "Brilhante",
+      "Escuro",
+      "Frio"
+    ],
+    "resposta": "Brilhante",
+    "resposta_correta": 0,
+    "explicacao": "Bright refere-se a algo que emite muita luz.",
+    "emoji": "☀️"
+  },
+  {
+    "id": 263,
+    "materia": "ingles",
+    "ano": 4,
+    "pergunta": "Which word is a place on Earth where there is sand and water?",
+    "opcoes": [
+      "Beach",
+      "Mountain",
+      "Forest"
+    ],
+    "resposta": "Beach",
+    "resposta_correta": 0,
+    "explicacao": "A beach (praia) tem areia e o oceano.",
+    "emoji": "🏖️"
+  },
+  {
+    "id": 264,
+    "materia": "ingles",
+    "ano": 4,
+    "pergunta": "Which sentence uses the plural correctly?",
+    "opcoes": [
+      "The cats are sleeping.",
+      "The cats is sleeping.",
+      "The cat are sleep."
+    ],
+    "resposta": "The cats are sleeping.",
+    "resposta_correta": 0,
+    "explicacao": "Para plural (they), usamos o verbo \"are\".",
+    "emoji": "🐈"
+  },
+  {
+    "id": 265,
+    "materia": "ingles",
+    "ano": 4,
+    "pergunta": "Which word means a big body of saltwater?",
+    "opcoes": [
+      "Ocean",
+      "Pond",
+      "River"
+    ],
+    "resposta": "Ocean",
+    "resposta_correta": 0,
+    "explicacao": "Ocean (Oceano) é a maior massa de água.",
+    "emoji": "🌊"
+  },
+  {
+    "id": 266,
+    "materia": "ingles",
+    "ano": 4,
+    "pergunta": "Which sentence describes weather with no sun?",
+    "opcoes": [
+      "It is cloudy.",
+      "It is sunny.",
+      "It is hot."
+    ],
+    "resposta": "It is cloudy.",
+    "resposta_correta": 0,
+    "explicacao": "Cloudy significa que está nublado (cheio de nuvens).",
+    "emoji": "☁️"
+  },
+  {
+    "id": 267,
+    "materia": "ingles",
+    "ano": 4,
+    "pergunta": "What do you buy at a \"Bakery\"?",
+    "opcoes": [
+      "Bread",
+      "Books",
+      "Shoes"
+    ],
+    "resposta": "Bread",
+    "resposta_correta": 0,
+    "explicacao": "Bakery é padaria, onde se compra pão (bread).",
+    "emoji": "🍞"
+  },
+  {
+    "id": 268,
+    "materia": "ingles",
+    "ano": 4,
+    "pergunta": "The earth spins and the moon moves around it. What does \"around\" mean?",
+    "opcoes": [
+      "Ao redor / Em volta",
+      "Em cima",
+      "Abaixo"
+    ],
+    "resposta": "Ao redor / Em volta",
+    "resposta_correta": 0,
+    "explicacao": "Around indica movimento circular ou em volta de algo.",
+    "emoji": "🌍"
+  },
+  {
+    "id": 269,
+    "materia": "ingles",
+    "ano": 4,
+    "pergunta": "Which sentence describes a long river?",
+    "opcoes": [
+      "The river is long.",
+      "The river is tall.",
+      "The river is short."
+    ],
+    "resposta": "The river is long.",
+    "resposta_correta": 0,
+    "explicacao": "Usamos long para comprimento.",
+    "emoji": "🏞️"
+  },
+  {
+    "id": 270,
+    "materia": "ingles",
+    "ano": 4,
+    "pergunta": "What happens when it is \"Rainy\"?",
+    "opcoes": [
+      "It rains (chove).",
+      "It snows (neva).",
+      "The sun shines."
+    ],
+    "resposta": "It rains (chove).",
+    "resposta_correta": 0,
+    "explicacao": "Rainy weather significa tempo chuvoso.",
+    "emoji": "🌧️"
+  },
+  {
+    "id": 271,
+    "materia": "ingles",
+    "ano": 4,
+    "pergunta": "Where can you read and borrow books in the city?",
+    "opcoes": [
+      "Library",
+      "Supermarket",
+      "Hospital"
+    ],
+    "resposta": "Library",
+    "resposta_correta": 0,
+    "explicacao": "Library (Biblioteca) é o lugar dos livros.",
+    "emoji": "📚"
+  },
+  {
+    "id": 272,
+    "materia": "ingles",
+    "ano": 4,
+    "pergunta": "Which sentence is about a high mountain?",
+    "opcoes": [
+      "The mountain is high.",
+      "The mountain is fast.",
+      "The mountain is loud."
+    ],
+    "resposta": "The mountain is high.",
+    "resposta_correta": 0,
+    "explicacao": "High é o adjetivo correto para altitude/montanhas.",
+    "emoji": "⛰️"
+  },
+  {
+    "id": 273,
+    "materia": "ingles",
+    "ano": 4,
+    "pergunta": "Translate: \"Eu estou comendo\".",
+    "opcoes": [
+      "I am eating.",
+      "I eat.",
+      "I was eating."
+    ],
+    "resposta": "I am eating.",
+    "resposta_correta": 0,
+    "explicacao": "O sufixo \"ing\" (Present Continuous) mostra algo acontecendo agora.",
+    "emoji": "🍽️"
+  },
+  {
+    "id": 274,
+    "materia": "ingles",
+    "ano": 4,
+    "pergunta": "Where do you go when you are sick?",
+    "opcoes": [
+      "Hospital",
+      "Park",
+      "Cinema"
+    ],
+    "resposta": "Hospital",
+    "resposta_correta": 0,
+    "explicacao": "Médicos trabalham no Hospital para cuidar de quem está doente.",
+    "emoji": "🏥"
+  },
+  {
+    "id": 275,
+    "materia": "ingles",
+    "ano": 4,
+    "pergunta": "Which word means a place with many trees and wild animals?",
+    "opcoes": [
+      "Forest",
+      "Market",
+      "House"
+    ],
+    "resposta": "Forest",
+    "resposta_correta": 0,
+    "explicacao": "A forest (floresta) é cheia de natureza livre.",
+    "emoji": "🌲"
+  },
+  {
+    "id": 276,
+    "materia": "ingles",
+    "ano": 4,
+    "pergunta": "In a sentence: \"She ___ reading a book.\"",
+    "opcoes": [
+      "is",
+      "are",
+      "am"
+    ],
+    "resposta": "is",
+    "resposta_correta": 0,
+    "explicacao": "Com She, He ou It, usamos o verbo \"is\".",
+    "emoji": "📖"
+  },
+  {
+    "id": 277,
+    "materia": "ingles",
+    "ano": 4,
+    "pergunta": "Which word describes a place where airplanes land?",
+    "opcoes": [
+      "Airport",
+      "Harbor",
+      "Train station"
+    ],
+    "resposta": "Airport",
+    "resposta_correta": 0,
+    "explicacao": "Airport é aeroporto.",
+    "emoji": "✈️"
+  },
+  {
+    "id": 278,
+    "materia": "ingles",
+    "ano": 4,
+    "pergunta": "What is the opposite of FAST?",
+    "opcoes": [
+      "Slow",
+      "Quick",
+      "Loud"
+    ],
+    "resposta": "Slow",
+    "resposta_correta": 0,
+    "explicacao": "Slow (devagar) é o contrário de Fast (rápido).",
+    "emoji": "🐢"
+  },
+  {
+    "id": 279,
+    "materia": "ingles",
+    "ano": 4,
+    "pergunta": "Which word means a place where we see animals from around the world in enclosures?",
+    "opcoes": [
+      "Zoo",
+      "Store",
+      "Library"
+    ],
+    "resposta": "Zoo",
+    "resposta_correta": 0,
+    "explicacao": "Zoo (Zoológico) abriga diversos animais.",
+    "emoji": "🦓"
+  },
+  {
+    "id": 280,
+    "materia": "ingles",
+    "ano": 4,
+    "pergunta": "Complete: \"I ___ a student.\"",
+    "opcoes": [
+      "am",
+      "is",
+      "are"
+    ],
+    "resposta": "am",
+    "resposta_correta": 0,
+    "explicacao": "O pronome I (eu) sempre vem acompanhado de \"am\".",
+    "emoji": "🎓"
+  },
+  {
+    "id": 281,
+    "materia": "ingles",
+    "ano": 5,
+    "pergunta": "Read: \"Anna walks to school every day.\" What does she do?",
+    "opcoes": [
+      "She goes to school on foot.",
+      "She drives a car.",
+      "She sleeps at school."
+    ],
+    "resposta": "She goes to school on foot.",
+    "resposta_correta": 0,
+    "explicacao": "Walks significa caminhar, ir a pé (on foot).",
+    "emoji": "🚶♀️"
+  },
+  {
+    "id": 282,
+    "materia": "ingles",
+    "ano": 5,
+    "pergunta": "The park is \"quiet\" in the morning. Which word is a synonym for quiet?",
+    "opcoes": [
+      "Silent",
+      "Loud",
+      "Fast"
+    ],
+    "resposta": "Silent",
+    "resposta_correta": 0,
+    "explicacao": "Silent (silencioso) tem o mesmo sentido que quiet.",
+    "emoji": "🤫"
+  },
+  {
+    "id": 283,
+    "materia": "ingles",
+    "ano": 5,
+    "pergunta": "He shares his snack with a friend. What does \"shares\" mean?",
+    "opcoes": [
+      "Divide / Compartilha",
+      "Esconde",
+      "Come sozinho"
+    ],
+    "resposta": "Divide / Compartilha",
+    "resposta_correta": 0,
+    "explicacao": "To share é um ato de amizade: compartilhar.",
+    "emoji": "🥪"
+  },
+  {
+    "id": 284,
+    "materia": "ingles",
+    "ano": 5,
+    "pergunta": "The text says: \"The blue bird flew over the garden.\" What is the past tense of FLY?",
+    "opcoes": [
+      "Flew",
+      "Flyed",
+      "Flown"
+    ],
+    "resposta": "Flew",
+    "resposta_correta": 0,
+    "explicacao": "Flew é o verbo irregular passado de Fly.",
+    "emoji": "🕊️"
+  },
+  {
+    "id": 285,
+    "materia": "ingles",
+    "ano": 5,
+    "pergunta": "What is the opposite of EXPENSIVE (Caro)?",
+    "opcoes": [
+      "Cheap (Barato)",
+      "Rich (Rico)",
+      "Big (Grande)"
+    ],
+    "resposta": "Cheap (Barato)",
+    "resposta_correta": 0,
+    "explicacao": "Cheap é o contrário de Expensive.",
+    "emoji": "💰"
+  },
+  {
+    "id": 286,
+    "materia": "ingles",
+    "ano": 5,
+    "pergunta": "In the text, the child finds a \"lost puppy\". O que é um puppy?",
+    "opcoes": [
+      "Filhote de cachorro",
+      "Um brinquedo",
+      "Um gato adulto"
+    ],
+    "resposta": "Filhote de cachorro",
+    "resposta_correta": 0,
+    "explicacao": "Puppy refere-se a um cachorrinho jovem.",
+    "emoji": "🐶"
+  },
+  {
+    "id": 287,
+    "materia": "ingles",
+    "ano": 5,
+    "pergunta": "Which word is similar in meaning to HAPPY?",
+    "opcoes": [
+      "Glad",
+      "Sad",
+      "Angry"
+    ],
+    "resposta": "Glad",
+    "resposta_correta": 0,
+    "explicacao": "Glad significa estar contente ou satisfeito.",
+    "emoji": "😁"
+  },
+  {
+    "id": 288,
+    "materia": "ingles",
+    "ano": 5,
+    "pergunta": "Complete the daily routine: \"I wake ___ at 7 AM.\"",
+    "opcoes": [
+      "up",
+      "down",
+      "in"
+    ],
+    "resposta": "up",
+    "resposta_correta": 0,
+    "explicacao": "O verbo frasal é Wake up (acordar).",
+    "emoji": "⏰"
+  },
+  {
+    "id": 289,
+    "materia": "ingles",
+    "ano": 5,
+    "pergunta": "The river flows \"gently\". Which word means gently?",
+    "opcoes": [
+      "Softly / Suavemente",
+      "Loudly / Alto",
+      "Quickly / Rápido"
+    ],
+    "resposta": "Softly / Suavemente",
+    "resposta_correta": 0,
+    "explicacao": "Gently indica algo delicado, feito com suavidade.",
+    "emoji": "🌊"
+  },
+  {
+    "id": 290,
+    "materia": "ingles",
+    "ano": 5,
+    "pergunta": "The children \"help each other\". What do they do?",
+    "opcoes": [
+      "Eles se ajudam",
+      "Eles brigam",
+      "Eles se ignoram"
+    ],
+    "resposta": "Eles se ajudam",
+    "resposta_correta": 0,
+    "explicacao": "\"Each other\" expressa reciprocidade (um ao outro).",
+    "emoji": "🤝"
+  },
+  {
+    "id": 291,
+    "materia": "ingles",
+    "ano": 5,
+    "pergunta": "Which word means the same as FAST?",
+    "opcoes": [
+      "Quick",
+      "Slow",
+      "Small"
+    ],
+    "resposta": "Quick",
+    "resposta_correta": 0,
+    "explicacao": "Quick e Fast são sinônimos de rápido.",
+    "emoji": "⚡"
+  },
+  {
+    "id": 292,
+    "materia": "ingles",
+    "ano": 5,
+    "pergunta": "What is the opposite of EMPTY (Vazio)?",
+    "opcoes": [
+      "Full (Cheio)",
+      "Dry (Seco)",
+      "Cold (Frio)"
+    ],
+    "resposta": "Full (Cheio)",
+    "resposta_correta": 0,
+    "explicacao": "Um copo que não está vazio, está Full (cheio).",
+    "emoji": "🥛"
+  },
+  {
+    "id": 293,
+    "materia": "ingles",
+    "ano": 5,
+    "pergunta": "The girl planted a tree in the \"yard\". Where is the yard?",
+    "opcoes": [
+      "No quintal",
+      "No telhado",
+      "No quarto"
+    ],
+    "resposta": "No quintal",
+    "resposta_correta": 0,
+    "explicacao": "Yard é a área ao ar livre da casa, o quintal ou pátio.",
+    "emoji": "🏡"
+  },
+  {
+    "id": 294,
+    "materia": "ingles",
+    "ano": 5,
+    "pergunta": "Which word means the same as BIG?",
+    "opcoes": [
+      "Large",
+      "Small",
+      "Narrow"
+    ],
+    "resposta": "Large",
+    "resposta_correta": 0,
+    "explicacao": "Large e Big são palavras que indicam grande tamanho.",
+    "emoji": "🐘"
+  },
+  {
+    "id": 295,
+    "materia": "ingles",
+    "ano": 5,
+    "pergunta": "The story says the fox was \"clever\". What is another word for clever?",
+    "opcoes": [
+      "Smart",
+      "Funny",
+      "Slow"
+    ],
+    "resposta": "Smart",
+    "resposta_correta": 0,
+    "explicacao": "Clever (esperto) tem significado parecido com Smart (inteligente).",
+    "emoji": "🦊"
+  },
+  {
+    "id": 296,
+    "materia": "ingles",
+    "ano": 5,
+    "pergunta": "Which sentence uses the verb TO HAVE correctly?",
+    "opcoes": [
+      "She has a dog.",
+      "She have a dog.",
+      "She is have a dog."
+    ],
+    "resposta": "She has a dog.",
+    "resposta_correta": 0,
+    "explicacao": "Para he, she, it, a conjugação de have muda para HAS.",
+    "emoji": "🐕"
+  },
+  {
+    "id": 297,
+    "materia": "ingles",
+    "ano": 5,
+    "pergunta": "Which word means the opposite of AWAKE (Acordado)?",
+    "opcoes": [
+      "Asleep (Dormindo)",
+      "Happy (Feliz)",
+      "Fast (Rápido)"
+    ],
+    "resposta": "Asleep (Dormindo)",
+    "resposta_correta": 0,
+    "explicacao": "Asleep significa o estado de quem está dormindo.",
+    "emoji": "😴"
+  },
+  {
+    "id": 298,
+    "materia": "ingles",
+    "ano": 5,
+    "pergunta": "What do you say when you ask for a favor?",
+    "opcoes": [
+      "Please",
+      "Sorry",
+      "Goodbye"
+    ],
+    "resposta": "Please",
+    "resposta_correta": 0,
+    "explicacao": "Please é \"Por favor\", usado para pedidos.",
+    "emoji": "🙏"
+  },
+  {
+    "id": 299,
+    "materia": "ingles",
+    "ano": 5,
+    "pergunta": "If the text says \"The sky is cloudy,\" which word has the opposite meaning?",
+    "opcoes": [
+      "Clear",
+      "Cold",
+      "Dark"
+    ],
+    "resposta": "Clear",
+    "resposta_correta": 0,
+    "explicacao": "O oposto de nublado (cloudy) é um céu limpo (clear).",
+    "emoji": "🌤️"
+  },
+  {
+    "id": 300,
+    "materia": "ingles",
+    "ano": 5,
+    "pergunta": "Who is your \"Uncle\"?",
+    "opcoes": [
+      "Meu tio",
+      "Meu pai",
+      "Meu avô"
+    ],
+    "resposta": "Meu tio",
+    "resposta_correta": 0,
+    "explicacao": "O irmão da sua mãe ou do seu pai é seu Uncle.",
+    "emoji": "👨"
+  }
+]
