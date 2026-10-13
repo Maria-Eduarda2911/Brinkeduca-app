@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#06050e">
+<title>Type Blaster — BrincaEduca</title>
+<style>
+  :root { color-scheme: dark; --cyan:#00f0ff; --pink:#ff007f; --purple:#201740; }
+  * { box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
+  html, body { width:100%; height:100%; overflow:hidden; background:#06050e; color:#fff; font-family:'Courier New',monospace; }
+  body { display:flex; align-items:center; justify-content:center; }
+  button { font:inherit; }
+  .game-container { width:100%; max-width:520px; height:100%; max-height:900px; min-height:0; background:#0a0818; position:relative; display:flex; flex-direction:column; overflow:hidden; box-shadow:0 0 30px #00b4d833; }
+  .hud { min-height:48px; background:#0f0c24; border-bottom:2px solid #231c47; display:flex; justify-content:space-between; align-items:center; gap:6px; padding:5px 10px; z-index:2; }
+  .hud-item { font-size:clamp(10px, 2.8vw, 13px); font-weight:bold; letter-spacing:.4px; white-space:nowrap; }
+  .hud-score { color:#ffd166; }
+  .hud-level { color:var(--cyan); }
+  .hud-lives { color:#ff477e; font-size:clamp(12px, 3.4vw, 16px); }
+  .hud-button { border:1px solid #4c3a85; border-radius:7px; color:#fff; background:#201740; padding:6px 8px; font-size:11px; font-weight:bold; cursor:pointer; }
+  #spaceCanvas { display:block; flex:1; min-height:100px; width:100%; background:radial-gradient(circle at center,#120d2e 0%,#06050e 100%); touch-action: manipulation; }
+  .keyboard-mobile { background:#0e0a20; padding:7px 4px max(8px, env(safe-area-inset-bottom)); border-top:2px solid #261d4d; display:flex; flex-direction:column; gap:5px; z-index:2; }
+  .kb-row { display:flex; justify-content:center; gap:clamp(2px, .7vw, 4px); }
+  .kb-key { flex:1; max-width:39px; min-width:0; background:#201740; color:var(--cyan); border:1px solid #3d2c7a; border-bottom:3px solid #140e2b; border-radius:6px; height:clamp(30px, 5.2vh, 40px); padding:0 2px; font-size:clamp(12px, 3.3vw, 16px); font-weight:bold; display:flex; align-items:center; justify-content:center; cursor:pointer; touch-action:manipulation; }
+  .kb-key:active, .kb-key.pressed { transform:translateY(2px); border-bottom-width:1px; background:var(--cyan); color:#000; }
+  .overlay-screen { position:absolute; inset:0; background:rgba(8,6,20,.96); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:24px; text-align:center; z-index:5; gap:14px; }
+  .game-title { font-size:clamp(27px, 8vw, 38px); font-weight:900; color:var(--cyan); text-shadow:0 0 16px var(--cyan),2px 2px var(--pink); letter-spacing:2px; }
+  .game-sub { max-width:340px; font-size:13px; color:#c0badc; line-height:1.55; }
+  .instructions { max-width:340px; padding:12px 14px; border:1px solid #34265f; border-radius:12px; background:#120e28; color:#e5e1ff; font-size:12px; line-height:1.7; }
+  .mode-badge { background:#1d153d; border:2px solid var(--cyan); color:var(--cyan); font-size:12px; font-weight:bold; padding:7px 14px; border-radius:20px; box-shadow:0 0 10px #00f0ff44; }
+  .btn-start { background:var(--pink); color:#fff; border:2px solid #ff77b7; border-bottom:5px solid #99004c; font-size:16px; font-weight:bold; padding:13px 26px; border-radius:12px; cursor:pointer; letter-spacing:.5px; box-shadow:0 0 18px #ff007f55; }
+  .btn-start:active { transform:translateY(3px); border-bottom-width:2px; }
+  .feedback { position:absolute; left:50%; top:58px; transform:translateX(-50%); background:#171032eF; border:1px solid var(--cyan); color:var(--cyan); border-radius:18px; padding:7px 12px; font-size:12px; font-weight:bold; z-index:3; opacity:0; pointer-events:none; transition:opacity .12s; white-space:nowrap; }
+  .feedback.show { opacity:1; }
+  .tiny-note { color:#8e86b8; font-size:10px; line-height:1.4; }
+  @media (min-width:600px) { .game-container { border-left:1px solid #211942; border-right:1px solid #211942; } }
+</style>
+</head>
+<body>
+<div class="game-container" id="gameContainer">
+  <div class="hud">
+    <div class="hud-item hud-score">PONTOS <span id="dispScore">0</span></div>
+    <div class="hud-item hud-level">NÍVEL <span id="dispLevel">1</span></div>
+    <div class="hud-item hud-lives" id="dispLives" aria-label="3 vidas">❤️❤️❤️</div>
+    <button class="hud-button" id="pauseButton" type="button" onclick="togglePause()" aria-label="Pausar jogo">Ⅱ</button>
+  </div>
+  <canvas id="spaceCanvas" aria-label="Campo espacial do jogo Type Blaster"></canvas>
+  <div class="feedback" id="feedback" role="status" aria-live="polite"></div>
+  <div class="keyboard-mobile" id="mobileKeyboard" aria-label="Teclado virtual">
+    <div class="kb-row"><button class="kb-key" onclick="handleVirtualKey('Q')">Q</button><button class="kb-key" onclick="handleVirtualKey('W')">W</button><button class="kb-key" onclick="handleVirtualKey('E')">E</button><button class="kb-key" onclick="handleVirtualKey('R')">R</button><button class="kb-key" onclick="handleVirtualKey('T')">T</button><button class="kb-key" onclick="handleVirtualKey('Y')">Y</button><button class="kb-key" onclick="handleVirtualKey('U')">U</button><button class="kb-key" onclick="handleVirtualKey('I')">I</button><button class="kb-key" onclick="handleVirtualKey('O')">O</button><button class="kb-key" onclick="handleVirtualKey('P')">P</button></div>
+    <div class="kb-row"><button class="kb-key" onclick="handleVirtualKey('A')">A</button><button class="kb-key" onclick="handleVirtualKey('S')">S</button><button class="kb-key" onclick="handleVirtualKey('D')">D</button><button class="kb-key" onclick="handleVirtualKey('F')">F</button><button class="kb-key" onclick="handleVirtualKey('G')">G</button><button class="kb-key" onclick="handleVirtualKey('H')">H</button><button class="kb-key" onclick="handleVirtualKey('J')">J</button><button class="kb-key" onclick="handleVirtualKey('K')">K</button><button class="kb-key" onclick="handleVirtualKey('L')">L</button></div>
+    <div class="kb-row"><button class="kb-key" onclick="handleVirtualKey('Z')">Z</button><button class="kb-key" onclick="handleVirtualKey('X')">X</button><button class="kb-key" onclick="handleVirtualKey('C')">C</button><button class="kb-key" onclick="handleVirtualKey('V')">V</button><button class="kb-key" onclick="handleVirtualKey('B')">B</button><button class="kb-key" onclick="handleVirtualKey('N')">N</button><button class="kb-key" onclick="handleVirtualKey('M')">M</button></div>
+  </div>
+  <div class="overlay-screen" id="overlayScreen">
+    <div class="game-title">TYPE BLASTER</div>
+    <div class="game-sub">Pratique inglês e proteja sua nave! Digite as palavras antes que elas cheguem à linha de defesa.</div>
+    <div class="mode-badge">🚀 MODO INFINITO · 3 VIDAS</div>
+    <div class="instructions"><b>COMO JOGAR</b><br>1. Digite a primeira letra de uma palavra.<br>2. Continue digitando as letras na ordem.<br>3. Destrua a palavra para ganhar pontos.<br>Use o teclado da tela ou o teclado físico.</div>
+    <button class="btn-start" id="startButton" onclick="startGame()">▶ INICIAR JOGO</button>
+    <div class="tiny-note">As palavras são em inglês. Cada letra certa dispara um laser!</div>
+  </div>
+</div>
+<script>
+(() => {
+  'use strict';
+  const canvas = document.getElementById('spaceCanvas');
+  const ctx = canvas.getContext('2d');
+  const overlay = document.getElementById('overlayScreen');
+  const feedback = document.getElementById('feedback');
+  const scoreNode = document.getElementById('dispScore');
+  const livesNode = document.getElementById('dispLives');
+  const levelNode = document.getElementById('dispLevel');
+  const pauseButton = document.getElementById('pauseButton');
+  const WORDS = ['CAT','DOG','SUN','SKY','RED','RUN','EGG','BAT','PIG','BEE','FOX','PEN','CAR','SEA','HAT','ICE','STAR','BLUE','FISH','BOOK','TREE','MILK','BIRD','MOON','BALL','FROG','DUCK','CAKE','RING','GOLD','LION','SNOW','APPLE','HOUSE','GREEN','WATER','HAPPY','SMILE','PLANT','LIGHT'];
+  const audio = { ctx:null, init(){ try { const AC=window.AudioContext||window.webkitAudioContext; if(AC&&!this.ctx)this.ctx=new AC(); if(this.ctx&&this.ctx.state==='suspended')this.ctx.resume(); } catch(_){} }, play(freq,type,duration,endFreq,vol){ if(!this.ctx)return; try { const o=this.ctx.createOscillator(),g=this.ctx.createGain(),now=this.ctx.currentTime; o.type=type;o.frequency.setValueAtTime(freq,now);if(endFreq)o.frequency.exponentialRampToValueAtTime(endFreq,now+duration);g.gain.setValueAtTime(vol,now);g.gain.linearRampToValueAtTime(.005,now+duration);o.connect(g);g.connect(this.ctx.destination);o.start(now);o.stop(now+duration); } catch(_){} }, laser(){this.play(800,'sawtooth',.09,240,.07)}, boom(){this.play(180,'square',.22,40,.12)}, hurt(){this.play(120,'sawtooth',.2,35,.13)}, wrong(){this.play(220,'triangle',.07,150,.045)} };
+  let width=380,height=420,stars=[],words=[],lasers=[],particles=[],currentTarget=null;
+  let playing=false,paused=false,score=0,lives=3,destroyed=0,level=1,lastTime=0,spawnTimer=0,feedbackTimer=null,rafId=0;
+  const ship={x:190,y:385,angle:-Math.PI/2,recoil:0};
+  function resize(){ const rect=canvas.getBoundingClientRect(); if(!rect.width||!rect.height)return; width=Math.max(240,rect.width);height=Math.max(160,rect.height);canvas.width=Math.round(width);canvas.height=Math.round(height);ship.x=width/2;ship.y=height-27;stars=Array.from({length:Math.max(35,Math.round(width*height/6500))},()=>({x:Math.random()*width,y:Math.random()*height,size:Math.random()>.8?2:1,speed:.3+Math.random()*.65}));draw(); }
+  function showFeedback(text,color){feedback.textContent=text;feedback.style.borderColor=color||'#00f0ff';feedback.style.color=color||'#00f0ff';feedback.classList.add('show');clearTimeout(feedbackTimer);feedbackTimer=setTimeout(()=>feedback.classList.remove('show'),650);}
+  function updateHUD(){scoreNode.textContent=score;levelNode.textContent=level;livesNode.textContent='❤️'.repeat(Math.max(0,lives))||'💀';livesNode.setAttribute('aria-label',lives+' vidas restantes');}
+  function startGame(){audio.init();score=0;lives=3;destroyed=0;level=1;words=[];lasers=[];particles=[];currentTarget=null;spawnTimer=0;playing=true;paused=false;lastTime=performance.now();overlay.style.display='none';pauseButton.textContent='Ⅱ';pauseButton.setAttribute('aria-label','Pausar jogo');updateHUD();spawnWord();showFeedback('BOA SORTE, PILOTO!');}
+  function gameOver(){playing=false;paused=false;currentTarget=null;pauseButton.textContent='Ⅱ';overlay.innerHTML='<div class="game-title" style="color:#ff477e;text-shadow:0 0 16px #ff477e">FIM DE JOGO</div><div class="game-sub">Sua nave foi defendida por '+destroyed+' palavras. Continue praticando!</div><div class="mode-badge">⭐ '+score+' PONTOS · NÍVEL '+level+'</div><div class="instructions">Palavras destruídas: <b>'+destroyed+'</b><br>Você pode tentar novamente para superar sua pontuação.</div><button class="btn-start" onclick="window.typeBlasterStart()">↻ JOGAR NOVAMENTE</button><div class="tiny-note">Dica: observe a primeira letra antes de começar a digitar.</div>';overlay.style.display='flex';}
+  function togglePause(){if(!playing)return;paused=!paused;if(paused){pauseButton.textContent='▶';pauseButton.setAttribute('aria-label','Continuar jogo');overlay.innerHTML='<div class="game-title">PAUSADO</div><div class="game-sub">Respire, piloto. Sua nave está segura por enquanto.</div><button class="btn-start" onclick="window.typeBlasterResume()">▶ CONTINUAR</button><button class="hud-button" onclick="window.typeBlasterRestart()">RECOMEÇAR PARTIDA</button>';overlay.style.display='flex';}else{overlay.style.display='none';pauseButton.textContent='Ⅱ';pauseButton.setAttribute('aria-label','Pausar jogo');lastTime=performance.now();}}
+  function spawnWord(){if(!playing||paused||words.length>=3)return;let candidates=WORDS.filter(w=>!words.some(active=>active.text===w));if(!candidates.length)candidates=WORDS;const text=candidates[Math.floor(Math.random()*candidates.length)];const pad=14;const estimated=text.length*15;const x=pad+Math.random()*Math.max(1,width-estimated-pad*2);words.push({text,typedCount:0,x,y:20,speed:(.28+Math.min(level,8)*.055)*(height/420),color:'#00f0ff'});}
+  function shootLaser(target){audio.laser();ship.recoil=4;const letterX=target.x+target.typedCount*15;ship.angle=Math.atan2(target.y-ship.y,letterX-ship.x);lasers.push({x:ship.x,y:ship.y,targetX:letterX,targetY:target.y,speed:Math.max(9,width/30)});}
+  function destroyWord(word){audio.boom();score+=word.text.length*20;destroyed++;const newLevel=Math.floor(destroyed/5)+1;if(newLevel>level){level=newLevel;showFeedback('NÍVEL '+level+'! MAIS RÁPIDO!', '#ffd166');}else showFeedback('PALAVRA DESTRUÍDA! +'+(word.text.length*20),'#00ff66');updateHUD();for(let i=0;i<22;i++)particles.push({x:word.x+word.text.length*7,y:word.y,vx:(Math.random()-.5)*5,vy:(Math.random()-.5)*5,alpha:1,color:Math.random()>.4?'#00f0ff':'#ff007f'});words=words.filter(w=>w!==word);if(currentTarget===word)currentTarget=null;spawnTimer=Math.min(spawnTimer,220);}
+  function processLetter(letter){if(!playing||paused)return;audio.init();letter=letter.toUpperCase();if(!/^[A-Z]$/.test(letter))return;if(currentTarget){const needed=currentTarget.text[currentTarget.typedCount];if(letter===needed){currentTarget.typedCount++;shootLaser(currentTarget);if(currentTarget.typedCount===currentTarget.text.length)destroyWord(currentTarget);}else{audio.wrong();showFeedback('PRÓXIMA LETRA: '+needed,'#ff77b7');}return;}const candidates=words.filter(w=>w.text[0]===letter).sort((a,b)=>b.y-a.y);if(candidates.length){currentTarget=candidates[0];currentTarget.typedCount=1;shootLaser(currentTarget);if(currentTarget.typedCount===currentTarget.text.length)destroyWord(currentTarget);}else{audio.wrong();showFeedback('PROCURE UMA PALAVRA COM '+letter,'#ff77b7');}}
+  function handleVirtualKey(char){processLetter(char);const btn=[...document.querySelectorAll('.kb-key')].find(b=>b.textContent===char);if(btn){btn.classList.add('pressed');setTimeout(()=>btn.classList.remove('pressed'),90);}}
+  window.handleVirtualKey=handleVirtualKey;window.typeBlasterStart=startGame;window.typeBlasterResume=()=>{paused=false;overlay.style.display='none';pauseButton.textContent='Ⅱ';pauseButton.setAttribute('aria-label','Pausar jogo');lastTime=performance.now();};window.typeBlasterRestart=()=>{startGame();};window.togglePause=togglePause;
+  window.addEventListener('keydown',e=>{if(e.repeat)return;if(e.key==='Escape'){togglePause();return;}if(e.key.length===1&&/[a-z]/i.test(e.key)){e.preventDefault();processLetter(e.key);}});
+  function update(dt){if(!playing||paused)return;const factor=Math.min(dt/16.67,2.5);if(ship.recoil>0)ship.recoil=Math.max(0,ship.recoil-.5*factor);stars.forEach(s=>{s.y+=s.speed*factor;if(s.y>height)s.y=0;});spawnTimer-=dt;if(spawnTimer<=0&&words.length<Math.min(3,1+Math.floor(level/3))){spawnWord();spawnTimer=Math.max(850,1900-level*100);}for(let i=words.length-1;i>=0;i--){const w=words[i];w.y+=w.speed*factor;if(w.y>=height-42){audio.hurt();lives--;updateHUD();if(currentTarget===w)currentTarget=null;words.splice(i,1);showFeedback('A NAVE FOI ATINGIDA!','#ff477e');if(lives<=0){gameOver();return;}spawnTimer=400;}}for(let i=lasers.length-1;i>=0;i--){const l=lasers[i],dx=l.targetX-l.x,dy=l.targetY-l.y,dist=Math.hypot(dx,dy);if(dist<l.speed*factor){lasers.splice(i,1);}else{l.x+=(dx/dist)*l.speed*factor;l.y+=(dy/dist)*l.speed*factor;}}for(let i=particles.length-1;i>=0;i--){const p=particles[i];p.x+=p.vx*factor;p.y+=p.vy*factor;p.alpha-=.035*factor;if(p.alpha<=0)particles.splice(i,1);}}
+  function draw(){if(!ctx)return;ctx.clearRect(0,0,width,height);ctx.fillStyle='#fff';stars.forEach(s=>ctx.fillRect(s.x,s.y,s.size,s.size));ctx.strokeStyle='rgba(255,0,85,.35)';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(0,height-42);ctx.lineTo(width,height-42);ctx.stroke();ctx.setLineDash([5,5]);ctx.strokeStyle='rgba(255,0,85,.25)';ctx.beginPath();ctx.moveTo(0,height-42);ctx.lineTo(width,height-42);ctx.stroke();ctx.setLineDash([]);
+    lasers.forEach(l=>{ctx.strokeStyle='#00f0ff';ctx.lineWidth=2.5;ctx.beginPath();ctx.moveTo(l.x,l.y);ctx.lineTo(l.x+(l.targetX-l.x)*.2,l.y+(l.targetY-l.y)*.2);ctx.stroke();ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(l.x,l.y,2,0,Math.PI*2);ctx.fill();});
+    words.forEach(w=>{const selected=w===currentTarget;const boxW=w.text.length*15+16;ctx.fillStyle=selected?'rgba(0,240,255,.18)':'rgba(20,15,40,.82)';ctx.strokeStyle=selected?'#00f0ff':'#5d4499';ctx.lineWidth=1.5;ctx.fillRect(w.x-8,w.y-18,boxW,26);ctx.strokeRect(w.x-8,w.y-18,boxW,26);ctx.font="bold 16px 'Courier New',monospace";for(let i=0;i<w.text.length;i++){ctx.fillStyle=i<w.typedCount?'#00ff66':(selected?'#fff':'#c4b5fd');ctx.fillText(w.text[i],w.x+i*15,w.y);}});
+    particles.forEach(p=>{ctx.globalAlpha=Math.max(0,p.alpha);ctx.fillStyle=p.color;ctx.fillRect(p.x,p.y,3,3);});ctx.globalAlpha=1;
+    ctx.save();ctx.translate(ship.x,ship.y+ship.recoil);ctx.rotate(ship.angle+Math.PI/2);const flame=Math.sin(performance.now()*.02)*3;ctx.fillStyle='#ff6600';ctx.beginPath();ctx.moveTo(-4,12);ctx.lineTo(4,12);ctx.lineTo(0,17+flame);ctx.fill();ctx.fillStyle='#00f0ff';ctx.beginPath();ctx.moveTo(0,-16);ctx.lineTo(12,12);ctx.lineTo(0,8);ctx.lineTo(-12,12);ctx.closePath();ctx.fill();ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(0,-2,3,0,Math.PI*2);ctx.fill();ctx.restore();
+    if(playing&&!paused&&currentTarget){ctx.fillStyle='#a49fc4';ctx.font='11px Courier New';ctx.textAlign='center';ctx.fillText('PRÓXIMA: '+currentTarget.text.slice(currentTarget.typedCount),width/2,18);ctx.textAlign='left';}}
+  function loop(now){const dt=lastTime?now-lastTime:16.67;lastTime=now;update(dt);draw();rafId=requestAnimationFrame(loop);}
+  if('ResizeObserver' in window){new ResizeObserver(resize).observe(canvas);}else window.addEventListener('resize',resize);
+  resize();updateHUD();rafId=requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>

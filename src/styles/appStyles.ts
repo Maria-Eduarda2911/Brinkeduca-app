@@ -1,0 +1,397 @@
+import { StyleSheet, Platform, StatusBar } from 'react-native';
+import theme from '../theme';
+
+export const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: theme.colors.bg,
+    // ESSA FOI A LINHA ADICIONADA:
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+  },
+  container: {
+    padding: 16,
+    paddingBottom: 40,
+  },
+  brandWrap: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 20,
+    marginTop: 10,
+  },
+  logo: {
+    width: 500,
+    height: 180,
+    maxWidth: '100%',
+  },
+  menuSubtitle: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: theme.colors.text,
+    textAlign: 'center',
+    marginBottom: 20,
+  },
+  homeMenuButtons: {
+    gap: 14,
+  },
+  cardTop: {
+    marginBottom: 16,
+  },
+  sectionTitle: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: theme.colors.text,
+    marginBottom: 12,
+  },
+  tabsRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8,
+    marginBottom: 16,
+  },
+  tab: {
+    backgroundColor: theme.colors.cyanSoft,
+    borderRadius: theme.radius.pill,
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+    borderWidth: 2,
+    borderColor: 'transparent',
+  },
+  tabActive: {
+    backgroundColor: theme.colors.primarySoft,
+    borderColor: theme.colors.primary,
+  },
+  tabText: {
+    color: theme.colors.text,
+    fontWeight: '700',
+    textTransform: 'capitalize',
+  },
+  tabTextActive: {
+    color: theme.colors.primaryHover,
+  },
+  anoRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8,
+    marginBottom: 16,
+  },
+  anoButton: {
+    backgroundColor: theme.colors.cyanSoft,
+    borderRadius: 10,
+    width: 44,
+    height: 44,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 2,
+    borderColor: 'transparent',
+  },
+  anoButtonActive: {
+    backgroundColor: theme.colors.primary,
+    borderColor: theme.colors.borderStrong,
+  },
+  anoText: {
+    color: theme.colors.text,
+    fontWeight: '700',
+  },
+  anoTextActive: {
+    color: '#fff',
+  },
+  infoQuestoes: {
+    fontSize: 13,
+    color: theme.colors.muted,
+    marginBottom: 16,
+    fontWeight: '600',
+  },
+  btnIniciar: {
+    marginTop: 4,
+  },
+  progressWrap: {
+    marginBottom: 12,
+  },
+  progressTrack: {
+    height: 10,
+    backgroundColor: '#DDEAFF',
+    borderRadius: 999,
+    overflow: 'hidden',
+    marginBottom: 6,
+  },
+  progressFill: {
+    height: '100%',
+    backgroundColor: theme.colors.primary,
+    borderRadius: 999,
+  },
+  progressLabel: {
+    textAlign: 'right',
+    color: theme.colors.primaryHover,
+    fontSize: 12,
+    fontWeight: '700',
+  },
+  badge: {
+    color: theme.colors.primaryHover,
+    fontWeight: '700',
+    textTransform: 'uppercase',
+    marginBottom: 8,
+  },
+  questionEmoji: {
+    fontSize: 34,
+    marginBottom: 8,
+    textAlign: 'center',
+  },
+  questionText: {
+    fontSize: 20,
+    color: theme.colors.text,
+    fontWeight: '700',
+    lineHeight: 28,
+    marginBottom: 12,
+    textAlign: 'center',
+  },
+  scoreText: {
+    fontSize: 14,
+    color: theme.colors.muted,
+    marginBottom: 16,
+    textAlign: 'center',
+  },
+  optionsList: {
+    gap: 10,
+  },
+  option: {
+    backgroundColor: '#F5F9FF',
+    padding: 14,
+    borderRadius: 12,
+    borderWidth: 2,
+    borderColor: '#D9E9F7',
+    flexDirection: 'row',
+    alignItems: 'center',
+    opacity: 1,
+  },
+  optionSelected: {
+    borderColor: theme.colors.primary,
+  },
+  optionCorrect: {
+    backgroundColor: '#EAF8E9',
+    borderColor: theme.colors.success,
+  },
+  optionWrong: {
+    backgroundColor: '#FDEDED',
+    borderColor: theme.colors.error,
+  },
+  optionDimmed: {
+    opacity: 0.35,
+  },
+  optionBadge: {
+    fontSize: 18,
+    marginRight: 10,
+    minWidth: 26,
+    textAlign: 'center',
+  },
+  optionText: {
+    color: theme.colors.text,
+    fontSize: 16,
+    fontWeight: '600',
+    flex: 1,
+  },
+  feedbackBox: {
+    marginTop: 14,
+    borderRadius: 14,
+    borderWidth: 2,
+    padding: 12,
+  },
+  feedbackBoxSuccess: {
+    backgroundColor: '#F0F9E8',
+    borderColor: theme.colors.success,
+  },
+  feedbackBoxError: {
+    backgroundColor: '#FFF0F0',
+    borderColor: theme.colors.error,
+  },
+  feedbackTitle: {
+    fontSize: 14,
+    color: theme.colors.text,
+    fontWeight: '800',
+    marginBottom: 4,
+  },
+  feedbackText: {
+    fontSize: 12,
+    lineHeight: 18,
+    color: theme.colors.text,
+  },
+  resultTitle: {
+    fontSize: 22,
+    fontWeight: '800',
+    color: theme.colors.text,
+    marginBottom: 8,
+    textAlign: 'center',
+  },
+  resultText: {
+    fontSize: 15,
+    color: theme.colors.text,
+    lineHeight: 22,
+    marginBottom: 18,
+    textAlign: 'center',
+  },
+  reviewSummary: {
+    gap: 12,
+    marginBottom: 18,
+  },
+  reviewItem: {
+    backgroundColor: '#F8FBFF',
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#DDEBFF',
+    padding: 12,
+  },
+  reviewQuestion: {
+    fontSize: 14,
+    fontWeight: '700',
+    color: theme.colors.text,
+    marginBottom: 6,
+  },
+  reviewStatus: {
+    fontSize: 12,
+    fontWeight: '800',
+    marginBottom: 4,
+  },
+  reviewStatusCorrect: {
+    color: theme.colors.success,
+  },
+  reviewStatusWrong: {
+    color: theme.colors.error,
+  },
+  reviewAnswer: {
+    fontSize: 12,
+    color: theme.colors.muted,
+    marginBottom: 2,
+  },
+  reviewExplanation: {
+    fontSize: 12,
+    color: theme.colors.text,
+    marginTop: 4,
+    lineHeight: 18,
+  },
+  emptyText: {
+    color: theme.colors.muted,
+    fontSize: 14,
+    textAlign: 'center',
+    paddingVertical: 12,
+  },
+  rankRow: {
+    backgroundColor: '#F8FBFF',
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#DCEBFF',
+    padding: 12,
+    marginBottom: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  rankMateria: {
+    fontWeight: '700',
+    color: theme.colors.text,
+    textTransform: 'capitalize',
+    fontSize: 14,
+  },
+  rankMeta: {
+    color: theme.colors.muted,
+    fontSize: 12,
+    marginTop: 2,
+  },
+  rankDate: {
+    color: theme.colors.cyan,
+    fontSize: 11,
+    marginTop: 2,
+  },
+  rankScoreHighlight: {
+    fontSize: 16,
+    fontWeight: '800',
+    color: theme.colors.text,
+  },
+  rankMedal: {
+    color: theme.colors.primaryHover,
+    fontWeight: '700',
+    textTransform: 'capitalize',
+    fontSize: 12,
+    marginTop: 2,
+  },
+  gameCardItem: {
+    marginTop: 8,
+    overflow: 'hidden',
+  },
+  gameCardMagic: {
+    backgroundColor: '#1E1338',
+    borderColor: '#8B3FD6',
+    borderWidth: 3,
+    padding: 18,
+  },
+  gameCardArcade: {
+    backgroundColor: '#090E24',
+    borderColor: '#00F0FF',
+    borderWidth: 3,
+    padding: 18,
+    marginTop: 12,
+  },
+  gameBadge: {
+    alignSelf: 'flex-start',
+    backgroundColor: 'rgba(255,255,255,0.08)',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.2)',
+    borderRadius: 999,
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    marginBottom: 14,
+  },
+  gameBadgeText: {
+    fontSize: 10,
+    fontWeight: '800',
+    letterSpacing: 1,
+    textTransform: 'uppercase',
+    color: '#fff',
+  },
+  gameCardTitle: {
+    fontSize: 20,
+    fontWeight: '800',
+    color: '#fff',
+    marginBottom: 8,
+  },
+  gameCardDesc: {
+    fontSize: 13,
+    lineHeight: 18,
+    marginBottom: 14,
+    color: '#F5EEFF',
+  },
+  gameEmojis: {
+    fontSize: 28,
+    letterSpacing: 6,
+    marginBottom: 14,
+  },
+  gameButtonMagic: {
+    backgroundColor: '#A64BFF',
+    borderColor: '#5D1FB2',
+  },
+  gameButtonArcade: {
+    backgroundColor: '#FF2BD6',
+    borderColor: '#B7008E',
+  },
+  gameWrapper: {
+    flex: 1,
+    backgroundColor: '#f3f8ff',
+  },
+  gameHeader: {
+    paddingVertical: 12,
+    paddingHorizontal: 12,
+    backgroundColor: '#f3f8ff',
+  },
+  gameFrame: {
+    flex: 1,
+    marginHorizontal: 12,
+    marginBottom: 12,
+    borderRadius: 18,
+    borderWidth: 3,
+    borderColor: '#D9E9F7',
+    overflow: 'hidden',
+    backgroundColor: '#0d0a14',
+  },
+  gameWebView: {
+    flex: 1,
+    backgroundColor: '#0d0a14',
+  },
+});
