@@ -10,6 +10,8 @@ O app foi desenvolvido em React Native com Expo e está alinhado com o site de r
 
 https://brinkeduca.infinityfree.me/index?i=1
 
+<img width="281" height="463" alt="image" src="https://github.com/user-attachments/assets/fed9bee2-196f-4f61-abce-922ea5dc031c" />
+
 ## 🎯 Objetivo do projeto
 
 O Brinkeduca busca oferecer uma experiência de estudo com foco em:
