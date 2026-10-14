@@ -90,7 +90,7 @@ Desenvolvido como parte do projeto Brinkeduca em ambiente Expo/React Native.
 
 O aplicativo utiliza `expo-sqlite` e cria automaticamente o arquivo local `brinkeduca.db` na primeira inicialização.
 
-- `questoes`: recebe as 300 questões de `api/questoes.json` na primeira execução; depois, o quiz consulta as questões armazenadas no SQLite.
+- `questoes`: importa as questões de `api/questoes.json` para o SQLite e completa registros ausentes caso uma instalação anterior tenha criado uma carga parcial.
 - `ranking_pessoal`: guarda as pontuações e medalhas no aparelho, mesmo depois de fechar o app.
 - Migração: o histórico antigo salvo com AsyncStorage é copiado para o SQLite quando a tabela do ranking ainda está vazia.
 
@@ -118,3 +118,11 @@ Conquistas disponíveis:
 - **Colecionador de Medalhas:** obter três conquistas.
 
 A tela também mostra quizzes concluídos, acertos acumulados, jogos experimentados e a galeria de medalhas desbloqueadas ou ainda bloqueadas.
+
+
+## Navegação e sorteio de questões
+
+- As telas internas contam com uma barra de navegação com **Voltar** e **Início**; no Android, o botão físico de voltar também respeita a navegação entre telas.
+- O quiz filtra as questões pelo ano escolar e pela disciplina selecionados.
+- Cada partida sorteia até cinco questões sem repetição dentro da rodada. Quando há questões alternativas, o app evita repetir exatamente o mesmo conjunto na partida seguinte da mesma disciplina e ano.
+- A tela de Ranking Pessoal inclui um guia expansível que explica as medalhas e incentiva a criança a acompanhar a própria evolução.

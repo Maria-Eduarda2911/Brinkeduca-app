@@ -91,11 +91,8 @@ export function getDatabase(): Promise<SQLite.SQLiteDatabase> {
 }
 
 async function seedQuestionsIfNeeded(db: SQLite.SQLiteDatabase): Promise<void> {
-  const result = await db.getFirstAsync<{ total: number }>(
-    'SELECT COUNT(*) AS total FROM questoes'
-  );
-  if ((result?.total ?? 0) > 0) return;
-
+  // INSERT OR IGNORE mantém os registros existentes e completa questões ausentes
+  // caso uma instalação anterior tenha criado o banco com uma carga parcial.
   const rawQuestions = require('../../api/questoes.json') as unknown;
   const questions = normalizeQuestions(rawQuestions);
 

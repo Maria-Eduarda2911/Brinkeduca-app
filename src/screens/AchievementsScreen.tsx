@@ -1,13 +1,12 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import Card from '../components/Card';
-import Button from '../components/Button';
 import type { Conquista } from '../services/gamification';
 import { styles } from '../styles/appStyles';
 
-type Props = { conquistas: Conquista[]; resumo: { quizzesConcluidos: number; jogosExperimentados: number; pontosAcumulados: number; conquistasDesbloqueadas: number }; onVoltar: () => void };
+type Props = { conquistas: Conquista[]; resumo: { quizzesConcluidos: number; jogosExperimentados: number; pontosAcumulados: number; conquistasDesbloqueadas: number } };
 
-export default function AchievementsScreen({ conquistas, resumo, onVoltar }: Props) {
+export default function AchievementsScreen({ conquistas, resumo }: Props) {
   return <>
     <Card style={styles.cardTop}>
       <Text style={styles.resultTitle}>🏆 Minhas Conquistas</Text>
@@ -24,6 +23,5 @@ export default function AchievementsScreen({ conquistas, resumo, onVoltar }: Pro
       </View>)}
       <Text style={styles.emptyText}>Jogos experimentados: {resumo.jogosExperimentados}/2</Text>
     </Card>
-    <Button variant="secondary" onPress={onVoltar}>← Voltar ao Menu</Button>
   </>;
 }
